@@ -59,16 +59,34 @@ Working directory, staging area, repository
 ```sh
     git status
 ```
-- Identifica arquivos alterados, revemovidos ou adicionados ao repositório
+- Identifica arquivos alterados, revemovidos ou adicionados ao repositório.
 ```sh
-    git add
+    git add 
+    git add file_name
+```
+- Configuração de Email e Nome de usuário.
+```sh
+    git config --global user.name "Your Name"
+    git config --global user.email "your.name@teste.com"
+```
+- Lista as configurações local do repositório.
+```sh
+    git config --list
 ```
 - Salva todas as alterações realizadas no repositório
 ```sh
     git commit 
+    
+    git commit -m "mensagem_do_commit"
 ```
-
-- Exercício: adicionar, modificar e remover arquivos
+-  Trocar de branch
+```sh
+  git checkout branch_name
+```
+- Criar e trocar para uma nova branch
+```sh
+  git checkout -b branch_name
+```
 ## Aula-3: Histórico e inspeção
 - Rastreia todos os commits realizados na branch em questão.
 ```sh
@@ -83,7 +101,40 @@ Working directory, staging area, repository
    git diff
 ```
 Exercício: visualizar histórico e comparar versões
-## Aula-4
+## Aula-4: Desfazendo Mudanças
+- Desfazer mudanças não salvas (no working directory)
+```sh
+  git restore 
+```
+- Remover arquivos do stage
+```sh  
+  git restore --stage file_name.js
+```
+- Restaurar um arquivo para um commit específico
+```sh 
+  git restore --source=abc1234 meu_arquivo.txt
+```
+- Tirar arquivo do stage
+```sh
+  git reset tile_name.js
+```
+- Reset “soft” – voltar commits mas manter mudanças no stage
+```sh
+  git reset --soft HEAD~1
+```
+Módulo 3: Repositórios Remotos
+
+Conectando ao GitHub/GitLab
+
+ - Criar repositório remoto
+```sh
+  git remote add, git push, git pull, git fetch
+```
+- Clonando repositórios
+```
+  git clone
+```
+Fluxo de alterações (local → remoto e remoto → local)
 ## Documentation
 
 [Documentation](https://linktodocumentation)
