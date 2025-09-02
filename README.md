@@ -23,7 +23,7 @@
 
 ---
 
-### Aula-1: Instrodução ao Git
+### Aula-1: Introdução ao Git
 #### Git
 - Git é um sistema de controle de versão distribuído , gratuito e de código aberto, projetado para lidar com tudo, desde projetos pequenos até muito grandes, com rapidez e eficiência.
 
