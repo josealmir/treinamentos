@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Instalação e Configuração do Git</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            overflow: hidden;
+            position: relative;
+            background-color: #f7f7f7;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .title {
+            color: #f14e32;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #413932;
+        }
+
+        .install-item {
+            transition: transform 0.2s;
+        }
+
+        .install-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .code-block {
+            font-family: monospace;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            padding: 12px;
+            overflow-x: auto;
+            color: #333;
+            border-left: 3px solid #f14e32;
+        }
+
+        .slide-footer {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Menu -->
+    <nav
+        class="relative bg-gray-800/50 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10">
+        <div class="mx-auto max-w-8xl px-2 sm:px-6 lg:px-8 bg-gray-800">
+            <div class="relative flex h-16 items-center justify-between">
+                <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                    <!-- Mobile menu button-->
+                    <button type="button" command="--toggle" commandfor="mobile-menu"
+                        class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500">
+                        <span class="absolute -inset-0.5"></span>
+                        <span class="sr-only">Open main menu</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
+                            aria-hidden="true" class="size-6 in-aria-expanded:hidden">
+                            <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
+                            aria-hidden="true" class="size-6 not-in-aria-expanded:hidden">
+                            <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                    <div class="hidden sm:ml-12 sm:block">
+                        <div class="flex space-x-4">
+                            <a href="index.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Index</a>
+                            <a href="introduction.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Introdução</a>
+                            <a href="git.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Git</a>
+                            <a href="diffe.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">
+                                GitHub / GitLab</a>
+                            <a href="installer.html"
+                                class="rounded-md bg-yellow-50 px-3 py-2 text-sm font-medium text-gray-800">Instalação</a>
+                            <a href="baisic.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conceitos</a>
+                            <a href="commands.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Básico</a>
+                            <a href="workflow.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Workflow</a>
+                            <a href="branch.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Branches</a>
+                            <a href="colaboration.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Colaboração</a>
+                            <a href="conflito.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conflitos</a>
+                            <a href="command-avancado.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Avançados</a>
+                            <a href="best-pratics.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Boas
+                                Práticas</a>
+                            <a href="resource.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Linkes
+                                Úteis</a>
+                            <a href="conclusion.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conclusão</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                    <button type="button"
+                        class="relative rounded-full p-1 text-gray-400 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500">
+                        <span class="absolute -inset-1.5"></span>
+                        <span class="sr-only">View notifications</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
+                            aria-hidden="true" class="size-6">
+                            <path
+                                d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!--End Menu -->
+
+    <div class="h-screen flex items-center justify-center bg-gray-100">
+        <div class="slide-container p-12">
+            <!-- Cabeçalho com título -->
+            <header class="mb-10">
+                <h1 class="title text-4xl mb-4">Instalação e Configuração do Git</h1>
+                <div class="w-20 h-1 bg-gray-300"></div>
+            </header>
+            <!-- Conteúdo principal dividido em duas colunas -->
+            <div class="flex">
+                <!-- Coluna da esquerda: Instalação -->
+                <div class="w-1/2 pr-8">
+                    <h2 class="subtitle text-2xl mb-4">Instalação por Sistema</h2>
+                    <div class="space-y-6 mb-6">
+                        <div class="install-item p-4 bg-white rounded-lg shadow-sm">
+                            <div class="flex items-center mb-2">
+                                <i class="fab fa-windows text-xl text-blue-500 mr-3"></i>
+                                <h3 class="font-medium text-lg">Windows</h3>
+                            </div>
+                            <ol class="list-decimal pl-8 text-gray-700 text-sm space-y-1">
+                                <li>Acesse <span class="text-blue-600">git-scm.com</span></li>
+                                <li>Baixe o instalador para Windows</li>
+                                <li>Execute e siga as instruções do assistente</li>
+                                <li>Selecione o editor padrão durante a instalação</li>
+                            </ol>
+                        </div>
+                        <div class="install-item p-4 bg-white rounded-lg shadow-sm">
+                            <div class="flex items-center mb-2">
+                                <i class="fab fa-apple text-xl text-gray-800 mr-3"></i>
+                                <h3 class="font-medium text-lg">macOS</h3>
+                            </div>
+                            <ol class="list-decimal pl-8 text-gray-700 text-sm space-y-1">
+                                <li>Via Homebrew: <span class="font-mono bg-gray-100 px-1">brew install git</span></li>
+                                <li>Ou baixe o instalador do site oficial</li>
+                                <li>Ou instale Xcode Command Line Tools: <span
+                                        class="font-mono bg-gray-100 px-1">xcode-select --install</span></li>
+                            </ol>
+                        </div>
+                        <div class="install-item p-4 bg-white rounded-lg shadow-sm">
+                            <div class="flex items-center mb-2">
+                                <i class="fab fa-linux text-xl text-yellow-600 mr-3"></i>
+                                <h3 class="font-medium text-lg">Linux</h3>
+                            </div>
+                            <div class="text-gray-700 text-sm space-y-1">
+                                <p class="mb-1"><span class="font-semibold">Debian/Ubuntu:</span></p>
+                                <p class="font-mono bg-gray-100 px-1 mb-2">sudo apt-get install git</p>
+                                <p class="mb-1"><span class="font-semibold">Fedora:</span></p>
+                                <p class="font-mono bg-gray-100 px-1">sudo dnf install git</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 p-4 bg-gray-100 rounded-lg border-l-4 border-green-500">
+                        <div class="flex">
+                            <i class="fas fa-check-circle text-green-500 mr-3 text-xl"></i>
+                            <div>
+                                <p class="font-medium mb-1">Verificar Instalação</p>
+                                <p class="font-mono bg-gray-200 px-2 py-1 text-sm">git --version</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Coluna da direita: Configuração -->
+                <div class="w-1/2 pl-8 border-l border-gray-300">
+                    <h2 class="subtitle text-2xl mb-4">Configuração Inicial</h2>
+                    <p class="mb-4 text-gray-700">
+                        Após instalar o Git, configure seu nome de usuário e email:
+                    </p>
+                    <div class="code-block mb-6">
+                        <p class="mb-2 font-semibold text-sm text-gray-600">Configurar identidade</p>
+                        <p class="mb-2">git config --global user.name "Seu Nome"</p>
+                        <p>git config --global user.email "seu@email.com"</p>
+                    </div>
+                    <h3 class="subtitle text-xl mb-3 mt-6">Configurações Adicionais</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-10 mr-3 text-center mt-1">
+                                <i class="fas fa-palette text-purple-600"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Ativar cores</p>
+                                <p class="text-sm text-gray-600 font-mono">git config --global color.ui true</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 mr-3 text-center mt-1">
+                                <i class="fas fa-edit text-blue-600"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Editor padrão</p>
+                                <p class="text-sm text-gray-600 font-mono">git config --global core.editor
+                                    "nome-do-editor"
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 mr-3 text-center mt-1">
+                                <i class="fas fa-list text-green-600"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Listar configurações</p>
+                                <p class="text-sm text-gray-600 font-mono">git config --list</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 p-4 bg-gray-100 rounded-lg border-l-4 border-blue-500">
+                        <div class="flex">
+                            <i class="fas fa-info-circle text-blue-500 mr-3 text-xl"></i>
+                            <div>
+                                <p class="font-medium mb-1">Configuração por Projeto</p>
+                                <p class="text-gray-600 text-sm">
+                                    Para configurar apenas um repositório específico, remova a flag <span
+                                        class="font-mono bg-gray-200 px-1">--global</span>
+                                    e execute o comando dentro da pasta do projeto.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Rodapé do slide -->
+            <div class="slide-footer">
+                <p class="text-gray-500 text-sm">Fundamentos de Git e Seus Comandos</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

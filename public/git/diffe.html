@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Git, GitHub e GitLab: Diferenças</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            overflow: hidden;
+            position: relative;
+            background-color: #f7f7f7;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .title {
+            color: #f14e32;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #413932;
+        }
+
+        .platform-card {
+            transition: transform 0.2s;
+            border-top: 4px solid;
+        }
+
+        .platform-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .git-card {
+            border-color: #f14e32;
+        }
+
+        .github-card {
+            border-color: #24292e;
+        }
+
+        .gitlab-card {
+            border-color: #fc6d26;
+        }
+
+        .feature-item {
+            border-left: 3px solid #e2e2e2;
+        }
+
+        .slide-footer {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Menu -->
+    <nav
+        class="relative bg-gray-800/50 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10">
+        <div class="mx-auto max-w-8xl px-2 sm:px-6 lg:px-8 bg-gray-800">
+            <div class="relative flex h-16 items-center justify-between">
+                <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                    <!-- Mobile menu button-->
+                    <button type="button" command="--toggle" commandfor="mobile-menu"
+                        class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500">
+                        <span class="absolute -inset-0.5"></span>
+                        <span class="sr-only">Open main menu</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
+                            aria-hidden="true" class="size-6 in-aria-expanded:hidden">
+                            <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
+                            aria-hidden="true" class="size-6 not-in-aria-expanded:hidden">
+                            <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                    <div class="hidden sm:ml-12 sm:block">
+                        <div class="flex space-x-4">
+                            <a href="index.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Index</a>
+                            <a href="introduction.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Introdução</a>
+                            <a href="git.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Git</a>
+                            <a href="diffe.html"
+                                class="rounded-md bg-yellow-50 px-3 py-2 text-sm font-medium text-gray-800">
+                                GitHub / GitLab</a>
+                            <a href="installer.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Instalação</a>
+                            <a href="baisic.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conceitos</a>
+                            <a href="commands.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Básico</a>
+                            <a href="workflow.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Workflow</a>
+                            <a href="branch.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Branches</a>
+                            <a href="colaboration.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Colaboração</a>
+                            <a href="conflito.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conflitos</a>
+                            <a href="command-avancado.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Avançados</a>
+                            <a href="best-pratics.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Boas
+                                Práticas</a>
+                            <a href="resource.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Linkes
+                                Úteis</a>
+                            <a href="conclusion.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conclusão</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                    <button type="button"
+                        class="relative rounded-full p-1 text-gray-400 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500">
+                        <span class="absolute -inset-1.5"></span>
+                        <span class="sr-only">View notifications</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
+                            aria-hidden="true" class="size-6">
+                            <path
+                                d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!--End Menu -->
+
+    <div class="h-screen flex items-center justify-center bg-gray-100">
+        <div class="slide-container p-6">
+            <!-- Cabeçalho com título -->
+            <header class="mb-8">
+                <h1 class="title text-4xl mb-4">Git, GitHub e GitLab: Diferenças</h1>
+                <div class="w-20 h-1 bg-gray-300"></div>
+            </header>
+            <!-- Introdução -->
+            <div class="mb-8">
+                <p class="text-lg">
+                    Embora frequentemente mencionados juntos, Git, GitHub e GitLab têm funções diferentes no ecossistema
+                    de
+                    desenvolvimento. Entenda as diferenças e quando usar cada um:
+                </p>
+            </div>
+            <!-- Cards de comparação -->
+            <div class="flex space-x-6 mb-8">
+                <!-- Card do Git -->
+                <div class="platform-card git-card w-1/3 bg-white rounded-lg shadow-sm p-6">
+                    <div class="flex items-center mb-4">
+                        <i class="fab fa-git-alt text-2xl text-red-600 mr-3"></i>
+                        <h2 class="subtitle text-2xl">Git</h2>
+                    </div>
+                    <p class="mb-4"><strong>Sistema de controle de versão</strong> distribuído</p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Software local instalado no computador</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Gerencia histórico de alterações no código</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Criado por Linus Torvalds em 2005</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Funciona independentemente de servidores</span>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Card do GitHub -->
+                <div class="platform-card github-card w-1/3 bg-white rounded-lg shadow-sm p-6">
+                    <div class="flex items-center mb-4">
+                        <i class="fab fa-github text-2xl text-gray-800 mr-3"></i>
+                        <h2 class="subtitle text-2xl">GitHub</h2>
+                    </div>
+                    <p class="mb-4"><strong>Plataforma de hospedagem</strong> de repositórios Git</p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Serviço online para armazenar repositórios</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Focado em open-source e colaboração</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Adquirido pela Microsoft em 2018</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Oferece GitHub Actions para CI/CD</span>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Card do GitLab -->
+                <div class="platform-card gitlab-card w-1/3 bg-white rounded-lg shadow-sm p-6">
+                    <div class="flex items-center mb-4">
+                        <i class="fab fa-gitlab text-2xl text-orange-500 mr-3"></i>
+                        <h2 class="subtitle text-2xl">GitLab</h2>
+                    </div>
+                    <p class="mb-4"><strong>Plataforma DevOps</strong> completa com Git</p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Serviço online ou auto-hospedado</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Forte foco em CI/CD integrado</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Enfatiza segurança e privacidade</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Oferece versão open-source e comercial</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Comparação de recursos -->
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <h2 class="subtitle text-xl mb-4">Comparação Rápida de Recursos</h2>
+                <div class="grid grid-cols-4 gap-4">
+                    <div class="font-medium text-gray-700">Recurso</div>
+                    <div class="font-medium text-gray-700">Git</div>
+                    <div class="font-medium text-gray-700">GitHub</div>
+                    <div class="font-medium text-gray-700">GitLab</div>
+                    <div class="feature-item pl-3">Controle de versão</div>
+                    <div class="text-center"><i class="fas fa-check text-green-600"></i></div>
+                    <div class="text-center"><i class="fas fa-check text-green-600"></i></div>
+                    <div class="text-center"><i class="fas fa-check text-green-600"></i></div>
+                    <div class="feature-item pl-3">Interface web</div>
+                    <div class="text-center"><i class="fas fa-times text-red-500"></i></div>
+                    <div class="text-center"><i class="fas fa-check text-green-600"></i></div>
+                    <div class="text-center"><i class="fas fa-check text-green-600"></i></div>
+                    <div class="feature-item pl-3">CI/CD integrado</div>
+                    <div class="text-center"><i class="fas fa-times text-red-500"></i></div>
+                    <div class="text-center"><i class="fas fa-check text-green-600"></i></div>
+                    <div class="text-center"><i class="fas fa-check text-green-600"></i></div>
+                    <div class="feature-item pl-3">Auto-hospedagem</div>
+                    <div class="text-center"><i class="fas fa-check text-green-600"></i></div>
+                    <div class="text-center"><i class="fas fa-times text-red-500"></i></div>
+                    <div class="text-center"><i class="fas fa-check text-green-600"></i></div>
+                </div>
+            </div>
+            <!-- Dica/Nota -->
+            <div class="mt-6 p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                <div class="flex">
+                    <i class="fas fa-info-circle text-blue-500 mr-3 text-xl"></i>
+                    <div>
+                        <p class="font-medium mb-1">Lembre-se:</p>
+                        <p class="text-gray-600">
+                            O Git é a tecnologia de base, enquanto GitHub e GitLab são serviços baseados nela. Você
+                            precisa
+                            do Git para usar qualquer um deles, mas não precisa do GitHub ou GitLab para usar o Git.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Rodapé do slide -->
+            <div class="slide-footer">
+                <p class="text-gray-500 text-sm">Fundamentos de Git e Seus Comandos</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

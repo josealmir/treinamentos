@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Comandos de Colaboração: clone, pull, push</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            overflow: hidden;
+            position: relative;
+            background-color: #f7f7f7;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .title {
+            color: #f14e32;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #413932;
+        }
+
+        .command-item {
+            transition: transform 0.2s;
+        }
+
+        .command-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .code-block {
+            font-family: monospace;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            padding: 0.5rem;
+            font-size: 0.9rem;
+            color: #333;
+            border-left: 3px solid #f14e32;
+        }
+
+        .slide-footer {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Menu -->
+    <nav
+        class="relative bg-gray-800/50 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10">
+        <div class="mx-auto max-w-8xl px-2 sm:px-6 lg:px-8 bg-gray-800">
+            <div class="relative flex h-16 items-center justify-between">
+                <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                    <!-- Mobile menu button-->
+                    <button type="button" command="--toggle" commandfor="mobile-menu"
+                        class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500">
+                        <span class="absolute -inset-0.5"></span>
+                        <span class="sr-only">Open main menu</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
+                            aria-hidden="true" class="size-6 in-aria-expanded:hidden">
+                            <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
+                            aria-hidden="true" class="size-6 not-in-aria-expanded:hidden">
+                            <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                    <div class="hidden sm:ml-12 sm:block">
+                        <div class="flex space-x-4">
+                            <a href="index.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Index</a>
+                            <a href="introduction.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Introdução</a>
+                            <a href="git.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Git</a>
+                            <a href="diffe.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">
+                                GitHub / GitLab</a>
+                            <a href="installer.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Instalação</a>
+                            <a href="baisic.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conceitos</a>
+                            <a href="commands.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Básico</a>
+                            <a href="workflow.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Workflow</a>
+                            <a href="branch.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Branches</a>
+                            <a href="colaboration.html"
+                                class="rounded-md bg-yellow-50 px-3 py-2 text-sm font-medium text-gray-800">Colaboração</a>
+                            <a href="conflito.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conflitos</a>
+                            <a href="command-avancado.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Avançados</a>
+                            <a href="best-pratics.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Boas
+                                Práticas</a>
+                            <a href="resource.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Linkes
+                                Úteis</a>
+                            <a href="conclusion.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conclusão</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                    <button type="button"
+                        class="relative rounded-full p-1 text-gray-400 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500">
+                        <span class="absolute -inset-1.5"></span>
+                        <span class="sr-only">View notifications</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
+                            aria-hidden="true" class="size-6">
+                            <path
+                                d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!--End Menu -->
+
+    <div id="index" class="h-screen flex items-center justify-center bg-gray-100">
+        <div class="slide-container p-12">
+            <!-- Cabeçalho com título -->
+            <header class="mb-10">
+                <h1 class="title text-4xl mb-4">Comandos de Colaboração: clone, pull, push</h1>
+                <div class="w-20 h-1 bg-gray-300"></div>
+            </header>
+            <!-- Conteúdo principal dividido em duas colunas -->
+            <div class="flex">
+                <!-- Coluna da esquerda: Descrição dos comandos -->
+                <div class="w-1/2 pr-8">
+                    <h2 class="subtitle text-2xl mb-4">Principais Comandos para Colaboração</h2>
+                    <p class="mb-6 text-lg">
+                        Estes comandos permitem trabalhar com repositórios remotos, essenciais para projetos
+                        colaborativos e
+                        compartilhamento de código.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="command-item bg-white p-4 rounded-lg shadow-sm">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-copy text-xl text-gray-600 mr-3"></i>
+                                <h3 class="font-medium text-lg">git clone</h3>
+                            </div>
+                            <p class="text-gray-600 mb-2">Cria uma cópia completa de um repositório Git remoto em sua
+                                máquina local.</p>
+                            <div class="code-block">git clone https://github.com/usuario/repositorio.git</div>
+                        </div>
+                        <div class="command-item bg-white p-4 rounded-lg shadow-sm">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-download text-xl text-gray-600 mr-3"></i>
+                                <h3 class="font-medium text-lg">git pull</h3>
+                            </div>
+                            <p class="text-gray-600 mb-2">Atualiza seu repositório local com as mudanças do repositório
+                                remoto.</p>
+                            <div class="code-block">git pull origin main</div>
+                        </div>
+                        <div class="command-item bg-white p-4 rounded-lg shadow-sm">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-upload text-xl text-gray-600 mr-3"></i>
+                                <h3 class="font-medium text-lg">git push</h3>
+                            </div>
+                            <p class="text-gray-600 mb-2">Envia seus commits locais para o repositório remoto.</p>
+                            <div class="code-block">git push origin feature-branch</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Coluna da direita: Fluxo de trabalho e dicas -->
+                <div class="w-1/2 pl-8 border-l border-gray-300">
+                    <h2 class="subtitle text-2xl mb-6">Fluxo de Trabalho Colaborativo</h2>
+                    <div class="bg-white p-5 rounded-lg shadow-sm mb-6">
+                        <ol class="list-decimal pl-5 space-y-4">
+                            <li>
+                                <span class="font-medium">Comece com um clone</span>
+                                <p class="text-gray-600 text-sm">Obtenha uma cópia completa do repositório para começar
+                                    a
+                                    trabalhar.</p>
+                            </li>
+                            <li>
+                                <span class="font-medium">Pull antes de modificar</span>
+                                <p class="text-gray-600 text-sm">Sempre atualize seu repositório local antes de começar
+                                    novas alterações.</p>
+                            </li>
+                            <li>
+                                <span class="font-medium">Faça commits das alterações</span>
+                                <p class="text-gray-600 text-sm">Registre suas mudanças em commits pequenos e
+                                    descritivos.
+                                </p>
+                            </li>
+                            <li>
+                                <span class="font-medium">Push para compartilhar</span>
+                                <p class="text-gray-600 text-sm">Envie seus commits para o repositório remoto quando
+                                    estiver
+                                    pronto.</p>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="p-4 bg-gray-100 rounded-lg border-l-4 border-blue-500">
+                        <div class="flex">
+                            <i class="fas fa-info-circle text-blue-500 mr-3 text-xl"></i>
+                            <div>
+                                <p class="font-medium mb-1">Dica importante:</p>
+                                <p class="text-gray-600">
+                                    O comando <span class="font-medium">git pull</span> é na verdade uma combinação de
+                                    dois
+                                    comandos:
+                                    <span class="font-medium">git fetch</span> (baixa alterações) +
+                                    <span class="font-medium">git merge</span> (integra alterações).
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 p-4 bg-gray-100 rounded-lg border-l-4 border-yellow-500">
+                        <div class="flex">
+                            <i class="fas fa-exclamation-triangle text-yellow-500 mr-3 text-xl"></i>
+                            <div>
+                                <p class="font-medium mb-1">Cuidado!</p>
+                                <p class="text-gray-600">
+                                    Sempre faça um <span class="font-medium">git pull</span> antes de um
+                                    <span class="font-medium">git push</span> para evitar conflitos de merge.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Rodapé do slide -->
+            <div class="slide-footer">
+                <p class="text-gray-500 text-sm">Fundamentos de Git e Seus Comandos</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

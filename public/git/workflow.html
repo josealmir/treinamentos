@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Workflow do Git: Como Funciona na Prática</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            width: auto;
+        }
+
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            overflow: hidden;
+            position: relative;
+            background-color: #f7f7f7;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .title {
+            color: #f14e32;
+            font-weight: 700;
+        }
+
+        .workflow-area {
+            background-color: #fff;
+            border: 2px solid #e2e2e2;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .workflow-area:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .arrow-container {
+            position: relative;
+            height: 4px;
+            background-color: #ddd;
+        }
+
+        .arrow-head {
+            position: absolute;
+            right: -12px;
+            top: -8px;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 15px solid #ddd;
+        }
+
+        .git-command {
+            background-color: #f8f8f8;
+            border: 1px solid #e5e5e5;
+            border-radius: 4px;
+            font-family: monospace;
+            padding: 4px 8px;
+            color: #333;
+        }
+
+        .slide-footer {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Menu -->
+    <nav
+        class="relative bg-gray-800/50 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10">
+        <div class="mx-auto max-w-8xl px-1 sm:px-6 lg:px-8 bg-gray-800">
+            <div class="relative flex h-16 items-center justify-between">
+                <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                    <!-- Mobile menu button-->
+                    <button type="button" command="--toggle" commandfor="mobile-menu"
+                        class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500">
+                        <span class="absolute -inset-0.5"></span>
+                        <span class="sr-only">Open main menu</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
+                            aria-hidden="true" class="size-6 in-aria-expanded:hidden">
+                            <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
+                            aria-hidden="true" class="size-6 not-in-aria-expanded:hidden">
+                            <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                    <div class="hidden sm:ml-12 sm:block">
+                        <div class="flex space-x-4">
+                            <a href="index.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Index</a>
+                            <a href="introduction.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Introdução</a>
+                            <a href="git.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Git</a>
+                            <a href="diffe.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">
+                                GitHub / GitLab</a>
+                            <a href="installer.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Instalação</a>
+                            <a href="baisic.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conceitos</a>
+                            <a href="commands.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Básico</a>
+                            <a href="workflow.html"
+                                class="rounded-md bg-yellow-50 px-3 py-2 text-sm font-medium text-gray-800">Workflow</a>
+                            <a href="branch.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Branches</a>
+                            <a href="colaboration.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Colaboração</a>
+                            <a href="conflito.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conflitos</a>
+                            <a href="command-avancado.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Avançados</a>
+                            <a href="best-pratics.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Boas
+                                Práticas</a>
+                            <a href="resource.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Linkes
+                                Úteis</a>
+                            <a href="conclusion.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conclusão</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                    <button type="button"
+                        class="relative rounded-full p-1 text-gray-400 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500">
+                        <span class="absolute -inset-1.5"></span>
+                        <span class="sr-only">View notifications</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
+                            aria-hidden="true" class="size-6">
+                            <path
+                                d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!--End Menu -->
+
+    <div class="h-screen flex items-center justify-center bg-gray-100">
+        <div class="slide-container p-12">
+            <!-- Cabeçalho com título -->
+            <header class="mb-8">
+                <h1 class="title text-4xl mb-4">Workflow do Git: Como Funciona na Prática</h1>
+                <div class="w-20 h-1 bg-gray-300"></div>
+            </header>
+            <!-- Descrição Introdutória -->
+            <p class="text-lg mb-8">
+                O Git mantém seu código em três áreas principais. Entender este fluxo é essencial para usar o Git
+                efetivamente.
+            </p>
+            <!-- Diagrama de Fluxo do Git -->
+            <div class="flex justify-between items-center mb-8">
+                <!-- Working Directory -->
+                <div class="workflow-area w-1/4 p-5 text-center">
+                    <div class="flex justify-center mb-4">
+                        <div class="h-16 w-16 rounded-full bg-blue-50 flex items-center justify-center">
+                            <i class="fas fa-edit text-blue-500 text-3xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-medium mb-2">Working Directory</h3>
+                    <p class="text-gray-600 text-sm">Onde você modifica seus arquivos</p>
+                </div>
+                <!-- Seta para Staging -->
+                <div class="w-1/6 px-2">
+                    <div class="arrow-container">
+                        <div class="arrow-head"></div>
+                    </div>
+                    <div class="text-center mt-2">
+                        <span class="git-command">git add</span>
+                    </div>
+                </div>
+                <!-- Staging Area -->
+                <div class="workflow-area w-1/4 p-5 text-center">
+                    <div class="flex justify-center mb-4">
+                        <div class="h-16 w-16 rounded-full bg-yellow-50 flex items-center justify-center">
+                            <i class="fas fa-inbox text-yellow-500 text-3xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-medium mb-2">Staging Area</h3>
+                    <p class="text-gray-600 text-sm">Arquivos preparados para o próximo commit</p>
+                </div>
+                <!-- Seta para Repository -->
+                <div class="w-1/6 px-2">
+                    <div class="arrow-container">
+                        <div class="arrow-head"></div>
+                    </div>
+                    <div class="text-center mt-2">
+                        <span class="git-command">git commit</span>
+                    </div>
+                </div>
+                <!-- Repository -->
+                <div class="workflow-area w-1/4 p-5 text-center">
+                    <div class="flex justify-center mb-4">
+                        <div class="h-16 w-16 rounded-full bg-green-50 flex items-center justify-center">
+                            <i class="fas fa-database text-green-500 text-3xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-medium mb-2">Repository</h3>
+                    <p class="text-gray-600 text-sm">Histórico de commits do projeto</p>
+                </div>
+            </div>
+            <!-- Explicação Detalhada -->
+            <div class="grid grid-cols-3 gap-6 mt-10">
+                <!-- Working Directory Explicado -->
+                <div class="bg-white p-5 rounded-lg shadow-sm">
+                    <h4 class="font-medium text-blue-500 mb-3 flex items-center">
+                        <i class="fas fa-edit mr-2"></i> Working Directory
+                    </h4>
+                    <ul class="text-gray-600 text-sm space-y-2">
+                        <li>• Contém todos os arquivos do projeto</li>
+                        <li>• Onde você edita e cria arquivos</li>
+                        <li>• <span class="git-command">git status</span> mostra arquivos modificados</li>
+                    </ul>
+                </div>
+                <!-- Staging Area Explicada -->
+                <div class="bg-white p-5 rounded-lg shadow-sm">
+                    <h4 class="font-medium text-yellow-500 mb-3 flex items-center">
+                        <i class="fas fa-inbox mr-2"></i> Staging Area
+                    </h4>
+                    <ul class="text-gray-600 text-sm space-y-2">
+                        <li>• Área de preparação para o próximo commit</li>
+                        <li>• <span class="git-command">git add .</span> adiciona todos os arquivos</li>
+                        <li>• <span class="git-command">git reset</span> remove arquivos do staging</li>
+                    </ul>
+                </div>
+                <!-- Repository Explicado -->
+                <div class="bg-white p-5 rounded-lg shadow-sm">
+                    <h4 class="font-medium text-green-500 mb-3 flex items-center">
+                        <i class="fas fa-database mr-2"></i> Repository
+                    </h4>
+                    <ul class="text-gray-600 text-sm space-y-2">
+                        <li>• Contém todos os commits do projeto</li>
+                        <li>• <span class="git-command">git log</span> mostra o histórico</li>
+                        <li>• <span class="git-command">git push</span> envia commits para remoto</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Dica Adicional -->
+            <div class="mt-8 bg-gray-100 p-4 rounded-lg border-l-4 border-blue-500">
+                <div class="flex">
+                    <i class="fas fa-lightbulb text-blue-500 mr-3 text-xl"></i>
+                    <div>
+                        <p class="font-medium mb-1">Dica Prática</p>
+                        <p class="text-gray-600 text-sm">
+                            Use <span class="git-command">git diff</span> para ver mudanças no Working Directory e
+                            <span class="git-command">git diff --staged</span> para ver o que está na Staging Area.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Rodapé do slide -->
+            <div class="slide-footer">
+                <p class="text-gray-500 text-sm">Fundamentos de Git e Seus Comandos</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
