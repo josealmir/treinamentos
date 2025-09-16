@@ -1,0 +1,177 @@
+ body {
+     font-family: 'Open Sans', sans-serif;
+     overflow: hidden;
+ }
+
+ .slide-container {
+     width: 1280px;
+     min-height: 720px;
+     background-color: #f9f9fb;
+     position: relative;
+ }
+
+ h1,
+ h2,
+ h3 {
+     font-family: 'Montserrat', sans-serif;
+ }
+
+ .js-logo {
+     width: 150px;
+     height: 150px;
+ }
+
+ .title {
+     color: #2a2a3c;
+ }
+
+ .subtitle {
+     color: #474747;
+ }
+
+ .accent-bar {
+     background-color: #f7df1e;
+     height: 8px;
+     width: 100%;
+ }
+
+ .accent-circle {
+     background-color: #3e4bae;
+     width: 250px;
+     height: 250px;
+     border-radius: 50%;
+     position: absolute;
+     right: -80px;
+     bottom: -80px;
+     opacity: 0.15;
+ }
+
+ .accent-square {
+     background-color: #f7df1e;
+     width: 180px;
+     height: 180px;
+     position: absolute;
+     left: -50px;
+     top: -50px;
+     opacity: 0.1;
+     transform: rotate(45deg);
+ }
+
+ .type-badge {
+     display: inline-block;
+     padding: 2px 8px;
+     border-radius: 4px;
+     font-size: 0.85rem;
+     font-weight: 600;
+     margin-right: 6px;
+ }
+
+ .type-number {
+     background-color: #e2f4e2;
+     color: #2e7d32;
+ }
+
+ .type-string {
+     background-color: #e3f2fd;
+     color: #1565c0;
+ }
+
+ .type-boolean {
+     background-color: #fff8e1;
+     color: #ff8f00;
+ }
+
+ .type-null {
+     background-color: #f3e5f5;
+     color: #7b1fa2;
+ }
+
+ .type-undefined {
+     background-color: #eeeeee;
+     color: #616161;
+ }
+
+ .code-icon {
+     color: #3e4bae;
+ }
+
+ .code-block {
+     background-color: #2d2d2d;
+     border-radius: 6px;
+     font-family: 'Consolas', 'Monaco', monospace;
+     color: #f8f8f2;
+ }
+
+ .code-comment {
+     color: #6a9955;
+ }
+
+ .code-string {
+     color: #ce9178;
+ }
+
+ .code-keyword {
+     color: #569cd6;
+ }
+
+ .code-number {
+     color: #b5cea8;
+ }
+
+ .code-boolean {
+     color: #569cd6;
+ }
+
+ .feature-item {
+     border-left: 3px solid #3e4bae;
+ }
+
+ .accent-bar {
+     background-color: #f7df1e;
+     height: 8px;
+     width: 100%;
+ }
+
+ .topic-item {
+     border-left: 4px solid #3e4bae;
+     transition: all 0.3s ease;
+ }
+
+ .topic-icon {
+     color: #3e4bae;
+     background-color: rgba(247, 223, 30, 0.2);
+ }
+
+
+ .learning-item {
+     border-left: 3px solid #3e4bae;
+ }
+
+ .next-step-item {
+     border-left: 3px solid #f7df1e;
+ }
+
+ .icon-circle {
+     background-color: rgba(62, 75, 174, 0.1);
+     color: #3e4bae;
+ }
+
+ .resource-badge {
+     background-color: rgba(247, 223, 30, 0.2);
+     color: #3e4bae;
+ }
+
+ .comparison-table td,
+ .comparison-table th {
+     padding: 8px 12px;
+     text-align: left;
+ }
+
+ .comparison-table th {
+     background-color: rgba(62, 75, 174, 0.1);
+     font-weight: 600;
+ }
+
+ .comparison-table tr:nth-child(even) {
+     background-color: rgba(247, 223, 30, 0.05);
+ }

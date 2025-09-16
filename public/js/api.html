@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Consumo de APIs - Fetch API</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;family=Open+Sans:wght@400;600&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <link href="../asserts/site.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- Menu -->
+    <nav
+        class="relative bg-gray-800/50 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10">
+        <div class="mx-auto max-w-8xl px-2 sm:px-6 lg:px-8 bg-gray-800">
+            <div class="relative flex h-16 items-center justify-between">
+                <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                    <!-- Mobile menu button-->
+                    <button type="button" command="--toggle" commandfor="mobile-menu"
+                        class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500">
+                        <span class="absolute -inset-0.5"></span>
+                        <span class="sr-only">Open main menu</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
+                            aria-hidden="true" class="size-6 in-aria-expanded:hidden">
+                            <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
+                            aria-hidden="true" class="size-6 not-in-aria-expanded:hidden">
+                            <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                    <div class="hidden sm:ml-12 sm:block">
+                        <div class="flex space-x-4">
+                            <a href="index.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Index</a>
+                            <a href="calender.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Agenda</a>
+                            <a href="javascript.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">JavaScript</a>
+                            <a href="variable.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Variáveis</a>
+                            <a href="types.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Tipos</a>
+                            <a href="function.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Funções</a>
+                            <a href="struct.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Est.
+                                de Controle</a>
+                            <a href="array.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Arrays</a>
+                            <a href="object.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Objetos</a>
+                            <a href="array-object.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Arrays
+                                & Objetos</a>
+                            <a href="api.html"
+                                class="rounded-md bg-yellow-50 px-3 py-2 text-sm font-medium text-gray-800">Api's</a>
+                            <a href="tryerror.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Try
+                                Catch</a>
+                            <a href="dependenci.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Dependencias</a>
+                            <a href="conclusion.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conclusão</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                    <button type="button"
+                        class="relative rounded-full p-1 text-gray-400 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500">
+                        <span class="absolute -inset-1.5"></span>
+                        <span class="sr-only">View notifications</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
+                            aria-hidden="true" class="size-6">
+                            <path
+                                d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!--End Menu -->
+
+    <div class="h-screen flex items-center justify-center bg-gray-100">
+        <div class="slide-container flex flex-col">
+            <div class="accent-bar"></div>
+            <div class="accent-square"></div>
+            <div class="accent-circle"></div>
+            <div class="px-16 py-10 flex-grow">
+                <h1 class="title text-4xl font-bold mb-6">Consumo de APIs - Fetch API</h1>
+                <div class="grid grid-cols-2 gap-8">
+                    <div class="pr-4">
+                        <p class="text-lg mb-4">A <span class="font-semibold">Fetch API</span> é uma interface
+                            JavaScript
+                            moderna para realizar requisições HTTP de forma assíncrona, substituindo o antigo
+                            XMLHttpRequest.</p>
+                        <div class="mt-6 space-y-4">
+                            <div class="feature-item pl-4 py-2">
+                                <h3 class="text-xl font-semibold text-gray-800">Características</h3>
+                                <ul class="list-disc ml-6 mt-2 text-gray-700">
+                                    <li>Baseada em Promises</li>
+                                    <li>Sintaxe mais simples e limpa</li>
+                                    <li>Facilmente integrada com async/await</li>
+                                    <li>Suporte a diversos formatos de resposta</li>
+                                </ul>
+                            </div>
+                            <div class="feature-item pl-4 py-2">
+                                <h3 class="text-xl font-semibold text-gray-800">Formato de Resposta</h3>
+                                <ul class="list-disc ml-6 mt-2 text-gray-700">
+                                    <li><code>json()</code> - Para dados JSON</li>
+                                    <li><code>text()</code> - Para texto plano</li>
+                                    <li><code>blob()</code> - Para arquivos e imagens</li>
+                                    <li><code>formData()</code> - Para formulários</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="mb-3">
+                            <h3 class="text-xl font-semibold text-gray-800">Exemplo Básico:</h3>
+                        </div>
+                        <div class="code-block p-4 rounded">
+                            <pre class="text-base leading-relaxed"><span class="code-comment">// Sintaxe básica com then/catch</span>
+fetch(<span class="code-string">'https://api.exemplo.com/dados'</span>)
+  .then(response =&gt; {
+    <span class="code-comment">// Verifica se a requisição foi bem-sucedida</span>
+    if (!response.ok) {
+      throw new Error(<span class="code-string">'Erro na requisição'</span>);
+    }
+    <span class="code-keyword">return</span> response.json();
+  })
+  .then(dados =&gt; {
+    console.log(dados);
+    <span class="code-comment">// Manipule os dados aqui</span>
+  })
+  .catch(erro =&gt; {
+    console.error(<span class="code-string">'Erro:'</span>, erro);
+  });</pre>
+                        </div>
+                        <div class="mt-4 bg-yellow-50 p-3 rounded border-l-4 border-yellow-500">
+                            <p class="text-sm text-gray-700"><i class="fas fa-lightbulb text-yellow-600 mr-2"></i> Para
+                                incluir cabeçalhos personalizados ou configurar métodos HTTP (POST, PUT, DELETE), passe
+                                um
+                                objeto de opções como segundo parâmetro para fetch().</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-auto px-6 py-3 text-gray-500 text-sm flex justify-between">
+                <div>Curso de JavaScript</div>
+                <div>fundamentos.javascript.edu.br</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
