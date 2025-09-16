@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Async/Await e Tratamento de Erros</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;family=Open+Sans:wght@400;600&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <link href="../asserts/site.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <!-- Menu -->
+    <nav
+        class="relative bg-gray-800/50 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10">
+        <div class="mx-auto max-w-8xl px-2 sm:px-6 lg:px-8 bg-gray-800">
+            <div class="relative flex h-16 items-center justify-between">
+                <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                    <!-- Mobile menu button-->
+                    <button type="button" command="--toggle" commandfor="mobile-menu"
+                        class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500">
+                        <span class="absolute -inset-0.5"></span>
+                        <span class="sr-only">Open main menu</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
+                            aria-hidden="true" class="size-6 in-aria-expanded:hidden">
+                            <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
+                            aria-hidden="true" class="size-6 not-in-aria-expanded:hidden">
+                            <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                    <div class="hidden sm:ml-12 sm:block">
+                        <div class="flex space-x-4">
+                            <a href="index.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Index</a>
+                            <a href="calender.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Agenda</a>
+                            <a href="javascript.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">JavaScript</a>
+                            <a href="variable.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Variáveis</a>
+                            <a href="types.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Tipos</a>
+                            <a href="function.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Funções</a>
+                            <a href="struct.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Est.
+                                de Controle</a>
+                            <a href="array.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Arrays</a>
+                            <a href="object.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Objetos</a>
+                            <a href="array-object.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Arrays
+                                & Objetos</a>
+                            <a href="api.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">API's</a>
+                            <a href="tryerror.html"
+                                class="rounded-md bg-yellow-50 px-3 py-2 text-sm font-medium text-gray-800">Try
+                                Catch</a>
+                            <a href="dependenci.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Dependencias</a>
+                            <a href="conclusion.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conclusão</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                    <button type="button"
+                        class="relative rounded-full p-1 text-gray-400 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500">
+                        <span class="absolute -inset-1.5"></span>
+                        <span class="sr-only">View notifications</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
+                            aria-hidden="true" class="size-6">
+                            <path
+                                d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!--End Menu -->
+
+    <div class="h-screen flex items-center justify-center bg-gray-100">
+        <div class="slide-container flex flex-col">
+            <div class="accent-bar"></div>
+            <div class="accent-square"></div>
+            <div class="accent-circle"></div>
+            <div class="px-16 py-10 flex-grow">
+                <h1 class="title text-4xl font-bold mb-6">Async/Await e Tratamento de Erros</h1>
+                <div class="grid grid-cols-2 gap-8">
+                    <div class="pr-4">
+                        <p class="text-lg mb-4">Async/await é uma forma moderna e mais legível de trabalhar com <span
+                                class="font-semibold">Promises</span> e operações assíncronas em JavaScript.</p>
+                        <div class="mt-6 space-y-4">
+                            <div class="feature-item pl-4 py-2">
+                                <h3 class="text-xl font-semibold text-gray-800">Vantagens do Async/Await</h3>
+                                <ul class="list-disc ml-6 mt-2 text-gray-700">
+                                    <li>Código mais limpo e legível</li>
+                                    <li>Parece código síncrono (mais intuitivo)</li>
+                                    <li>Facilita o tratamento de erros</li>
+                                    <li>Melhor encadeamento de operações</li>
+                                </ul>
+                            </div>
+                            <div class="feature-item pl-4 py-2">
+                                <h3 class="text-xl font-semibold text-gray-800">Tratamento de Erros</h3>
+                                <ul class="list-disc ml-6 mt-2 text-gray-700">
+                                    <li>Use blocos try/catch para capturar erros</li>
+                                    <li>Trate erros de rede e da API</li>
+                                    <li>Verifique o status da resposta (ex: 404, 500)</li>
+                                    <li>Implemente retry ou fallback quando necessário</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="mb-3">
+                            <h3 class="text-xl font-semibold text-gray-800">Exemplo de Código:</h3>
+                        </div>
+                        <div class="code-block p-4 rounded">
+                            <pre class="text-base leading-relaxed"><span class="code-comment">// Função assíncrona com tratamento de erros</span>
+<span class="code-keyword">async function</span> <span class="text-yellow-400">buscarDados</span>(userId) {
+  <span class="code-keyword">try</span> {
+    <span class="code-comment">// Aguarda a resposta da requisição</span>
+    <span class="code-keyword">const</span> resposta = <span class="code-keyword">await</span> fetch(
+      <span class="code-string">`https://api.exemplo.com/usuarios/${userId}`</span>
+    );
+    
+    <span class="code-comment">// Verifica se a requisição foi bem-sucedida</span>
+    <span class="code-keyword">if</span> (!resposta.ok) {
+      <span class="code-keyword">throw new</span> Error(<span class="code-string">`Erro HTTP: ${resposta.status}`</span>);
+    }
+    
+    <span class="code-comment">// Converte a resposta para JSON</span>
+    <span class="code-keyword">const</span> dados = <span class="code-keyword">await</span> resposta.json();
+    <span class="code-keyword">return</span> dados;
+    
+  } <span class="code-keyword">catch</span> (erro) {
+    console.error(<span class="code-string">'Falha na requisição:'</span>, erro);
+    <span class="code-comment">// Podemos tratar diferentes tipos de erros aqui</span>
+    <span class="code-keyword">throw</span> erro; <span class="code-comment">// Propaga o erro para quem chamou</span>
+  }
+}</pre>
+                        </div>
+                        <div class="mt-4 bg-blue-50 p-3 rounded border-l-4 border-blue-500">
+                            <p class="text-sm text-gray-700"><i class="fas fa-lightbulb text-blue-600 mr-2"></i> Sempre
+                                inclua tratamento de erros ao trabalhar com requisições. Interfaces de usuário devem
+                                fornecer feedback quando algo falha.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-auto px-6 py-3 text-gray-500 text-sm flex justify-between">
+                <div>Curso de JavaScript</div>
+                <div>fundamentos.javascript.edu.br</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
