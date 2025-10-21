@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>React: Do Básico ao Avançado</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;family=Roboto:wght@300;400;500&amp;family=Roboto+Mono:wght@400;500&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/atom-one-dark.min.css"
+        rel="stylesheet" />
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            background-color: #20232a;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: white;
+        }
+
+        .accent-bar {
+            height: 6px;
+            width: 80px;
+            background-color: #61DAFB;
+            margin: 15px 0;
+        }
+
+        .content-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .highlight-text {
+            color: #61DAFB;
+            font-weight: 500;
+        }
+
+        .code-container {
+            background-color: #1a1d23;
+            border-radius: 8px;
+            border-left: 4px solid #61DAFB;
+            padding: 20px;
+            margin-top: 20px;
+            font-family: 'Roboto Mono', monospace;
+            overflow: hidden;
+        }
+
+        .code-comment {
+            color: #8a8f98;
+        }
+
+        .code-keyword {
+            color: #c678dd;
+        }
+
+        .code-string {
+            color: #98c379;
+        }
+
+        .code-tag {
+            color: #e06c75;
+        }
+
+        .code-component {
+            color: #61DAFB;
+        }
+
+        .code-prop {
+            color: #d19a66;
+        }
+
+        .technique-item {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(97, 218, 251, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Menu -->
+        <nav
+            class="relative bg-gray-800/50 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10">
+            <div class="mx-auto max-w-8xl px-2 sm:px-6 lg:px-8 bg-gray-800">
+                <div class="relative flex h-16 items-center justify-between">
+                    <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                        <!-- Mobile menu button-->
+                        <button type="button" command="--toggle" commandfor="mobile-menu"
+                            class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500">
+                            <span class="absolute -inset-0.5"></span>
+                            <span class="sr-only">Open main menu</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
+                                aria-hidden="true" class="size-6 in-aria-expanded:hidden">
+                                <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
+                                aria-hidden="true" class="size-6 not-in-aria-expanded:hidden">
+                                <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                        <div class="hidden sm:ml-12 sm:block">
+                            <div class="flex space-x-4">
+                                <a href="index.html"
+                                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Index</a>
+                                <a href="indice.html"
+                                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Indice</a>
+                                <a href="introduction.html"
+                                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Introdução</a>
+                                <a href="dom.html"
+                                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Dom</a>
+                                <a href="jsx.html"
+                                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">JSX</a>
+                                <a href="component.html"
+                                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Componente</a>
+                                <a href="props_state.html"
+                                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Pros & State</a>
+                                <a href="hooks.html"
+                                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Hooks</a>
+                                <a href="hook_avancado.html"
+                                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Hooks Avançado</a>
+                                <a href="life_cicle.html"
+                                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Ciclo de Vida</a>
+                                <a href="manager-state.html"
+                                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Ger. Estado</a>
+                                <a href="performace.html"
+                                    class="rounded-md bg-yellow-50 px-3 py-2 text-sm font-medium text-gray-800">Otim. Performance</a>
+                                <a href="advancad.html"
+                                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Pad. Avançado</a>
+                                <a href="best-pratics.html"
+                                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Boas Práticas</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                        <button type="button"
+                            class="relative rounded-full p-1 text-gray-400 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500">
+                            <span class="absolute -inset-1.5"></span>
+                            <span class="sr-only">View notifications</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
+                                aria-hidden="true" class="size-6">
+                                <path
+                                    d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    <!--End Menu -->
+    <div class="h-screen flex items-center justify-center bg-gray-100">
+        <div class="slide-container flex flex-col p-16">
+            <div>
+                <h1 class="title text-4xl mb-2">Otimização de Performance em React</h1>
+                <div class="accent-bar"></div>
+            </div>
+            <div class="mt-4 mb-5">
+                <p class="content-text">
+                    Conforme sua aplicação React cresce, a otimização de performance torna-se essencial.
+                    Técnicas fundamentais incluem <span class="highlight-text">memoização</span>,
+                    <span class="highlight-text">carregamento sob demanda</span> e
+                    <span class="highlight-text">divisão de código</span>.
+                </p>
+            </div>
+            <div class="flex-grow">
+                <div class="grid grid-cols-1 gap-6">
+                    <div class="technique-item">
+                        <h3 class="text-xl mb-2 font-medium"><span class="highlight-text">1. React.memo</span> - Evita
+                            renderizações desnecessárias</h3>
+                        <div class="code-container">
+                            <pre class="text-base leading-relaxed"><span class="code-comment">// Memoização de componente para evitar renderizações</span>
+    <span class="code-keyword">const</span> <span class="code-component">ExpensiveComponent</span> = <span class="code-component">React</span>.memo(({ data }) =&gt; {
+    <span class="code-comment">// Renderização apenas quando props mudam</span>
+    <span class="code-keyword">return</span> (
+        <span class="code-tag">&lt;div&gt;</span>
+        {data.map(item =&gt; <span class="code-tag">&lt;ItemCard</span> <span class="code-prop">key</span>={item.id} {...item} <span class="code-tag">/&gt;</span>)}
+        <span class="code-tag">&lt;/div&gt;</span>
+    );
+    });</pre>
+                        </div>
+                    </div>
+                    <div class="technique-item mt-2">
+                        <h3 class="text-xl mb-2 font-medium"><span class="highlight-text">2. Lazy Loading</span> -
+                            Carregamento sob demanda</h3>
+                        <div class="code-container">
+                            <pre class="text-base leading-relaxed"><span class="code-comment">// Importação dinâmica de componentes</span>
+    <span class="code-keyword">import</span> { Suspense, lazy } <span class="code-keyword">from</span> <span class="code-string">'react'</span>;
+
+    <span class="code-comment">// O componente só é carregado quando necessário</span>
+    <span class="code-keyword">const</span> <span class="code-component">Dashboard</span> = lazy(() =&gt; <span class="code-keyword">import</span>(<span class="code-string">'./Dashboard'</span>));
+
+    <span class="code-keyword">function</span> <span class="code-component">App</span>() {
+    <span class="code-keyword">return</span> (
+        <span class="code-tag">&lt;Suspense</span> <span class="code-prop">fallback</span>=<span class="code-tag">{&lt;div&gt;</span>Carregando...<span class="code-tag">&lt;/div&gt;</span>}<span class="code-tag">&gt;</span>
+        <span class="code-tag">&lt;Dashboard</span> <span class="code-tag">/&gt;</span>
+        <span class="code-tag">&lt;/Suspense&gt;</span>
+    );
+    }</pre>
+                        </div>
+                    </div>
+                    <div class="technique-item mt-2">
+                        <h3 class="text-xl mb-2 font-medium"><span class="highlight-text">3. Code Splitting</span> - Divisão
+                            de pacotes</h3>
+                        <div class="code-container">
+                            <pre class="text-base leading-relaxed"><span class="code-comment">// Usando code splitting com React Router</span>
+    <span class="code-keyword">import</span> { BrowserRouter, Routes, Route } <span class="code-keyword">from</span> <span class="code-string">'react-router-dom'</span>;
+    <span class="code-keyword">const</span> <span class="code-component">Home</span> = lazy(() =&gt; <span class="code-keyword">import</span>(<span class="code-string">'./Home'</span>));
+    <span class="code-keyword">const</span> <span class="code-component">About</span> = lazy(() =&gt; <span class="code-keyword">import</span>(<span class="code-string">'./About'</span>));
+    <span class="code-keyword">const</span> <span class="code-component">Shop</span> = lazy(() =&gt; <span class="code-keyword">import</span>(<span class="code-string">'./Shop'</span>));
+
+    <span class="code-comment">// Cada rota gera um pacote JavaScript separado</span>
+    <span class="code-tag">&lt;BrowserRouter&gt;</span>
+    <span class="code-tag">&lt;Suspense</span> <span class="code-prop">fallback</span>=<span class="code-tag">{&lt;Loader</span> <span class="code-tag">/&gt;</span>}<span class="code-tag">&gt;</span>
+        <span class="code-tag">&lt;Routes&gt;</span>
+        <span class="code-tag">&lt;Route</span> <span class="code-prop">path</span>=<span class="code-string">"/"</span> <span class="code-prop">element</span>=<span class="code-tag">{&lt;Home</span> <span class="code-tag">/&gt;</span>} <span class="code-tag">/&gt;</span>
+        <span class="code-tag">&lt;Route</span> <span class="code-prop">path</span>=<span class="code-string">"/about"</span> <span class="code-prop">element</span>=<span class="code-tag">{&lt;About</span> <span class="code-tag">/&gt;</span>} <span class="code-tag">/&gt;</span>
+        <span class="code-tag">&lt;Route</span> <span class="code-prop">path</span>=<span class="code-string">"/shop"</span> <span class="code-prop">element</span>=<span class="code-tag">{&lt;Shop</span> <span class="code-tag">/&gt;</span>} <span class="code-tag">/&gt;</span>
+        <span class="code-tag">&lt;/Routes&gt;</span>
+    <span class="code-tag">&lt;/Suspense&gt;</span>
+    <span class="code-tag">&lt;/BrowserRouter&gt;</span></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-6">
+                <p class="text-sm text-gray-400">
+                    Estas técnicas reduzem o tempo de carregamento inicial e melhoram a experiência do usuário ao carregar
+                    apenas o necessário.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
