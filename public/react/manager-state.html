@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>React: Do Básico ao Avançado</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;family=Roboto:wght@300;400;500&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            background-color: #20232a;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: white;
+        }
+
+        .subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: #61DAFB;
+        }
+
+        .accent-bar {
+            height: 6px;
+            width: 80px;
+            background-color: #61DAFB;
+            margin: 15px 0;
+        }
+
+        .content-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .highlight-text {
+            color: #61DAFB;
+            font-weight: 500;
+        }
+
+        .bullet-point {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 12px;
+        }
+
+        .bullet-dot {
+            color: #61DAFB;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .image-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .state-management-image {
+            max-width: 95%;
+            max-height: 450px;
+            border: 2px solid #61DAFB;
+            border-radius: 8px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 4px;
+            margin-top: 10px;
+        }
+
+        .comparison-table th {
+            color: #61DAFB;
+            text-align: left;
+            padding: 8px 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Menu -->
+        <nav
+            class="relative bg-gray-800/50 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10">
+            <div class="mx-auto max-w-8xl px-2 sm:px-6 lg:px-8 bg-gray-800">
+                <div class="relative flex h-16 items-center justify-between">
+                    <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                        <!-- Mobile menu button-->
+                        <button type="button" command="--toggle" commandfor="mobile-menu"
+                            class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500">
+                            <span class="absolute -inset-0.5"></span>
+                            <span class="sr-only">Open main menu</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
+                                aria-hidden="true" class="size-6 in-aria-expanded:hidden">
+                                <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
+                                aria-hidden="true" class="size-6 not-in-aria-expanded:hidden">
+                                <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                        <div class="hidden sm:ml-12 sm:block">
+                            <div class="flex space-x-4">
+                                <a href="index.html"
+                                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Index</a>
+                                <a href="indice.html"
+                                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Indice</a>
+                                <a href="introduction.html"
+                                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Introdução</a>
+                                <a href="dom.html"
+                                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Dom</a>
+                                <a href="jsx.html"
+                                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">JSX</a>
+                                <a href="component.html"
+                                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Componente</a>
+                                <a href="props_state.html"
+                                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Pros & State</a>
+                                <a href="hooks.html"
+                                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Hooks</a>
+                                <a href="hook_avancado.html"
+                                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Hooks Avançado</a>
+                                <a href="life_cicle.html"
+                                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Ciclo de Vida</a>
+                                <a href="manager-state.html"
+                                    class="rounded-md bg-yellow-50 px-3 py-2 text-sm font-medium text-gray-800">Ger. Estado</a>
+                                <a href="performace.html"
+                                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Otim. Performance</a>
+                                <a href="advancad.html"
+                                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Pad. Avançado</a>
+                                <a href="best-pratics.html"
+                                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Boas Práticas</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                        <button type="button"
+                            class="relative rounded-full p-1 text-gray-400 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500">
+                            <span class="absolute -inset-1.5"></span>
+                            <span class="sr-only">View notifications</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
+                                aria-hidden="true" class="size-6">
+                                <path
+                                    d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    <!--End Menu -->
+    <div class="h-screen flex items-center justify-center bg-gray-100">
+    <div class="slide-container flex flex-row p-16">
+        <div class="w-1/2 pr-12">
+            <h1 class="title text-4xl mb-2">Gerenciamento de Estado: Context API vs Redux</h1>
+            <div class="accent-bar"></div>
+            <p class="content-text mt-8 mb-6">
+                Para aplicações React maiores, é essencial uma <span class="highlight-text">estratégia eficiente de
+                    gerenciamento de estado</span> para controlar dados compartilhados entre componentes.
+            </p>
+            <table class="comparison-table">
+                <tr>
+                    <th>Context API</th>
+                    <th>Redux</th>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="bullet-point">
+                            <span class="bullet-dot">•</span>
+                            <span>Nativo do React</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="bullet-point">
+                            <span class="bullet-dot">•</span>
+                            <span>Biblioteca externa</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="bullet-point">
+                            <span class="bullet-dot">•</span>
+                            <span>Setup simples</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="bullet-point">
+                            <span class="bullet-dot">•</span>
+                            <span>Mais complexo (actions, reducers)</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="bullet-point">
+                            <span class="bullet-dot">•</span>
+                            <span>Ideal para estados menores</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="bullet-point">
+                            <span class="bullet-dot">•</span>
+                            <span>Melhor para estados complexos</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="bullet-point">
+                            <span class="bullet-dot">•</span>
+                            <span>Menos ferramentas de debug</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="bullet-point">
+                            <span class="bullet-dot">•</span>
+                            <span>Dev tools avançados</span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="w-1/2">
+            <div class="image-container">
+                <img alt="Comparação Context API vs Redux" class="state-management-image"
+                    src="https://page.gensparksite.com/slides_images/8e6a13a901ba3d7d6153fe8bd00b7904.webp" />
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
