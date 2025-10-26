@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>DQL: JOINs (INNER/LEFT/RIGHT)</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&amp;display=swap" rel="stylesheet" />
+    <script src="../asserts/js/menu.js"></script>
+    <style>
+        .code-block {
+            background-color: #1e293b;
+            border-radius: 8px;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .comment {
+            color: #94a3b8;
+        }
+
+        .keyword {
+            color: #3b82f6;
+            font-weight: 500;
+        }
+
+        .string {
+            color: #10b981;
+        }
+
+        .datatype {
+            color: #f59e0b;
+        }
+
+        .constraint {
+            color: #8b5cf6;
+        }
+
+        .table {
+            color: #06b6d4;
+        }
+
+        .alias {
+            color: #f97316;
+        }
+    </style>
+</head>
+
+<body>
+    <!--Start Menu-->
+    <nav class="relative bg-gray-800/50">
+        <div class="mx-auto max-w-8xl px-2 sm:px-6 lg:px-8 bg-gray-800">
+            <div class="relative flex h-16 items-center justify-between">
+                <!-- Mobile menu button -->
+                <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                    <button id="mobile-menu-button" type="button"
+                        class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-none"
+                        aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Abrir menu principal</span>
+                        <svg id="icon-open" class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg id="icon-close" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Desktop menu -->
+                <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                    <div class="hidden sm:block sm:ml-6">
+                        <div class="flex space-x-4 items-center">
+                            <a href="index.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Index</a>
+                            <a href="indice.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Indice</a>
+                            <a href="introduction.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Introdução</a>
+
+                            <!-- DDL submenu (desktop) -->
+                            <div class="relative">
+                                <button data-dropdown-desktop
+                                    class="flex items-center rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white focus:outline-none"
+                                    aria-expanded="false" aria-haspopup="true">
+                                    DDL
+                                    <svg class="ml-1 h-4 w-4 transition-transform duration-150" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div
+                                    class="desktop-dropdown-menu absolute left-0 mt-2 w-44 origin-top-left rounded-md bg-gray-800 shadow-lg ring-1 ring-black ring-opacity-5 opacity-0 invisible transition-all duration-150 z-20">
+                                    <a href="create.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Create</a>
+                                    <a href="alter.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Alter</a>
+                                    <a href="drop.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Drop</a>
+                                </div>
+                            </div>
+
+                            <!-- DML submenu (desktop) -->
+                            <div class="relative">
+                                <button data-dropdown-desktop
+                                    class="flex items-center rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white focus:outline-none"
+                                    aria-expanded="false" aria-haspopup="true">
+                                    DML
+                                    <svg class="ml-1 h-4 w-4 transition-transform duration-150" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div
+                                    class="desktop-dropdown-menu absolute left-0 mt-2 w-44 origin-top-left rounded-md bg-gray-800 shadow-lg ring-1 ring-black ring-opacity-5 opacity-0 invisible transition-all duration-150 z-20">
+                                    <a href="insert.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Insert</a>
+                                    <a href="update.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Update</a>
+                                    <a href="delete.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Delete</a>
+                                </div>
+                            </div>
+
+                            <!-- DQL submenu (desktop) -->
+                            <div class="relative">
+                                <button data-dropdown-desktop
+                                    class="flex items-center rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 focus:outline-none text-gray-800 bg-yellow-50"
+                                    aria-expanded="false" aria-haspopup="true">
+                                    DQL
+                                    <svg class="ml-1 h-4 w-4 transition-transform duration-150" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div
+                                    class="desktop-dropdown-menu absolute left-0 mt-2 w-48 origin-top-left rounded-md bg-gray-800 shadow-lg ring-1 ring-black ring-opacity-5 opacity-0 invisible transition-all duration-150 z-20">
+                                    <a href="select.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Select</a>
+                                    <a href="join.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5 text-gray-800 bg-yellow-50">JOIN's</a>
+                                    <a href="groupby.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Group By</a>
+                                    <a href="sub-query.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Sub Query</a>
+                                </div>
+                            </div>
+
+                            <!-- DCL submenu (desktop) -->
+                            <div class="relative">
+                                <button data-dropdown-desktop
+                                    class="flex items-center rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white focus:outline-none"
+                                    aria-expanded="false" aria-haspopup="true">
+                                    DCL
+                                    <svg class="ml-1 h-4 w-4 transition-transform duration-150" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div class="desktop-dropdown-menu absolute left-0 mt-2 w-44 origin-top-left rounded-md bg-gray-800 shadow-lg ring-1 ring-black ring-opacity-5 opacity-0 invisible transition-all duration-150 z-20">
+                                    <a href="scope.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Escopos</a>
+                                    <a href="grant.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Grant</a>
+                                    <a href="revok.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Revoke</a>
+                                    <a href="otimizacao.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Indices</a>
+                                </div>
+                            </div>
+
+                            <a href="best-patics.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">
+                                Boas Práticas</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- notification / actions -->
+                <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                    <button type="button"
+                        class="relative rounded-full p-1 text-gray-400 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500">
+                        <span class="sr-only">View notifications</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                            class="h-6 w-6 text-gray-400">
+                            <path
+                                d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="hidden sm:hidden bg-gray-800">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="index.html"
+                        class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Index</a>
+                    <a href="indice.html"
+                        class="block rounded-md bg-yellow-50 px-3 py-2 text-base font-medium text-gray-800">Indice</a>
+                    <a href="introduction.html"
+                        class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Introdução</a>
+
+                    <!-- Mobile dropdown: DDL -->
+                    <div>
+                        <button data-dropdown
+                            class="w-full flex items-center justify-between rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">
+                            DDL
+                            <svg class="h-4 w-4 transform transition-transform" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="hidden pl-4">
+                            <a href="create.html"
+                                class="block px-3 py-2 text-sm text-gray-300 hover:bg-white/5">Create</a>
+                            <a href="alter.html"
+                                class="block px-3 py-2 text-sm text-gray-300 hover:bg-white/5">Alter</a>
+                            <a href="drop.html" class="block px-3 py-2 text-sm text-gray-300 hover:bg-white/5">Drop</a>
+                        </div>
+                    </div>
+
+                    <!-- Mobile dropdown: DML -->
+                    <div>
+                        <button data-dropdown
+                            class="w-full flex items-center justify-between rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">
+                            DML
+                            <svg class="h-4 w-4 transform transition-transform" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="hidden pl-4">
+                            <a href="insert.html"
+                                class="block px-3 py-2 text-sm text-gray-300 hover:bg-white/5">Insert</a>
+                            <a href="update.html"
+                                class="block px-3 py-2 text-sm text-gray-300 hover:bg-white/5">Update</a>
+                            <a href="delete.html"
+                                class="block px-3 py-2 text-sm text-gray-300 hover:bg-white/5">Delete</a>
+                        </div>
+                    </div>
+
+                    <!-- add other mobile dropdowns similarly -->
+                    <a href="best-patics.html"
+                        class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Boas
+                        Práticas</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!--End Menu-->
+    <div class="h-screen flex items-center justify-center bg-gray-100">
+        <div class="w-full min-h-screen flex flex-col"
+            style="width: 1280px; min-height: 720px; background-color: #f0f8ff; font-family: 'Montserrat', sans-serif;">
+            <!-- Cabeçalho com fundo azul -->
+            <div class="w-full py-4" style="background-color: #00758F;">
+                <div class="mx-auto text-center">
+                    <p class="text-white text-sm font-light">MySQL: Do Básico ao Avançado | 2025</p>
+                </div>
+            </div>
+            <!-- Conteúdo principal -->
+            <div class="flex-1 flex flex-col px-16 py-10">
+                <!-- Título da página -->
+                <div class="mb-6">
+                    <h2 class="text-4xl font-bold" style="color: #00758F;">DQL: JOINs (INNER/LEFT/RIGHT)</h2>
+                    <div class="w-16 h-1 mt-2" style="background-color: #F29111;"></div>
+                </div>
+                <!-- Descrição breve -->
+                <div class="mb-4">
+                    <p class="text-gray-700">Os JOINs são usados para combinar linhas de duas ou mais tabelas com base
+                        em
+                        colunas relacionadas. Veja exemplos práticos:</p>
+                </div>
+                <!-- Bloco de código -->
+                <div class="code-block p-6 mb-4 overflow-auto text-white text-sm leading-relaxed">
+                    <p><span class="comment">-- INNER JOIN: retorna apenas registros com correspondência nas duas
+                            tabelas</span></p>
+                    <p><span class="keyword">SELECT</span> <span class="alias">p</span>.pedido_id, <span
+                            class="alias">c</span>.nome, <span class="alias">p</span>.total</p>
+                    <p><span class="keyword">FROM</span> <span class="table">pedidos</span> <span class="alias">p</span>
+                    </p>
+                    <p><span class="keyword">INNER JOIN</span> <span class="table">clientes</span> <span
+                            class="alias">c</span> <span class="keyword">ON</span> <span
+                            class="alias">c</span>.cliente_id =
+                        <span class="alias">p</span>.cliente_id
+                    </p>
+                    <p><span class="keyword">WHERE</span> <span class="alias">p</span>.total &gt; 100;</p>
+                    <p></p>
+                    <p><span class="comment">-- LEFT JOIN: mantém todos os registros da tabela à esquerda</span></p>
+                    <p><span class="keyword">SELECT</span> <span class="alias">c</span>.nome, <span
+                            class="keyword">COUNT</span>(<span class="alias">p</span>.pedido_id) <span
+                            class="keyword">AS</span> num_pedidos</p>
+                    <p><span class="keyword">FROM</span> <span class="table">clientes</span> <span
+                            class="alias">c</span>
+                    </p>
+                    <p><span class="keyword">LEFT JOIN</span> <span class="table">pedidos</span> <span
+                            class="alias">p</span> <span class="keyword">ON</span> <span
+                            class="alias">p</span>.cliente_id =
+                        <span class="alias">c</span>.cliente_id
+                    </p>
+                    <p><span class="keyword">GROUP BY</span> <span class="alias">c</span>.nome;</p>
+                    <p></p>
+                    <p><span class="comment">-- RIGHT JOIN: mantém todos os registros da tabela à direita</span></p>
+                    <p><span class="keyword">SELECT</span> <span class="alias">p</span>.pedido_id, <span
+                            class="alias">c</span>.nome</p>
+                    <p><span class="keyword">FROM</span> <span class="table">itens_pedido</span> <span
+                            class="alias">ip</span></p>
+                    <p><span class="keyword">RIGHT JOIN</span> <span class="table">pedidos</span> <span
+                            class="alias">p</span> <span class="keyword">ON</span> <span
+                            class="alias">p</span>.pedido_id =
+                        <span class="alias">ip</span>.pedido_id
+                    </p>
+                    <p><span class="keyword">RIGHT JOIN</span> <span class="table">clientes</span> <span
+                            class="alias">c</span> <span class="keyword">ON</span> <span
+                            class="alias">c</span>.cliente_id =
+                        <span class="alias">p</span>.cliente_id
+                    </p>
+                    <p><span class="keyword">WHERE</span> <span class="alias">ip</span>.item_id <span class="keyword">IS
+                            NULL</span>;</p>
+                </div>
+                <!-- Notas e dicas -->
+                <div class="mt-2 bg-blue-50 p-4 rounded-md border-l-4" style="border-color: #00758F;">
+                    <div class="flex">
+                        <i class="fas fa-link text-xl mr-3 mt-1" style="color: #F29111;"></i>
+                        <div>
+                            <p class="font-semibold" style="color: #00758F;">Quando usar cada tipo de JOIN:</p>
+                            <ul class="list-disc ml-6 mt-2 text-gray-700">
+                                <li><strong>INNER JOIN</strong>: Quando você precisa apenas dos registros que têm
+                                    correspondência em ambas as tabelas</li>
+                                <li><strong>LEFT JOIN</strong>: Para manter todos os registros da tabela à esquerda,
+                                    mesmo
+                                    sem correspondência</li>
+                                <li><strong>RIGHT JOIN</strong>: Para manter todos os registros da tabela à direita,
+                                    mesmo
+                                    sem correspondência</li>
+                                <li>Use aliases (c, p) para tornar o código mais limpo e legível</li>
+                                <li>Planeje a ordem dos JOINs para otimizar a performance das consultas</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Rodapé -->
+            <div class="w-full py-3" style="background-color: #00758F;">
+                <div class="flex justify-between px-8">
+                    <p class="text-white text-sm">MySQL: Do Básico ao Avançado</p>
+                    <p class="text-white text-sm">Página 15</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
