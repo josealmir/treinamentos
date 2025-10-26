@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>DDL: DROP vs TRUNCATE</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&amp;display=swap" rel="stylesheet" />
+    <script src="../asserts/js/menu.js"></script>
+
+    <style>
+        .code-block {
+            background-color: #1e293b;
+            border-radius: 8px;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .keyword {
+            color: #3b82f6;
+            font-weight: 500;
+        }
+
+        .comment {
+            color: #94a3b8;
+        }
+    </style>
+</head>
+
+<body>
+    <!--Start Menu-->
+    <nav class="relative bg-gray-800/50">
+        <div class="mx-auto max-w-8xl px-2 sm:px-6 lg:px-8 bg-gray-800">
+            <div class="relative flex h-16 items-center justify-between">
+                <!-- Mobile menu button -->
+                <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                    <button id="mobile-menu-button" type="button"
+                        class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-none"
+                        aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Abrir menu principal</span>
+                        <svg id="icon-open" class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg id="icon-close" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Desktop menu -->
+                <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                    <div class="hidden sm:block sm:ml-6">
+                        <div class="flex space-x-4 items-center">
+                            <a href="index.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Index</a>
+                            <a href="indice.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Indice</a>
+                            <a href="introduction.html"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Introdução</a>
+
+                            <!-- DDL submenu (desktop) -->
+                            <div class="relative">
+                                <button data-dropdown-desktop
+                                    class="flex items-center rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 focus:outline-none text-gray-800 bg-yellow-50 "
+                                    aria-expanded="false" aria-haspopup="true">
+                                    DDL
+                                    <svg class="ml-1 h-4 w-4 transition-transform duration-150" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div
+                                    class="desktop-dropdown-menu absolute left-0 mt-2 w-44 origin-top-left rounded-md bg-gray-800 shadow-lg ring-1 ring-black ring-opacity-5 opacity-0 invisible transition-all duration-150 z-20">
+                                    <a href="create.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Create</a>
+                                    <a href="alter.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Alter</a>
+                                    <a href="drop.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5 text-gray-800 bg-yellow-50">Drop</a>
+                                </div>
+                            </div>
+
+                            <!-- DML submenu (desktop) -->
+                            <div class="relative">
+                                <button data-dropdown-desktop
+                                    class="flex items-center rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white focus:outline-none"
+                                    aria-expanded="false" aria-haspopup="true">
+                                    DML
+                                    <svg class="ml-1 h-4 w-4 transition-transform duration-150" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div
+                                    class="desktop-dropdown-menu absolute left-0 mt-2 w-44 origin-top-left rounded-md bg-gray-800 shadow-lg ring-1 ring-black ring-opacity-5 opacity-0 invisible transition-all duration-150 z-20">
+                                    <a href="insert.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Insert</a>
+                                    <a href="update.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Update</a>
+                                    <a href="delete.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Delete</a>
+                                </div>
+                            </div>
+
+                            <!-- DQL submenu (desktop) -->
+                            <div class="relative">
+                                <button data-dropdown-desktop
+                                    class="flex items-center rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white focus:outline-none"
+                                    aria-expanded="false" aria-haspopup="true">
+                                    DQL
+                                    <svg class="ml-1 h-4 w-4 transition-transform duration-150" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div
+                                    class="desktop-dropdown-menu absolute left-0 mt-2 w-48 origin-top-left rounded-md bg-gray-800 shadow-lg ring-1 ring-black ring-opacity-5 opacity-0 invisible transition-all duration-150 z-20">
+                                    <a href="select.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Select</a>
+                                    <a href="join.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">JOIN's</a>
+                                    <a href="groupby.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Group By</a>
+                                    <a href="sub-query.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Sub Query</a>
+                                </div>
+                            </div>
+
+                            <!-- DCL submenu (desktop) -->
+                            <div class="relative">
+                                <button data-dropdown-desktop
+                                    class="flex items-center rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white focus:outline-none"
+                                    aria-expanded="false" aria-haspopup="true">
+                                    DCL
+                                    <svg class="ml-1 h-4 w-4 transition-transform duration-150" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div class="desktop-dropdown-menu absolute left-0 mt-2 w-44 origin-top-left rounded-md bg-gray-800 shadow-lg ring-1 ring-black ring-opacity-5 opacity-0 invisible transition-all duration-150 z-20">
+                                    <a href="scope.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Escopos</a>
+                                    <a href="grant.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Grant</a>
+                                    <a href="revok.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Revoke</a>
+                                    <a href="otimizacao.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Indices</a>
+                                </div>
+                            </div>
+
+                            <a href="best-patics.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">
+                                Boas Práticas</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- notification / actions -->
+                <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                    <button type="button"
+                        class="relative rounded-full p-1 text-gray-400 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500">
+                        <span class="sr-only">View notifications</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                            class="h-6 w-6 text-gray-400">
+                            <path
+                                d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="hidden sm:hidden bg-gray-800">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="index.html"
+                        class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Index</a>
+                    <a href="indice.html"
+                        class="block rounded-md bg-yellow-50 px-3 py-2 text-base font-medium text-gray-800">Indice</a>
+                    <a href="introduction.html"
+                        class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Introdução</a>
+
+                    <!-- Mobile dropdown: DDL -->
+                    <div>
+                        <button data-dropdown
+                            class="w-full flex items-center justify-between rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">
+                            DDL
+                            <svg class="h-4 w-4 transform transition-transform" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="hidden pl-4">
+                            <a href="create.html"
+                                class="block px-3 py-2 text-sm text-gray-300 hover:bg-white/5">Create</a>
+                            <a href="alter.html"
+                                class="block px-3 py-2 text-sm text-gray-300 hover:bg-white/5">Alter</a>
+                            <a href="drop.html" class="block px-3 py-2 text-sm text-gray-300 hover:bg-white/5">Drop</a>
+                        </div>
+                    </div>
+
+                    <!-- Mobile dropdown: DML -->
+                    <div>
+                        <button data-dropdown
+                            class="w-full flex items-center justify-between rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">
+                            DML
+                            <svg class="h-4 w-4 transform transition-transform" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="hidden pl-4">
+                            <a href="insert.html"
+                                class="block px-3 py-2 text-sm text-gray-300 hover:bg-white/5">Insert</a>
+                            <a href="update.html"
+                                class="block px-3 py-2 text-sm text-gray-300 hover:bg-white/5">Update</a>
+                            <a href="delete.html"
+                                class="block px-3 py-2 text-sm text-gray-300 hover:bg-white/5">Delete</a>
+                        </div>
+                    </div>
+
+                    <!-- add other mobile dropdowns similarly -->
+                    <a href="best-patics.html"
+                        class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Boas
+                        Práticas</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!--End Menu-->
+    <div class="h-screen flex items-center justify-center bg-gray-100">
+    <div class="w-full min-h-screen flex flex-col"
+        style="width: 1280px; min-height: 720px; background-color: #f0f8ff; font-family: 'Montserrat', sans-serif;">
+        <!-- Cabeçalho com fundo azul -->
+        <div class="w-full py-4" style="background-color: #00758F;">
+            <div class="mx-auto text-center">
+                <p class="text-white text-sm font-light">MySQL: Do Básico ao Avançado | 2025</p>
+            </div>
+        </div>
+        <!-- Conteúdo principal -->
+        <div class="flex-1 flex flex-col px-16 py-8">
+            <!-- Título da página -->
+            <div class="mb-5">
+                <h2 class="text-4xl font-bold" style="color: #00758F;">DDL: DROP vs TRUNCATE</h2>
+                <div class="w-16 h-1 mt-2" style="background-color: #F29111;"></div>
+            </div>
+            <!-- Tabela comparativa -->
+            <div class="mb-4">
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr style="background-color: #00758F;">
+                            <th class="border border-gray-300 px-4 py-2 text-white">Característica</th>
+                            <th class="border border-gray-300 px-4 py-2 text-white">DROP TABLE</th>
+                            <th class="border border-gray-300 px-4 py-2 text-white">TRUNCATE TABLE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background-color: rgba(0, 117, 143, 0.05);">
+                            <td class="border border-gray-300 px-4 py-2 font-semibold">Definição</td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                <p>Remove completamente a tabela e sua definição</p>
+                            </td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                <p>Remove todos os dados, mantém a estrutura</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300 px-4 py-2 font-semibold">Velocidade</td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                <p>Geralmente mais rápido</p>
+                            </td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                <p>Mais rápido que DELETE, similar a DROP</p>
+                            </td>
+                        </tr>
+                        <tr style="background-color: rgba(0, 117, 143, 0.05);">
+                            <td class="border border-gray-300 px-4 py-2 font-semibold">Auto Increment</td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                <p>Elimina a sequência completamente</p>
+                            </td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                <p>Reset para o valor inicial (normalmente 1)</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300 px-4 py-2 font-semibold">Registro</td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                <p>Não registra remoções individuais</p>
+                            </td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                <p>Não registra remoções individuais</p>
+                            </td>
+                        </tr>
+                        <tr style="background-color: rgba(0, 117, 143, 0.05);">
+                            <td class="border border-gray-300 px-4 py-2 font-semibold">Transação</td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                <p>Não pode ser revertido com ROLLBACK</p>
+                            </td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                <p>Comportamento varia conforme o SGBD</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Exemplo de código e quando usar -->
+            <div class="flex mt-2">
+                <!-- Coluna esquerda: Exemplos de código -->
+                <div class="w-1/2 pr-4">
+                    <h3 class="text-xl font-semibold mb-3" style="color: #00758F;">Exemplos de Código</h3>
+                    <div class="code-block p-4 text-white text-sm">
+                        <p><span class="comment">-- Remover tabela completamente</span></p>
+                        <p><span class="keyword">DROP TABLE</span> produtos;</p>
+                        <p></p>
+                        <p><span class="comment">-- Remover tabela se existir</span></p>
+                        <p><span class="keyword">DROP TABLE IF EXISTS</span> produtos;</p>
+                        <p></p>
+                        <p><span class="comment">-- Remover todos os dados mantendo estrutura</span></p>
+                        <p><span class="keyword">TRUNCATE TABLE</span> produtos;</p>
+                    </div>
+                </div>
+                <!-- Coluna direita: Quando usar -->
+                <div class="w-1/2 pl-4">
+                    <h3 class="text-xl font-semibold mb-3" style="color: #00758F;">Quando Usar</h3>
+                    <div class="mb-3">
+                        <h4 class="font-semibold text-lg" style="color: #00758F;">DROP TABLE</h4>
+                        <ul class="list-disc ml-5 text-gray-700">
+                            <li>
+                                <p>Quando a tabela não é mais necessária</p>
+                            </li>
+                            <li>
+                                <p>Para remover definições/estruturas antigas</p>
+                            </li>
+                            <li>
+                                <p>Durante redefinição completa de esquemas</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mb-3">
+                        <h4 class="font-semibold text-lg" style="color: #00758F;">TRUNCATE TABLE</h4>
+                        <ul class="list-disc ml-5 text-gray-700">
+                            <li>
+                                <p>Apagar todos os dados para reuso da tabela</p>
+                            </li>
+                            <li>
+                                <p>Para "resetar" uma tabela mantendo índices</p>
+                            </li>
+                            <li>
+                                <p>Em ambientes de teste para limpeza rápida</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Dica final -->
+            <div class="mt-auto bg-blue-50 p-3 rounded-md border-l-4" style="border-color: #F29111;">
+                <div class="flex">
+                    <i class="fas fa-exclamation-triangle text-xl mr-3" style="color: #F29111;"></i>
+                    <div>
+                        <p class="font-semibold" style="color: #00758F;">Cuidado!</p>
+                        <p class="text-gray-700">Tanto DROP quanto TRUNCATE são irreversíveis em contexto normal. Se
+                            precisar de rollback, considere usar DELETE com WHERE e dentro de uma transação.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Rodapé -->
+        <div class="w-full py-3" style="background-color: #00758F;">
+            <div class="flex justify-between px-8">
+                <p class="text-white text-sm">MySQL: Do Básico ao Avançado</p>
+                <p class="text-white text-sm">Página 8</p>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
