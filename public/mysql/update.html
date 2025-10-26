@@ -89,6 +89,8 @@
                                 </button>
                                 <div
                                     class="desktop-dropdown-menu absolute left-0 mt-2 w-44 origin-top-left rounded-md bg-gray-800 shadow-lg ring-1 ring-black ring-opacity-5 opacity-0 invisible transition-all duration-150 z-20">
+                                    <a href="ddl.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Inicio</a>
                                     <a href="create.html"
                                         class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Create</a>
                                     <a href="alter.html"
@@ -112,6 +114,8 @@
                                 </button>
                                 <div
                                     class="desktop-dropdown-menu absolute left-0 mt-2 w-44 origin-top-left rounded-md bg-gray-800 shadow-lg ring-1 ring-black ring-opacity-5 opacity-0 invisible transition-all duration-150 z-20">
+                                    <a href="dml.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Inicio</a>
                                     <a href="insert.html"
                                         class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Insert</a>
                                     <a href="update.html"
@@ -135,6 +139,8 @@
                                 </button>
                                 <div
                                     class="desktop-dropdown-menu absolute left-0 mt-2 w-48 origin-top-left rounded-md bg-gray-800 shadow-lg ring-1 ring-black ring-opacity-5 opacity-0 invisible transition-all duration-150 z-20">
+                                    <a href="dql.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Inicio</a>
                                     <a href="select.html"
                                         class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Select</a>
                                     <a href="join.html"
@@ -159,6 +165,8 @@
                                     </svg>
                                 </button>
                                 <div class="desktop-dropdown-menu absolute left-0 mt-2 w-44 origin-top-left rounded-md bg-gray-800 shadow-lg ring-1 ring-black ring-opacity-5 opacity-0 invisible transition-all duration-150 z-20">
+                                    <a href="dcl.html"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Inicio</a>
                                     <a href="scope.html"
                                         class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Escopos</a>
                                     <a href="grant.html"
@@ -249,82 +257,82 @@
         </div>
     </nav>
     <!--End Menu-->
-    <div class="h-screen flex items-center justify-center bg-gray-100">
-    <div class="w-full min-h-screen flex flex-col"
-        style="width: 1280px; min-height: 720px; background-color: #f0f8ff; font-family: 'Montserrat', sans-serif;">
-        <!-- Cabeçalho com fundo azul -->
-        <div class="w-full py-4" style="background-color: #00758F;">
-            <div class="mx-auto text-center">
-                <p class="text-white text-sm font-light">MySQL: Do Básico ao Avançado | 2025</p>
+    <div class="h-screen flex items-center justify-center bg-gray-100 pt-20">
+        <div class="w-full min-h-screen flex flex-col"
+            style="width: 1280px; min-height: 720px; background-color: #f0f8ff; font-family: 'Montserrat', sans-serif;">
+            <!-- Cabeçalho com fundo azul -->
+            <div class="w-full py-4" style="background-color: #00758F;">
+                <div class="mx-auto text-center">
+                    <p class="text-white text-sm font-light">MySQL: Do Básico ao Avançado | 2025</p>
+                </div>
             </div>
-        </div>
-        <!-- Conteúdo principal -->
-        <div class="flex-1 flex flex-col px-16 py-10">
-            <!-- Título da página -->
-            <div class="mb-6">
-                <h2 class="text-4xl font-bold" style="color: #00758F;">DML: UPDATE</h2>
-                <div class="w-16 h-1 mt-2" style="background-color: #F29111;"></div>
-            </div>
-            <!-- Descrição breve -->
-            <div class="mb-4">
-                <p class="text-gray-700">Exemplos de como atualizar registros em tabelas com diferentes níveis de
-                    complexidade:</p>
-            </div>
-            <!-- Bloco de código -->
-            <div class="code-block p-6 mb-4 overflow-auto text-white text-sm leading-relaxed">
-                <p><span class="comment">-- Atualização simples de registros</span></p>
-                <p><span class="keyword">UPDATE</span> pedidos <span class="keyword">SET</span> total = total + 10.00
-                </p>
-                <p><span class="keyword">WHERE</span> pedido_id = 1001;</p>
-                <p></p>
-                <p><span class="comment">-- Atualização com múltiplas colunas</span></p>
-                <p><span class="keyword">UPDATE</span> clientes</p>
-                <p><span class="keyword">SET</span> email = <span class="string">'novo.email@exemplo.com'</span>, </p>
-                <p> telefone = <span class="string">'(11) 99999-8888'</span></p>
-                <p><span class="keyword">WHERE</span> cliente_id = 42;</p>
-                <p></p>
-                <p><span class="comment">-- UPDATE com JOIN (aplicar desconto para clientes premium)</span></p>
-                <p><span class="keyword">UPDATE</span> pedidos p</p>
-                <p><span class="keyword">JOIN</span> clientes c <span class="keyword">ON</span> c.cliente_id =
-                    p.cliente_id</p>
-                <p><span class="keyword">SET</span> p.total = p.total * 0.9 <span class="comment">-- aplica 10% de
-                        desconto</span></p>
-                <p><span class="keyword">WHERE</span> c.tipo = <span class="string">'premium'</span></p>
-                <p><span class="keyword">AND</span> p.data_criacao &gt;= <span class="string">'2025-01-01'</span>;</p>
-                <p></p>
-                <p><span class="comment">-- UPDATE dentro de uma transação (recomendado)</span></p>
-                <p><span class="keyword">START TRANSACTION</span>;</p>
-                <p><span class="keyword">UPDATE</span> contas <span class="keyword">SET</span> saldo = saldo - 500</p>
-                <p><span class="keyword">WHERE</span> conta_id = 101;</p>
-                <p><span class="keyword">UPDATE</span> contas <span class="keyword">SET</span> saldo = saldo + 500</p>
-                <p><span class="keyword">WHERE</span> conta_id = 202;</p>
-                <p><span class="keyword">COMMIT</span>;</p>
-            </div>
-            <!-- Notas e dicas -->
-            <div class="mt-2 bg-blue-50 p-4 rounded-md border-l-4" style="border-color: #00758F;">
-                <div class="flex">
-                    <i class="fas fa-exclamation-triangle text-xl mr-3 mt-1" style="color: #F29111;"></i>
-                    <div>
-                        <p class="font-semibold" style="color: #00758F;">Cuidados ao usar UPDATE:</p>
-                        <ul class="list-disc ml-6 mt-2 text-gray-700">
-                            <li>Sempre use a cláusula WHERE para evitar atualizar todos os registros acidentalmente</li>
-                            <li>Use transações para garantir consistência em operações complexas</li>
-                            <li>Considere criar um backup ou testar o comando com SELECT antes de executar</li>
-                            <li>JOINs em UPDATEs podem melhorar a performance vs subconsultas</li>
-                            <li>Atualizações em lote (quando necessárias) devem considerar o tamanho do binlog</li>
-                        </ul>
+            <!-- Conteúdo principal -->
+            <div class="flex-1 flex flex-col px-16 py-10">
+                <!-- Título da página -->
+                <div class="mb-6">
+                    <h2 class="text-4xl font-bold" style="color: #00758F;">DML: UPDATE</h2>
+                    <div class="w-16 h-1 mt-2" style="background-color: #F29111;"></div>
+                </div>
+                <!-- Descrição breve -->
+                <div class="mb-4">
+                    <p class="text-gray-700">Exemplos de como atualizar registros em tabelas com diferentes níveis de
+                        complexidade:</p>
+                </div>
+                <!-- Bloco de código -->
+                <div class="code-block p-6 mb-4 overflow-auto text-white text-sm leading-relaxed">
+                    <p><span class="comment">-- Atualização simples de registros</span></p>
+                    <p><span class="keyword">UPDATE</span> pedidos <span class="keyword">SET</span> total = total + 10.00
+                    </p>
+                    <p><span class="keyword">WHERE</span> pedido_id = 1001;</p>
+                    <p></p>
+                    <p><span class="comment">-- Atualização com múltiplas colunas</span></p>
+                    <p><span class="keyword">UPDATE</span> clientes</p>
+                    <p><span class="keyword">SET</span> email = <span class="string">'novo.email@exemplo.com'</span>, </p>
+                    <p> telefone = <span class="string">'(11) 99999-8888'</span></p>
+                    <p><span class="keyword">WHERE</span> cliente_id = 42;</p>
+                    <p></p>
+                    <p><span class="comment">-- UPDATE com JOIN (aplicar desconto para clientes premium)</span></p>
+                    <p><span class="keyword">UPDATE</span> pedidos p</p>
+                    <p><span class="keyword">JOIN</span> clientes c <span class="keyword">ON</span> c.cliente_id =
+                        p.cliente_id</p>
+                    <p><span class="keyword">SET</span> p.total = p.total * 0.9 <span class="comment">-- aplica 10% de
+                            desconto</span></p>
+                    <p><span class="keyword">WHERE</span> c.tipo = <span class="string">'premium'</span></p>
+                    <p><span class="keyword">AND</span> p.data_criacao &gt;= <span class="string">'2025-01-01'</span>;</p>
+                    <p></p>
+                    <p><span class="comment">-- UPDATE dentro de uma transação (recomendado)</span></p>
+                    <p><span class="keyword">START TRANSACTION</span>;</p>
+                    <p><span class="keyword">UPDATE</span> contas <span class="keyword">SET</span> saldo = saldo - 500</p>
+                    <p><span class="keyword">WHERE</span> conta_id = 101;</p>
+                    <p><span class="keyword">UPDATE</span> contas <span class="keyword">SET</span> saldo = saldo + 500</p>
+                    <p><span class="keyword">WHERE</span> conta_id = 202;</p>
+                    <p><span class="keyword">COMMIT</span>;</p>
+                </div>
+                <!-- Notas e dicas -->
+                <div class="mt-2 bg-blue-50 p-4 rounded-md border-l-4" style="border-color: #00758F;">
+                    <div class="flex">
+                        <i class="fas fa-exclamation-triangle text-xl mr-3 mt-1" style="color: #F29111;"></i>
+                        <div>
+                            <p class="font-semibold" style="color: #00758F;">Cuidados ao usar UPDATE:</p>
+                            <ul class="list-disc ml-6 mt-2 text-gray-700">
+                                <li>Sempre use a cláusula WHERE para evitar atualizar todos os registros acidentalmente</li>
+                                <li>Use transações para garantir consistência em operações complexas</li>
+                                <li>Considere criar um backup ou testar o comando com SELECT antes de executar</li>
+                                <li>JOINs em UPDATEs podem melhorar a performance vs subconsultas</li>
+                                <li>Atualizações em lote (quando necessárias) devem considerar o tamanho do binlog</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- Rodapé -->
-        <div class="w-full py-3" style="background-color: #00758F;">
-            <div class="flex justify-between px-8">
-                <p class="text-white text-sm">MySQL: Do Básico ao Avançado</p>
-                <p class="text-white text-sm">Página 11</p>
+            <!-- Rodapé -->
+            <div class="w-full py-3" style="background-color: #00758F;">
+                <div class="flex justify-between px-8">
+                    <p class="text-white text-sm">MySQL: Do Básico ao Avançado</p>
+                    <p class="text-white text-sm">Página 11</p>
+                </div>
             </div>
         </div>
-    </div>
     </div>
 </body>
 
