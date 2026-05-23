@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Tratamento de Erros e Respostas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../asserts/node.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Menu -->
+    <nav class="relative bg-gray-800/50 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10" style="z-index: 100;">
+        <div class="mx-auto max-w-8xl px-2 sm:px-6 lg:px-8 bg-gray-800">
+            <div class="relative flex h-16 items-center justify-between">
+                <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                    <div class="hidden sm:block overflow-x-auto w-full">
+                        <div class="flex space-x-4">
+                            <a href="index.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Index</a>
+                            <a href="conceito.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conceitos</a>
+                            <a href="setup.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Setup</a>
+                            <a href="integracao_mysql.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">MySQL</a>
+                            <a href="schema.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Schemas</a>
+                            <a href="authenticacao.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Autenticação</a>
+                            <a href="plugis.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Plugins</a>
+                            <a href="hooks.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Hooks</a>
+                            <a href="erros.html" class="rounded-md bg-indigo-50 px-3 py-2 text-sm font-medium text-gray-800">Erros</a>
+                            <a href="boas_pratiacs.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Boas Práticas</a>
+                            <a href="conclusao.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conclusão</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!--End Menu -->
+
+    <div class="slide-container">
+        <!-- Main Data Object Container -->
+        <div data-object="true" data-object-type="textbox"
+            style="position: absolute; top: 0; left: 0; width: 1280px; height: 720px;">
+            <!-- Background Radial Glow -->
+            <div
+                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%); border-radius: 50%; z-index: 0;">
+            </div>
+            <!-- Header Section -->
+            <div
+                style="position: absolute; top: 40px; left: 64px; right: 64px; display: flex; justify-content: space-between; align-items: center; z-index: 10;">
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <div
+                        style="width: 64px; height: 64px; background: linear-gradient(135deg, #ef4444, #f59e0b); border-radius: 16px; display: flex; align-items: center; justify-content: center; color: white; font-size: 28px; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div>
+                        <h1
+                            style="margin: 0; font-size: 38px; font-weight: 800; color: white; line-height: 1.1; letter-spacing: -0.02em;">
+                            Tratamento de Erros</h1>
+                        <p style="margin: 4px 0 0 0; font-size: 16px; color: #94a3b8; font-weight: 500;">
+                            @fastify/sensible, httpErrors e error handling</p>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 12px;">
+                    <div class="tech-badge">Error Handler</div>
+                    <div class="tech-badge">Validation</div>
+                </div>
+            </div>
+            <!-- Content Layout -->
+            <div
+                style="position: absolute; top: 130px; left: 64px; right: 64px; height: 500px; display: flex; gap: 24px; z-index: 10;">
+                <!-- Left Column -->
+                <div style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+                    <!-- Error Types -->
+                    <div class="feature-card" style="flex: 1.4;">
+                        <div style="margin-bottom: 20px;">
+                            <h3
+                                style="margin: 0; font-size: 20px; font-weight: 700; color: white; display: flex; align-items: center; gap: 10px;">
+                                <span style="color: #ef4444;">🚨</span> Tipos de Erros
+                            </h3>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                            <div class="error-type error-validation">
+                                <div style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%;"></div>
+                                <span style="font-size: 15px; font-weight: 500;">Validação de dados</span>
+                                <span class="status-code status-400" style="margin-left: auto;">400</span>
+                            </div>
+                            <div class="error-type error-auth">
+                                <div style="width: 8px; height: 8px; background: #f59e0b; border-radius: 50%;"></div>
+                                <span style="font-size: 15px; font-weight: 500;">Autenticação</span>
+                                <span class="status-code status-401" style="margin-left: auto;">401</span>
+                            </div>
+                            <div class="error-type error-server" style="margin-bottom: 0;">
+                                <div style="width: 8px; height: 8px; background: #3b82f6; border-radius: 50%;"></div>
+                                <span style="font-size: 15px; font-weight: 500;">Erro interno</span>
+                                <span class="status-code status-500" style="margin-left: auto;">500</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Error Handler Setup -->
+                    <div class="feature-card" style="flex: 1;">
+                        <div style="margin-bottom: 16px;">
+                            <h3
+                                style="margin: 0; font-size: 18px; font-weight: 700; color: white; display: flex; align-items: center; gap: 8px;">
+                                <span style="color: #3b82f6;">⚙️</span> Configuração
+                            </h3>
+                        </div>
+                        <div class="code-block" style="font-size: 13px;">
+                            <div><span class="code-keyword">import</span> sensible <span
+                                    class="code-keyword">from</span> <span
+                                    class="code-string">'@fastify/sensible'</span>;</div>
+                            <div style="margin-top: 4px;">app.<span class="code-function">register</span>(sensible);
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right Column -->
+                <div style="flex: 1.3; display: flex; flex-direction: column; gap: 20px;">
+                    <!-- Custom Error Handler -->
+                    <div class="feature-card" style="flex: 1;">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                            <h3
+                                style="margin: 0; font-size: 19px; font-weight: 700; color: white; display: flex; align-items: center; gap: 8px;">
+                                <span style="color: #10b981;">🛡️</span> Error Handler Customizado
+                            </h3>
+                            <div style="display: flex; align-items: center; gap: 6px;">
+                                <div style="width: 8px; height: 8px; background: #10b981; border-radius: 50%;"></div>
+                                <span style="font-size: 13px; color: #10b981; font-weight: 600;">Ativo</span>
+                            </div>
+                        </div>
+                        <div class="code-block" style="font-size: 12.5px; line-height: 1.5;">
+                            <div>app.<span class="code-function">setErrorHandler</span>((error, req, reply) =&gt; {
+                            </div>
+                            <div style="padding-left: 16px;">req.log.<span class="code-function">error</span>(error);
+                            </div>
+                            <div style="padding-left: 16px;"><span class="code-keyword">if</span> (error.validation) {
+                            </div>
+                            <div style="padding-left: 32px;"><span class="code-keyword">return</span>
+                                reply.code(400).send({</div>
+                            <div style="padding-left: 48px;">message: <span class="code-string">'Dados
+                                    inválidos'</span>,</div>
+                            <div style="padding-left: 48px;">details: error.validation</div>
+                            <div style="padding-left: 32px;">});</div>
+                            <div style="padding-left: 16px;">}</div>
+                            <div style="padding-left: 16px;"><span class="code-keyword">return</span>
+                                reply.code(500).send({</div>
+                            <div style="padding-left: 32px;">message: <span class="code-string">'Erro interno'</span>
+                            </div>
+                            <div style="padding-left: 16px;">});</div>
+                            <div>});</div>
+                        </div>
+                    </div>
+                    <!-- Usage Example -->
+                    <div class="feature-card" style="padding: 18px 24px;">
+                        <div style="display: flex; align-items: center; gap: 14px;">
+                            <i class="fas fa-info-circle" style="color: #3b82f6; font-size: 20px;"></i>
+                            <span style="font-size: 15px; color: #94a3b8; line-height: 1.4;">
+                                <strong style="color: #e2e8f0;">Dica:</strong> Use <code
+                                    style="background: rgba(59, 130, 246, 0.2); padding: 2px 6px; border-radius: 4px; color: #60a5fa;">app.httpErrors</code>
+                                para erros HTTP padronizados
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer -->
+            <div
+                style="position: absolute; bottom: 40px; left: 64px; right: 64px; display: flex; justify-content: space-between; align-items: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05);">
+                <div style="display: flex; gap: 16px; align-items: center;">
+                    <span style="font-size: 14px; color: #64748b; font-weight: 500;">Node.js com Fastify</span>
+                    <span style="width: 1px; height: 12px; background: #334155;"></span>
+                    <span style="font-size: 14px; color: #64748b; font-weight: 500;">Tratamento de Erros</span>
+                </div>
+                <div style="display: flex; gap: 8px; align-items: center;">
+                    <span style="font-size: 14px; color: #64748b; font-weight: 600;">Slide 10 de 12</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
