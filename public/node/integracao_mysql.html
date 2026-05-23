@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Integração com MySQL</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../asserts/node.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Menu -->
+    <nav class="relative bg-gray-800/50 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10" style="z-index: 100;">
+        <div class="mx-auto max-w-8xl px-2 sm:px-6 lg:px-8 bg-gray-800">
+            <div class="relative flex h-16 items-center justify-between">
+                <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-center">
+                    <div class="hidden sm:block overflow-x-auto w-full">
+                        <div class="flex space-x-4 justify-center">
+                            <a href="index.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Index</a>
+                            <a href="conceito.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conceitos</a>
+                            <a href="setup.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Setup</a>
+                            <a href="integracao_mysql.html" class="rounded-md bg-indigo-50 px-3 py-2 text-sm font-medium text-gray-800">MySQL</a>
+                            <a href="schema.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Schemas</a>
+                            <a href="authenticacao.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Autenticação</a>
+                            <a href="plugis.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Plugins</a>
+                            <a href="hooks.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Hooks</a>
+                            <a href="erros.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Erros</a>
+                            <a href="boas_pratiacs.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Boas Práticas</a>
+                            <a href="conclusao.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conclusão</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!--End Menu -->
+
+    <div class="slide-container">
+        <div data-object="true" data-object-type="textbox"
+            style="position: absolute; top: 0; left: 0; width: 1280px; height: 720px;">
+            <!-- Background Radial Glow -->
+            <div
+                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%); border-radius: 50%; z-index: 0;">
+            </div>
+            <!-- Header Section -->
+            <div
+                style="position: absolute; top: 40px; left: 64px; right: 64px; display: flex; justify-content: space-between; align-items: center; z-index: 10;">
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <div class="mysql-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div>
+                        <h1
+                            style="margin: 0; font-size: 38px; font-weight: 800; color: white; line-height: 1.1; letter-spacing: -0.02em;">
+                            Integração com MySQL</h1>
+                        <p style="margin: 6px 0 0 0; font-size: 18px; color: #94a3b8; font-weight: 500;">mysql2/promise
+                            + Pool de Conexões</p>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 12px;">
+                    <div class="tech-badge">MySQL</div>
+                    <div class="tech-badge">Pool</div>
+                </div>
+            </div>
+            <!-- Content Layout -->
+            <div
+                style="position: absolute; top: 130px; left: 64px; right: 64px; height: 500px; display: flex; gap: 32px; z-index: 10;">
+                <!-- Left Column -->
+                <div style="flex: 1; display: flex; flex-direction: column; gap: 32px;">
+                    <!-- Flow Diagram -->
+                    <div class="feature-card" style="padding: 28px;">
+                        <div style="margin-bottom: 24px;">
+                            <h3
+                                style="margin: 0; font-size: 20px; font-weight: 700; color: white; display: flex; align-items: center; gap: 8px;">
+                                <span style="color: #3b82f6;">🔄</span> Fluxo de Requisição
+                            </h3>
+                        </div>
+                        <div
+                            style="display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 0 10px;">
+                            <div class="flow-step" style="flex: 1;">
+                                <div style="font-size: 14px; color: #3b82f6; font-weight: 600; margin-bottom: 8px;">
+                                    Request</div>
+                                <div style="font-size: 12px; color: #94a3b8;">Cliente</div>
+                                <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+                            </div>
+                            <div class="flow-step" style="flex: 1;">
+                                <div style="font-size: 14px; color: #3b82f6; font-weight: 600; margin-bottom: 8px;">
+                                    Handler</div>
+                                <div style="font-size: 12px; color: #94a3b8;">Fastify</div>
+                                <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+                            </div>
+                            <div class="flow-step" style="flex: 1;">
+                                <div style="font-size: 14px; color: #3b82f6; font-weight: 600; margin-bottom: 8px;">Pool
+                                </div>
+                                <div style="font-size: 12px; color: #94a3b8;">MySQL</div>
+                                <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+                            </div>
+                            <div class="flow-step" style="flex: 1;">
+                                <div style="font-size: 14px; color: #3b82f6; font-weight: 600; margin-bottom: 8px;">
+                                    Response</div>
+                                <div style="font-size: 12px; color: #94a3b8;">JSON</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Best Practices -->
+                    <div class="feature-card" style="flex: 1; padding: 28px;">
+                        <div style="margin-bottom: 24px;">
+                            <h3
+                                style="margin: 0; font-size: 20px; font-weight: 700; color: white; display: flex; align-items: center; gap: 8px;">
+                                <span style="color: #10b981;">✅</span> Boas Práticas
+                            </h3>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 20px;">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <div style="width: 8px; height: 8px; background: #10b981; border-radius: 50%;"></div>
+                                <span style="font-size: 16px; color: #e2e8f0;">Use mysql2/promise para
+                                    async/await</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <div style="width: 8px; height: 8px; background: #10b981; border-radius: 50%;"></div>
+                                <span style="font-size: 16px; color: #e2e8f0;">Evite criar conexões por
+                                    requisição</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <div style="width: 8px; height: 8px; background: #10b981; border-radius: 50%;"></div>
+                                <span style="font-size: 16px; color: #e2e8f0;">Use prepared statements</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right Column -->
+                <div style="flex: 1.2; display: flex; flex-direction: column; gap: 32px;">
+                    <!-- Code Example -->
+                    <div class="feature-card" style="flex: 1; display: flex; flex-direction: column; padding: 28px;">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h3
+                                style="margin: 0; font-size: 20px; font-weight: 700; color: white; display: flex; align-items: center; gap: 8px;">
+                                <span style="color: #10b981;">💻</span> Exemplo de Uso
+                            </h3>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <div style="width: 10px; height: 10px; background: #10b981; border-radius: 50%;"></div>
+                                <span style="font-size: 14px; color: #10b981; font-weight: 600;">Pool</span>
+                            </div>
+                        </div>
+                        <div class="code-block" style="flex: 1;">
+                            <div style="color: #94a3b8; margin-bottom: 12px;">// Registro do plugin</div>
+                            <div>app.<span class="code-function">register</span>(<span
+                                    class="code-keyword">import</span>(<span
+                                    class="code-string">'./plugins/db'</span>));</div>
+                            <div style="margin-top: 16px; color: #94a3b8;">// Uso em rota</div>
+                            <div>app.<span class="code-function">get</span>(<span
+                                    class="code-string">'/products'</span>, <span class="code-keyword">async
+                                    function</span> (req, reply) {</div>
+                            <div style="padding-left: 20px;"><span class="code-keyword">const</span> [rows] = <span
+                                    class="code-keyword">await</span> <span class="code-keyword">this</span>.db.<span
+                                    class="code-function">query</span>(</div>
+                            <div style="padding-left: 40px;"><span class="code-string">'SELECT id, name, price FROM
+                                    products'</span></div>
+                            <div style="padding-left: 20px;">);</div>
+                            <div style="padding-left: 20px;"><span class="code-keyword">return</span> rows;</div>
+                            <div>});</div>
+                        </div>
+                    </div>
+                    <!-- Connection Pool Info -->
+                    <div class="feature-card" style="padding: 20px 24px;">
+                        <div style="display: flex; align-items: center; gap: 14px;">
+                            <i class="fas fa-info-circle" style="color: #3b82f6; font-size: 22px;"></i>
+                            <span style="font-size: 15px; color: #94a3b8;">
+                                <strong style="color: #e2e8f0;">Pool de Conexões:</strong> Reutiliza conexões para
+                                melhor performance
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer -->
+            <div
+                style="position: absolute; bottom: 32px; left: 64px; right: 64px; display: flex; justify-content: space-between; align-items: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05);">
+                <div style="display: flex; gap: 16px; align-items: center;">
+                    <span style="font-size: 13px; color: #64748b; font-weight: 500;">Node.js com Fastify</span>
+                    <span style="width: 1px; height: 12px; background: #334155;"></span>
+                    <span style="font-size: 13px; color: #64748b; font-weight: 500;">Integração MySQL</span>
+                </div>
+                <div style="display: flex; gap: 8px; align-items: center;">
+                    <span style="font-size: 13px; color: #64748b; font-weight: 600;">Slide 6 de 12</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Autenticação com JWT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../asserts/node.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Menu -->
+    <nav class="relative bg-gray-800/50 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10" style="z-index: 100;">
+        <div class="mx-auto max-w-8xl px-2 sm:px-6 lg:px-8 bg-gray-800">
+            <div class="relative flex h-16 items-center justify-between">
+                <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-center">
+                    <div class="hidden sm:block overflow-x-auto w-full">
+                        <div class="flex space-x-4 justify-center">
+                            <a href="index.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Index</a>
+                            <a href="conceito.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conceitos</a>
+                            <a href="setup.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Setup</a>
+                            <a href="integracao_mysql.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">MySQL</a>
+                            <a href="schema.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Schemas</a>
+                            <a href="authenticacao.html" class="rounded-md bg-indigo-50 px-3 py-2 text-sm font-medium text-gray-800">Autenticação</a>
+                            <a href="plugis.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Plugins</a>
+                            <a href="hooks.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Hooks</a>
+                            <a href="erros.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Erros</a>
+                            <a href="boas_pratiacs.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Boas Práticas</a>
+                            <a href="conclusao.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conclusão</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!--End Menu -->
+
+    <div class="slide-container">
+        <div data-object="true" data-object-type="textbox"
+            style="position: absolute; top: 0; left: 0; width: 1280px; height: 720px;">
+            <!-- Background Radial Glow -->
+            <div
+                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%); border-radius: 50%; z-index: 0;">
+            </div>
+            <!-- Header Section -->
+            <div
+                style="position: absolute; top: 40px; left: 64px; right: 64px; display: flex; justify-content: space-between; align-items: center; z-index: 10;">
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <div class="security-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div>
+                        <h1
+                            style="margin: 0; font-size: 36px; font-weight: 800; color: white; line-height: 1.1; letter-spacing: -0.02em;">
+                            Autenticação com JWT</h1>
+                        <p style="margin: 4px 0 0 0; font-size: 16px; color: #94a3b8; font-weight: 500;">Segurança,
+                            tokens e proteção de rotas</p>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 12px;">
+                    <div class="tech-badge">@fastify/jwt</div>
+                    <div class="tech-badge">Security</div>
+                </div>
+            </div>
+            <!-- Content Layout -->
+            <div
+                style="position: absolute; top: 130px; left: 64px; right: 64px; height: 500px; display: flex; gap: 32px; z-index: 10;">
+                <!-- Left Column -->
+                <div style="flex: 1; display: flex; flex-direction: column; gap: 24px;">
+                    <!-- JWT Flow -->
+                    <div class="feature-card" style="height: 380px;">
+                        <div style="margin-bottom: 24px;">
+                            <h3
+                                style="margin: 0; font-size: 22px; font-weight: 700; color: white; display: flex; align-items: center; gap: 10px;">
+                                <span style="color: #3b82f6;">🔐</span> Fluxo de Autenticação
+                            </h3>
+                        </div>
+                        <div class="auth-flow" style="margin-top: 32px;">
+                            <div class="auth-step">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                                    <i class="fas fa-user" style="color: #3b82f6; font-size: 16px;"></i>
+                                    <span style="font-size: 14px; font-weight: 600; color: white;">Login</span>
+                                </div>
+                                <div style="font-size: 12px; color: #94a3b8;">Credenciais do usuário</div>
+                            </div>
+                            <div class="auth-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                            <div class="auth-step">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                                    <i class="fas fa-key" style="color: #10b981; font-size: 16px;"></i>
+                                    <span style="font-size: 14px; font-weight: 600; color: white;">Token</span>
+                                </div>
+                                <div style="font-size: 12px; color: #94a3b8;">JWT gerado</div>
+                            </div>
+                            <div class="auth-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                            <div class="auth-step">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                                    <i class="fas fa-lock" style="color: #f59e0b; font-size: 16px;"></i>
+                                    <span style="font-size: 14px; font-weight: 600; color: white;">Acesso</span>
+                                </div>
+                                <div style="font-size: 12px; color: #94a3b8;">Rota protegida</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 12px; margin-top: 32px;">
+                            <div
+                                style="flex: 1; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; padding: 20px; text-align: center;">
+                                <div style="font-size: 16px; color: #10b981; font-weight: 600;">Validade</div>
+                                <div style="font-size: 14px; color: #94a3b8;">24 horas</div>
+                            </div>
+                            <div
+                                style="flex: 1; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 8px; padding: 20px; text-align: center;">
+                                <div style="font-size: 16px; color: #3b82f6; font-weight: 600;">Algoritmo</div>
+                                <div style="font-size: 14px; color: #94a3b8;">HS256</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Setup Info -->
+                    <div class="feature-card" style="padding: 20px; height: 96px; display: flex; align-items: center;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                            <div>
+                                <h3
+                                    style="margin: 0; font-size: 18px; font-weight: 700; color: white; display: flex; align-items: center; gap: 8px;">
+                                    <span style="color: #f59e0b;">⚡</span> Setup Rápido
+                                </h3>
+                                <p style="margin: 4px 0 0 0; font-size: 14px; color: #94a3b8;">Configure JWT em minutos
+                                </p>
+                            </div>
+                            <div class="jwt-badge">Seguro</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right Column -->
+                <div style="flex: 1.2; display: flex; flex-direction: column; gap: 24px;">
+                    <!-- Code Example -->
+                    <div class="feature-card"
+                        style="height: 410px; display: flex; flex-direction: column; padding: 24px;">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                            <h3
+                                style="margin: 0; font-size: 18px; font-weight: 700; color: white; display: flex; align-items: center; gap: 10px;">
+                                <span style="color: #10b981;">💻</span> Implementação
+                            </h3>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <div style="width: 10px; height: 10px; background: #10b981; border-radius: 50%;"></div>
+                                <span style="font-size: 13px; color: #10b981; font-weight: 600;">TypeScript</span>
+                            </div>
+                        </div>
+                        <div class="code-block" style="flex: 1;">
+                            <div style="color: #94a3b8; margin-bottom: 8px;">// Setup do plugin JWT</div>
+                            <div><span class="code-keyword">import</span> Fastify <span class="code-keyword">from</span>
+                                <span class="code-string">'fastify'</span>;</div>
+                            <div><span class="code-keyword">import</span> jwt <span class="code-keyword">from</span>
+                                <span class="code-string">'@fastify/jwt'</span>;</div>
+                            <div style="margin-top: 8px;"><span class="code-keyword">const</span> app = <span
+                                    class="code-function">Fastify</span>();</div>
+                            <div style="margin-top: 8px;">app.<span class="code-function">register</span>(jwt, {</div>
+                            <div style="padding-left: 20px;"><span class="code-variable">secret</span>:
+                                process.env.JWT_SECRET,</div>
+                            <div style="padding-left: 20px;"><span class="code-variable">sign</span>: { <span
+                                    class="code-variable">expiresIn</span>: <span class="code-string">'24h'</span> }
+                            </div>
+                            <div>});</div>
+                            <div style="margin-top: 12px; color: #94a3b8;">// Rota de login</div>
+                            <div>app.<span class="code-function">post</span>(<span class="code-string">'/login'</span>,
+                                <span class="code-keyword">async</span> (req, reply) =&gt; {</div>
+                            <div style="padding-left: 20px;"><span class="code-keyword">const</span> { email, password }
+                                = req.body;</div>
+                            <div style="padding-left: 20px;"><span class="code-keyword">const</span> token = <span
+                                    class="code-keyword">await</span> reply.<span class="code-function">jwtSign</span>({
+                                <span class="code-variable">sub</span>: email });</div>
+                            <div style="padding-left: 20px;"><span class="code-keyword">return</span> { token };</div>
+                            <div>});</div>
+                        </div>
+                    </div>
+                    <!-- Protection Example -->
+                    <div class="feature-card" style="padding: 22px; height: 66px; display: flex; align-items: center;">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <i class="fas fa-lock" style="color: #3b82f6; font-size: 18px;"></i>
+                            <span style="font-size: 14px; color: #94a3b8;">
+                                <strong style="color: #e2e8f0;">Proteção:</strong> app.get('/secure', { preHandler:
+                                [auth] }, ...)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer -->
+            <div
+                style="position: absolute; bottom: 32px; left: 64px; right: 64px; display: flex; justify-content: space-between; align-items: center; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08);">
+                <div style="display: flex; gap: 20px; align-items: center;">
+                    <span style="font-size: 14px; color: #64748b; font-weight: 500;">Node.js com Fastify</span>
+                    <span style="width: 1px; height: 14px; background: #334155;"></span>
+                    <span style="font-size: 14px; color: #64748b; font-weight: 500;">Autenticação JWT</span>
+                </div>
+                <div style="display: flex; gap: 8px; align-items: center;">
+                    <span style="font-size: 14px; color: #64748b; font-weight: 600;">Slide 9 de 12</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

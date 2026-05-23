@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Plugins e Decorators no Fastify</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../asserts/node.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Menu -->
+    <nav class="relative bg-gray-800/50 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10" style="z-index: 100;">
+        <div class="mx-auto max-w-8xl px-2 sm:px-6 lg:px-8 bg-gray-800">
+            <div class="relative flex h-16 items-center justify-between">
+                <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-center">
+                    <div class="hidden sm:block overflow-x-auto w-full">
+                        <div class="flex space-x-4 justify-center">
+                            <a href="index.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Index</a>
+                            <a href="conceito.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conceitos</a>
+                            <a href="setup.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Setup</a>
+                            <a href="integracao_mysql.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">MySQL</a>
+                            <a href="schema.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Schemas</a>
+                            <a href="authenticacao.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Autenticação</a>
+                            <a href="plugis.html" class="rounded-md bg-indigo-50 px-3 py-2 text-sm font-medium text-gray-800">Plugins</a>
+                            <a href="hooks.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Hooks</a>
+                            <a href="erros.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Erros</a>
+                            <a href="boas_pratiacs.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Boas Práticas</a>
+                            <a href="conclusao.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conclusão</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!--End Menu -->
+
+    <div class="slide-container">
+        <div data-object="true" data-object-type="textbox"
+            style="position: absolute; top: 0; left: 0; width: 1280px; height: 720px;">
+            <!-- Background Radial Glow -->
+            <div
+                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%); border-radius: 50%; z-index: 0;">
+            </div>
+            <!-- Header Section -->
+            <div
+                style="position: absolute; top: 40px; left: 64px; right: 64px; display: flex; justify-content: space-between; align-items: center; z-index: 10;">
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <div class="plugin-icon">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <div>
+                        <h1
+                            style="margin: 0; font-size: 38px; font-weight: 800; color: white; line-height: 1.1; letter-spacing: -0.02em;">
+                            Plugins e Decorators</h1>
+                        <p style="margin: 6px 0 0 0; font-size: 18px; color: #94a3b8; font-weight: 500;">Isolamento,
+                            reuso e registro por escopo</p>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 12px;">
+                    <div class="tech-badge">MySQL</div>
+                    <div class="tech-badge">Fastify</div>
+                </div>
+            </div>
+            <!-- Content Layout -->
+            <div
+                style="position: absolute; top: 140px; left: 64px; right: 64px; height: 490px; display: flex; gap: 32px; z-index: 10;">
+                <!-- Left Column -->
+                <div style="flex: 1; display: flex; flex-direction: column; gap: 24px;">
+                    <!-- Concept Explanation -->
+                    <div class="feature-card" style="flex: 1; padding: 32px;">
+                        <div style="margin-bottom: 24px;">
+                            <h3
+                                style="margin: 0; font-size: 22px; font-weight: 700; color: white; display: flex; align-items: center; gap: 12px;">
+                                <span style="color: #3b82f6;">🔌</span> O que são Plugins?
+                            </h3>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 20px;">
+                            <div style="display: flex; align-items: start; gap: 12px;">
+                                <div
+                                    style="width: 8px; height: 8px; background: #3b82f6; border-radius: 50%; margin-top: 8px;">
+                                </div>
+                                <div>
+                                    <span
+                                        style="font-size: 16px; color: #e2e8f0; line-height: 1.5;"><strong>Isolamento:</strong>
+                                        Cada plugin tem seu próprio escopo</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: start; gap: 12px;">
+                                <div
+                                    style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; margin-top: 8px;">
+                                </div>
+                                <div>
+                                    <span
+                                        style="font-size: 16px; color: #e2e8f0; line-height: 1.5;"><strong>Reuso:</strong>
+                                        Funcionalidades encapsuladas</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: start; gap: 12px;">
+                                <div
+                                    style="width: 8px; height: 8px; background: #f59e0b; border-radius: 50%; margin-top: 8px;">
+                                </div>
+                                <div>
+                                    <span
+                                        style="font-size: 16px; color: #e2e8f0; line-height: 1.5;"><strong>Registro:</strong>
+                                        Plugins podem ser registrados em diferentes níveis</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Decorators -->
+                    <div class="feature-card" style="padding: 24px;">
+                        <div style="margin-bottom: 20px;">
+                            <h3
+                                style="margin: 0; font-size: 20px; font-weight: 700; color: white; display: flex; align-items: center; gap: 10px;">
+                                <span style="color: #f59e0b;">🏷️</span> Decorators
+                            </h3>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 14px;">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span class="decorator-badge">fastify.decorate</span>
+                                <span style="font-size: 14px; color: #94a3b8;">Adiciona propriedades ao
+                                    FastifyInstance</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span class="decorator-badge">fastify.decorateRequest</span>
+                                <span style="font-size: 14px; color: #94a3b8;">Adiciona propriedades ao request</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right Column -->
+                <div style="flex: 1.2; display: flex; flex-direction: column; gap: 24px;">
+                    <!-- Code Example -->
+                    <div class="feature-card" style="flex: 1; display: flex; flex-direction: column; padding: 24px;">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h3
+                                style="margin: 0; font-size: 20px; font-weight: 700; color: white; display: flex; align-items: center; gap: 10px;">
+                                <span style="color: #10b981;">💻</span> Plugin de Banco de Dados
+                            </h3>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <div style="width: 10px; height: 10px; background: #10b981; border-radius: 50%;"></div>
+                                <span style="font-size: 13px; color: #10b981; font-weight: 600;">MySQL</span>
+                            </div>
+                        </div>
+                        <div class="code-block" style="flex: 1;">
+                            <div style="color: #94a3b8; margin-bottom: 12px;">// src/plugins/db.ts</div>
+                            <div><span class="code-keyword">import</span> fp <span class="code-keyword">from</span>
+                                <span class="code-string">'fastify-plugin'</span>;</div>
+                            <div><span class="code-keyword">import</span> mysql <span class="code-keyword">from</span>
+                                <span class="code-string">'mysql2/promise'</span>;</div>
+                            <div style="margin-top: 8px;"><span class="code-keyword">export default</span> <span
+                                    class="code-function">fp</span>(<span class="code-keyword">async</span> (fastify)
+                                =&gt; {</div>
+                            <div style="padding-left: 20px;"><span class="code-keyword">const</span> pool = mysql.<span
+                                    class="code-function">createPool</span>({</div>
+                            <div style="padding-left: 40px;"><span class="code-variable">host</span>:
+                                process.env.DB_HOST,</div>
+                            <div style="padding-left: 40px;"><span class="code-variable">user</span>:
+                                process.env.DB_USER,</div>
+                            <div style="padding-left: 40px;"><span class="code-variable">password</span>:
+                                process.env.DB_PASS,</div>
+                            <div style="padding-left: 40px;"><span class="code-variable">database</span>:
+                                process.env.DB_NAME,</div>
+                            <div style="padding-left: 40px;"><span class="code-variable">connectionLimit</span>: 10
+                            </div>
+                            <div style="padding-left: 20px;">});</div>
+                            <div style="padding-left: 20px;">fastify.<span class="code-function">decorate</span>(<span
+                                    class="code-string">'db'</span>, pool);</div>
+                            <div style="padding-left: 20px;">fastify.<span class="code-function">addHook</span>(<span
+                                    class="code-string">'onClose'</span>, <span class="code-keyword">async</span> ()
+                                =&gt; pool.<span class="code-function">end</span>());</div>
+                            <div>});</div>
+                        </div>
+                    </div>
+                    <!-- Usage Example -->
+                    <div class="feature-card" style="padding: 22px;">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <i class="fas fa-info-circle" style="color: #3b82f6; font-size: 20px;"></i>
+                            <span style="font-size: 15px; color: #94a3b8;">
+                                <strong style="color: #e2e8f0;">Uso:</strong> app.register(import('./plugins/db'))
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer -->
+            <div
+                style="position: absolute; bottom: 30px; left: 64px; right: 64px; display: flex; justify-content: space-between; align-items: center; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08);">
+                <div style="display: flex; gap: 20px; align-items: center;">
+                    <span style="font-size: 14px; color: #64748b; font-weight: 500;">Node.js com Fastify</span>
+                    <span style="width: 1px; height: 14px; background: #334155;"></span>
+                    <span style="font-size: 14px; color: #64748b; font-weight: 500;">Plugins e Decorators</span>
+                </div>
+                <div style="display: flex; gap: 8px; align-items: center;">
+                    <span style="font-size: 14px; color: #64748b; font-weight: 600;">Slide 5 de 12</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
