@@ -1,186 +1,116 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
-
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Tipos de Dados e Sintaxe Básica</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;family=Open+Sans:wght@400;600&amp;display=swap"
-        rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-    <link href="../asserts/site.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipos de Dados e Sintaxe Básica | Treinamentos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../asserts/tailwind.config.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
+    <link href="../asserts/base.css" rel="stylesheet">
 </head>
-
-<body>
-    <!-- Menu -->
-    <nav
-        class="relative bg-gray-800/50 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10">
-        <div class="mx-auto max-w-8xl px-2 sm:px-6 lg:px-8 bg-gray-800">
-            <div class="relative flex h-16 items-center justify-between">
-                <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                    <!-- Mobile menu button-->
-                    <button type="button" command="--toggle" commandfor="mobile-menu"
-                        class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500">
-                        <span class="absolute -inset-0.5"></span>
-                        <span class="sr-only">Open main menu</span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
-                            aria-hidden="true" class="size-6 in-aria-expanded:hidden">
-                            <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
-                            aria-hidden="true" class="size-6 not-in-aria-expanded:hidden">
-                            <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </button>
+<body class="bg-gray-50 text-gray-900 antialiased">
+    <nav class="bg-gray-800 shadow-lg sticky top-0 z-50">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <a href="../index.html" class="flex items-center gap-2 shrink-0">
+                    <span class="text-white font-semibold text-lg font-heading">JavaScript</span>
+                </a>
+                <div class="hidden md:flex items-center gap-1">
+                    <a href="index.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Index</a>
+                    <a href="calender.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Agenda</a>
+                    <a href="javascript.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">JavaScript</a>
+                    <a href="variable.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Variáveis</a>
+                    <a href="types.html" class="rounded-md bg-primary-50 px-2 py-1.5 text-xs font-medium text-primary-700 whitespace-nowrap">Tipos</a>
+                    <a href="function.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Funções</a>
+                    <a href="struct.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Est. de Controle</a>
+                    <a href="array.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Arrays</a>
+                    <a href="object.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Objetos</a>
+                    <a href="array-object.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Arrays & Objetos</a>
+                    <a href="api.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">API's</a>
+                    <a href="tryerror.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Try Catch</a>
+                    <a href="dependenci.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Dependencias</a>
+                    <a href="conclusion.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Conclusão</a>
                 </div>
-                <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                    <div class="hidden sm:ml-12 sm:block">
-                        <div class="flex space-x-4">
-                            <a href="index.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Index</a>
-                            <a href="calender.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Agenda</a>
-                            <a href="javascript.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">JavaScript</a>
-                            <a href="variable.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Variáveis</a>
-                            <a href="types.html"
-                                class="rounded-md bg-yellow-50 px-3 py-2 text-sm font-medium text-gray-800">Tipos</a>
-                            <a href="function.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Funções</a>
-                            <a href="struct.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Est.
-                                de Controle</a>
-                            <a href="array.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Arrays</a>
-                            <a href="object.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Objetos</a>
-                            <a href="array-object.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Arrays
-                                & Objetos</a>
-                            <a href="api.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">API's</a>
-                            <a href="tryerror.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Try
-                                Catch</a>
-                            <a href="dependenci.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Dependencias</a>
-                            <a href="conclusion.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conclusão</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                    <button type="button"
-                        class="relative rounded-full p-1 text-gray-400 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500">
-                        <span class="absolute -inset-1.5"></span>
-                        <span class="sr-only">View notifications</span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
-                            aria-hidden="true" class="size-6">
-                            <path
-                                d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </button>
-                </div>
+                <button type="button" data-mobile-toggle class="md:hidden p-2 text-gray-400 hover:text-white focus:outline-none" aria-controls="mobile-menu">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-700">
+            <div class="space-y-1 px-4 py-3">
+                <a href="index.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Index</a>
+                <a href="calender.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Agenda</a>
+                <a href="javascript.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">JavaScript</a>
+                <a href="variable.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Variáveis</a>
+                <a href="types.html" class="block rounded-md bg-primary-50 px-2 py-1.5 text-xs font-medium text-primary-700">Tipos</a>
+                <a href="function.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Funções</a>
+                <a href="struct.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Est. de Controle</a>
+                <a href="array.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Arrays</a>
+                <a href="object.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Objetos</a>
+                <a href="array-object.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Arrays & Objetos</a>
+                <a href="api.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">API's</a>
+                <a href="tryerror.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Try Catch</a>
+                <a href="dependenci.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Dependencias</a>
+                <a href="conclusion.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conclusão</a>
             </div>
         </div>
     </nav>
-    <!--End Menu -->
 
-    <div id="index" class="h-screen flex items-center justify-center bg-gray-100">
-        <div class="slide-container flex flex-col">
-            <div class="accent-bar"></div>
-            <div class="accent-square"></div>
-            <div class="accent-circle"></div>
-            <div class="px-16 py-10 flex-grow">
-                <h1 class="title text-4xl font-bold mb-6">Tipos de Dados e Sintaxe Básica</h1>
-                <div class="grid grid-cols-2 gap-8">
-                    <div class="pr-4">
-                        <p class="text-lg mb-4">JavaScript possui diferentes tipos de dados primitivos e objetos. Os
-                            primitivos são os blocos fundamentais para construção de estruturas mais complexas.</p>
-                        <div class="mt-6 space-y-4">
-                            <div class="feature-item pl-4 py-2">
-                                <h3 class="text-xl font-semibold text-gray-800">Tipos Primitivos</h3>
-                                <ul class="list-none ml-2 mt-3 space-y-2">
-                                    <li><span class="type-badge type-number">Number</span> Números inteiros ou decimais
-                                    </li>
-                                    <li><span class="type-badge type-string">String</span> Texto entre aspas simples,
-                                        duplas
-                                        ou crases</li>
-                                    <li><span class="type-badge type-boolean">Boolean</span> Valores lógicos true ou
-                                        false
-                                    </li>
-                                    <li><span class="type-badge type-null">Null</span> Ausência intencional de valor
-                                    </li>
-                                    <li><span class="type-badge type-undefined">Undefined</span> Valor não atribuído
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="feature-item pl-4 py-2">
-                                <h3 class="text-xl font-semibold text-gray-800">Características</h3>
-                                <ul class="list-disc ml-6 mt-2 text-gray-700">
-                                    <li>JavaScript é <span class="font-semibold">fracamente tipado</span></li>
-                                    <li>Conversão automática entre tipos</li>
-                                    <li>Operador <code class="bg-gray-200 px-1 rounded">typeof</code> para verificar
-                                        tipos
-                                    </li>
-                                    <li>Tipos complexos: Object, Array, Function</li>
-                                </ul>
-                            </div>
-                        </div>
+    <main class="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
+        <article class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 sm:p-10">
+            <header class="mb-8">
+                <span class="inline-flex items-center gap-1text-sm font-medium text-primary-600 bg-primary-50 px-3 py-1 rounded-full">
+                    <i class="fas fa-book-open"></i> JavaScript
+                </span>
+                <h1 class="mt-3 text-3xl font-bold text-gray-900 font-heading">Tipos de Dados e Sintaxe Básica</h1>
+            </header>
+
+            <p class="text-lg text-gray-700 mb-6 leading-relaxed">JavaScript possui tipos de dados dinâmicos — uma variável pode conter diferentes tipos em momentos diferentes. Conhecer os tipos é essencial para evitar bugs.</p>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Tipos Primitivos</h2>
+                    <div class="space-y-3">
+                        <div class="p-3 bg-gray-50 rounded-lg border-l-4 border-primary-500"><span class="inline-block bg-emerald-100 text-emerald-800 text-xs font-semibold px-2 py-0.5 rounded-full mr-2">Number</span> Números (inteiros e decimais): <code class="bg-gray-100 px-1">42</code>, <code class="bg-gray-100 px-1">3.14</code></div>
+                        <div class="p-3 bg-gray-50 rounded-lg border-l-4 border-blue-500"><span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-0.5 rounded-full mr-2">String</span> Textos: <code class="bg-gray-100 px-1">"Olá"</code>, <code class="bg-gray-100 px-1">'Mundo'</code></div>
+                        <div class="p-3 bg-gray-50 rounded-lg border-l-4 border-amber-500"><span class="inline-block bg-amber-100 text-amber-800 text-xs font-semibold px-2 py-0.5 rounded-full mr-2">Boolean</span> Verdadeiro/Falso: <code class="bg-gray-100 px-1">true</code>, <code class="bg-gray-100 px-1">false</code></div>
+                        <div class="p-3 bg-gray-50 rounded-lg border-l-4 border-purple-500"><span class="inline-block bg-purple-100 text-purple-800 text-xs font-semibold px-2 py-0.5 rounded-full mr-2">Null</span> Ausência intencional de valor: <code class="bg-gray-100 px-1">null</code></div>
+                        <div class="p-3 bg-gray-50 rounded-lg border-l-4 border-gray-500"><span class="inline-block bg-gray-200 text-gray-800 text-xs font-semibold px-2 py-0.5 rounded-full mr-2">Undefined</span> Variável declarada sem valor: <code class="bg-gray-100 px-1">undefined</code></div>
                     </div>
-                    <div>
-                        <div class="mb-3">
-                            <h3 class="text-xl font-semibold text-gray-800">Exemplos de Código:</h3>
-                        </div>
-                        <div class="code-block p-4 rounded">
-                            <pre class="text-base leading-relaxed"><span class="code-comment">// Números (Number)</span>
-<span class="code-keyword">let</span> inteiro = <span class="code-number">10</span>;
-<span class="code-keyword">let</span> decimal = <span class="code-number">10.5</span>;
-<span class="code-keyword">let</span> negativo = <span class="code-number">-42</span>;
+                    <h2 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Tipo Reference (Objeto)</h2>
+                    <div class="p-3 bg-gray-50 rounded-lg border-l-4 border-primary-500">Coleções de dados: <code class="bg-gray-100 px-1">objetos</code>, <code class="bg-gray-100 px-1">arrays</code>, <code class="bg-gray-100 px-1">funções</code></div>
+                </div>
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-800 mb-3">Exemplos:</h2>
+                    <pre><code class="language-javascript">// Tipos primitivos
+let nome = "Maria";       // String
+let idade = 30;           // Number
+let estudando = true;     // Boolean
+let endereco = null;      // Null
+let salario;              // Undefined
 
-<span class="code-comment">// Strings</span>
-<span class="code-keyword">let</span> nome = <span class="code-string">'Ana'</span>;
-<span class="code-keyword">let</span> sobrenome = <span class="code-string">"Silva"</span>;
-<span class="code-keyword">let</span> frase = <span class="code-string">`${nome} tem ${inteiro} anos`</span>;
+// Verificando tipos
+console.log(typeof nome);      // "string"
+console.log(typeof idade);     // "number"
+console.log(typeof estudando); // "boolean"
 
-<span class="code-comment">// Booleanos</span>
-<span class="code-keyword">let</span> ativo = <span class="code-boolean">true</span>;
-<span class="code-keyword">let</span> maiorIdade = inteiro &gt;= <span class="code-number">18</span>;  <span class="code-comment">// true</span>
-
-<span class="code-comment">// Null e Undefined</span>
-<span class="code-keyword">let</span> usuario = <span class="code-keyword">null</span>;
-<span class="code-keyword">let</span> endereco;  <span class="code-comment">// undefined</span>
-
-<span class="code-comment">// Verificando tipos</span>
-console.log(<span class="code-keyword">typeof</span> inteiro);     <span class="code-comment">// "number"</span>
-console.log(<span class="code-keyword">typeof</span> nome);        <span class="code-comment">// "string"</span>
-console.log(<span class="code-keyword">typeof</span> ativo);       <span class="code-comment">// "boolean"</span></pre>
-                        </div>
-                        <div class="mt-4 bg-blue-50 p-3 rounded border-l-4 border-blue-500">
-                            <p class="text-sm text-gray-700"><i class="fas fa-info-circle text-blue-600 mr-2"></i> Em
-                                JavaScript, o operador <code class="bg-gray-100 px-1 rounded">typeof null</code> retorna
-                                <code class="bg-gray-100 px-1 rounded">"object"</code>, o que é considerado um erro
-                                histórico da linguagem. Na verdade, <code class="bg-gray-100 px-1 rounded">null</code> é
-                                um
-                                tipo primitivo.
-                            </p>
-                        </div>
+// Tipo objeto
+const pessoa = {
+    nome: "Carlos",
+    idade: 28
+};</code></pre>
+                    <div class="mt-4 p-3 bg-blue-50 rounded-xl border-l-4 border-blue-400">
+                        <p class="text-sm text-blue-700"><i class="fas fa-lightbulb text-blue-600 mr-2"></i> <strong>Dica:</strong> Use <code class="bg-blue-100 px-1 rounded">typeof</code> para verificar o tipo de uma variável em tempo de execução.</p>
                     </div>
                 </div>
             </div>
-            <div class="mt-auto px-6 py-3 text-gray-500 text-sm flex justify-between">
-                <div>Curso de JavaScript</div>
-                <div>fundamentos.javascript.edu.br</div>
-            </div>
-        </div>
-    </div>
-</body>
+        </article>
+    </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="../asserts/js/menu.js"></script>
+</body>
 </html>

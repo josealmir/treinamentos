@@ -1,228 +1,111 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
-
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Node.js com Fastify - Do Básico ao Avançado</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node.js com Fastify | Treinamentos</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap"
-        rel="stylesheet" />
-    <link href="../asserts/node.css" rel="stylesheet" />
+    <script src="../asserts/tailwind.config.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
+    <link href="../asserts/base.css" rel="stylesheet">
 </head>
-
-<body>
-    <!-- Menu -->
-    <nav class="relative bg-gray-800/50 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10" style="z-index: 100;">
-        <div class="mx-auto max-w-8xl px-2 sm:px-6 lg:px-8 bg-gray-800">
-            <div class="relative flex h-16 items-center justify-between">
-                <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-center">
-                    <div class="hidden sm:block overflow-x-auto w-full">
-                        <div class="flex space-x-4 justify-center">
-                            <a href="index.html" class="rounded-md bg-indigo-50 px-3 py-2 text-sm font-medium text-gray-800">Index</a>
-                            <a href="conceito.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conceitos</a>
-                            <a href="setup.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Setup</a>
-                            <a href="integracao_mysql.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">MySQL</a>
-                            <a href="schema.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Schemas</a>
-                            <a href="authenticacao.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Autenticação</a>
-                            <a href="plugis.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Plugins</a>
-                            <a href="hooks.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Hooks</a>
-                            <a href="erros.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Erros</a>
-                            <a href="boas_pratiacs.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Boas Práticas</a>
-                            <a href="conclusao.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conclusão</a>
-                        </div>
-                    </div>
+<body class="bg-gray-50 text-gray-900 antialiased">
+    <nav class="bg-gray-800 shadow-lg sticky top-0 z-50">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <a href="../index.html" class="flex items-center gap-2 shrink-0">
+                    <span class="text-white font-semibold text-lg font-heading">Node.js</span>
+                </a>
+                <div class="hidden md:flex items-center gap-1">
+                    <a href="index.html" class="rounded-md bg-primary-50 px-2 py-1.5 text-xs font-medium text-primary-700 whitespace-nowrap">Index</a>
+                    <a href="conceito.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Conceitos</a>
+                    <a href="setup.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Setup</a>
+                    <a href="integracao_mysql.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">MySQL</a>
+                    <a href="schema.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Schemas</a>
+                    <a href="authenticacao.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Autenticação</a>
+                    <a href="plugis.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Plugins</a>
+                    <a href="hooks.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Hooks</a>
+                    <a href="erros.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Erros</a>
+                    <a href="boas_pratiacs.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Boas Práticas</a>
+                    <a href="conclusao.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Conclusão</a>
                 </div>
+                <button type="button" data-mobile-toggle class="md:hidden p-2 text-gray-400 hover:text-white focus:outline-none" aria-controls="mobile-menu">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-700">
+            <div class="space-y-1 px-4 py-3">
+                <a href="index.html" class="block rounded-md bg-primary-50 px-2 py-1.5 text-xs font-medium text-primary-700">Index</a>
+                <a href="conceito.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conceitos</a>
+                <a href="setup.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Setup</a>
+                <a href="integracao_mysql.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">MySQL</a>
+                <a href="schema.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Schemas</a>
+                <a href="authenticacao.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Autenticação</a>
+                <a href="plugis.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Plugins</a>
+                <a href="hooks.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Hooks</a>
+                <a href="erros.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Erros</a>
+                <a href="boas_pratiacs.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Boas Práticas</a>
+                <a href="conclusao.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conclusão</a>
             </div>
         </div>
     </nav>
-    <!--End Menu -->
 
-    <div class="slide-container">
-        <!-- Main Data Object Container -->
-        <div data-object="true" data-object-type="textbox"
-            style="position: absolute; top: 0; left: 0; width: 1280px; height: 720px;">
-            <!-- Background Radial Glow -->
-            <div
-                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%); border-radius: 50%; z-index: 0;">
-            </div>
-            <!-- Header Section -->
-            <div
-                style="position: absolute; top: 40px; left: 64px; right: 64px; display: flex; justify-content: space-between; align-items: center; z-index: 10;">
-                <div style="display: flex; align-items: center; gap: 20px;">
-                    <div
-                        style="width: 56px; height: 56px; background: linear-gradient(135deg, #3b82f6, #8b5cf6); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);">
-                        <i class="fas fa-server"></i>
-                    </div>
-                    <div>
-                        <h1
-                            style="margin: 0; font-size: 36px; font-weight: 800; color: white; line-height: 1.1; letter-spacing: -0.02em;">
-                            Node.js com Fastify</h1>
-                        <p style="margin: 4px 0 0 0; font-size: 16px; color: #94a3b8; font-weight: 500;">Do Básico ao
-                            Avançado • APIs Modernas</p>
-                    </div>
-                </div>
-                <div style="display: flex; gap: 12px;">
-                    <div class="tech-badge">TypeScript</div>
-                    <div class="tech-badge">MySQL</div>
-                    <div class="tech-badge">REST API</div>
-                </div>
-            </div>
-            <!-- Content Layout -->
-            <div
-                style="position: absolute; top: 136px; left: 64px; right: 64px; display: flex; gap: 32px; z-index: 10;">
-                <!-- Left Column -->
-                <div style="flex: 1.1; display: flex; flex-direction: column; gap: 20px;">
-                    <!-- Course Info -->
-                    <div class="feature-card">
-                        <div
-                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-                            <h3
-                                style="margin: 0; font-size: 18px; font-weight: 700; color: white; display: flex; align-items: center; gap: 8px;">
-                                <span style="color: #ef4444;">🎯</span> Objetivo do Curso
-                            </h3>
-                            <div style="display: flex; align-items: center; gap: 6px;">
-                                <div style="width: 8px; height: 8px; background: #10b981; border-radius: 50%;"></div>
-                                <span
-                                    style="font-size: 13px; color: #10b981; font-weight: 600; text-transform: uppercase;">Ao
-                                    Vivo</span>
-                            </div>
-                        </div>
-                        <p style="margin: 0; font-size: 15px; color: #cbd5e1; line-height: 1.6;">
-                            Construir uma API REST tipada, validada e pronta para produção usando Fastify,
-                            TypeScript e MySQL. Do setup inicial até deploy em produção.
-                        </p>
-                    </div>
-                    <!-- Tech Stack -->
-                    <div class="feature-card">
-                        <h3
-                            style="margin: 0 0 16px 0; font-size: 18px; font-weight: 700; color: white; display: flex; align-items: center; gap: 8px;">
-                            <span style="color: #3b82f6;">🛠</span> Stack Tecnológica
-                        </h3>
-                        <div style="display: grid; grid-template-columns: 1fr; gap: 4px;">
-                            <div class="tech-stack-item">
-                                <div class="tech-icon-small tech-node"><i class="fab fa-node"></i></div>
-                                <div style="flex: 1;">
-                                    <div style="font-size: 14px; color: white; font-weight: 600;">Node.js 18+</div>
-                                    <div style="font-size: 12px; color: #94a3b8;">Runtime JavaScript de alta performance
-                                    </div>
-                                </div>
-                                <span style="color: #10b981; font-size: 8px;">●</span>
-                            </div>
-                            <div class="tech-stack-item">
-                                <div class="tech-icon-small tech-fastify"><i class="fas fa-bolt"></i></div>
-                                <div style="flex: 1;">
-                                    <div style="font-size: 14px; color: white; font-weight: 600;">Fastify 4.x</div>
-                                    <div style="font-size: 12px; color: #94a3b8;">Framework Web focado em baixo overhead
-                                    </div>
-                                </div>
-                                <span style="color: #10b981; font-size: 8px;">●</span>
-                            </div>
-                            <div class="tech-stack-item">
-                                <div class="tech-icon-small tech-mysql"><i class="fas fa-database"></i></div>
-                                <div style="flex: 1;">
-                                    <div style="font-size: 14px; color: white; font-weight: 600;">MySQL 8+</div>
-                                    <div style="font-size: 12px; color: #94a3b8;">Persistência de dados relacional</div>
-                                </div>
-                                <span style="color: #10b981; font-size: 8px;">●</span>
-                            </div>
-                            <div class="tech-stack-item">
-                                <div class="tech-icon-small tech-typescript"><i class="fas fa-code"></i></div>
-                                <div style="flex: 1;">
-                                    <div style="font-size: 14px; color: white; font-weight: 600;">TypeScript</div>
-                                    <div style="font-size: 12px; color: #94a3b8;">Segurança com tipagem estática</div>
-                                </div>
-                                <span style="color: #10b981; font-size: 8px;">●</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Right Column -->
-                <div style="flex: 0.9; display: flex; flex-direction: column; gap: 20px;">
-                    <!-- Metrics Row -->
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
-                        <div class="metric-card">
-                            <div class="metric-value">12</div>
-                            <div class="metric-label">Módulos</div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-value">24h</div>
-                            <div class="metric-label">Duração</div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-value">100%</div>
-                            <div class="metric-label">Prática</div>
-                        </div>
-                    </div>
-                    <!-- Learnings -->
-                    <div class="feature-card" style="flex-grow: 1;">
-                        <h3
-                            style="margin: 0 0 16px 0; font-size: 18px; font-weight: 700; color: white; display: flex; align-items: center; gap: 8px;">
-                            <span style="color: #f59e0b;">✨</span> O que você vai aprender
-                        </h3>
-                        <div style="display: flex; flex-direction: column; gap: 14px;">
-                            <div style="display: flex; align-items: center; gap: 12px;">
-                                <div style="width: 6px; height: 6px; background: #10b981; border-radius: 50%;"></div>
-                                <span style="font-size: 14px; color: #e2e8f0; font-weight: 500;">Setup completo com
-                                    TypeScript</span>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 12px;">
-                                <div style="width: 6px; height: 6px; background: #10b981; border-radius: 50%;"></div>
-                                <span style="font-size: 14px; color: #e2e8f0; font-weight: 500;">Rotas e handlers
-                                    assíncronos</span>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 12px;">
-                                <div style="width: 6px; height: 6px; background: #10b981; border-radius: 50%;"></div>
-                                <span style="font-size: 14px; color: #e2e8f0; font-weight: 500;">Integração com
-                                    MySQL</span>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 12px;">
-                                <div style="width: 6px; height: 6px; background: #10b981; border-radius: 50%;"></div>
-                                <span style="font-size: 14px; color: #e2e8f0; font-weight: 500;">Autenticação JWT</span>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 12px;">
-                                <div style="width: 6px; height: 6px; background: #10b981; border-radius: 50%;"></div>
-                                <span style="font-size: 14px; color: #e2e8f0; font-weight: 500;">Validação de
-                                    schemas</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Requirements -->
-                    <div class="feature-card" style="padding: 20px;">
-                        <h3
-                            style="margin: 0 0 12px 0; font-size: 16px; font-weight: 700; color: white; display: flex; align-items: center; gap: 8px;">
-                            <span style="color: #94a3b8;">📋</span> Requisitos
-                        </h3>
-                        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                            <span
-                                style="background: rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600;">Node
-                                18+</span>
-                            <span
-                                style="background: rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600;">npm/yarn</span>
-                            <span
-                                style="background: rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600;">MySQL
-                                8+</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Footer -->
-            <div
-                style="position: absolute; bottom: 32px; left: 64px; right: 64px; display: flex; justify-content: space-between; align-items: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05);">
-                <div style="display: flex; gap: 16px; align-items: center;">
-                    <span style="font-size: 13px; color: #64748b; font-weight: 500;">Node.js com Fastify</span>
-                    <span style="width: 1px; height: 12px; background: #334155;"></span>
-                    <span style="font-size: 13px; color: #64748b; font-weight: 500;">Do Básico ao Avançado</span>
-                </div>
-                <div style="display: flex; gap: 8px; align-items: center;">
-                    <span style="font-size: 13px; color: #64748b; font-weight: 600;">Slide 1 de 12</span>
-                </div>
-            </div>
-        </div>
-    </div>
+    <main class="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
+        <article class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 sm:p-10">
+            <header class="mb-8">
+                <span class="inline-flex items-center gap-1 text-sm font-medium text-primary-600 bg-primary-50 px-3 py-1 rounded-full">
+                    <i class="fas fa-book-open"></i> Node.js
+                </span>
+                <h1 class="mt-3 text-3xl font-bold text-gray-900 font-heading">Node.js com Fastify</h1>
+                <p class="mt-2 text-lg text-gray-600">Do Básico ao Avançado — APIs Modernas</p>
+            </header>
+
+            <section class="mb-8">
+                <h2 class="text-xl font-semibold text-gray-900 font-heading mb-3">Objetivo do Curso</h2>
+                <p class="text-gray-700 leading-relaxed">Construir uma API REST tipada, validada e pronta para produção usando Fastify, TypeScript e MySQL. Do setup inicial até deploy em produção.</p>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-xl font-semibold text-gray-900 font-heading mb-3">Stack Tecnológica</h2>
+                <ul class="list-disc ml-6 text-gray-700 space-y-1">
+                    <li><strong>Node.js 18+</strong> — Runtime JavaScript de alta performance</li>
+                    <li><strong>Fastify 4.x</strong> — Framework Web focado em baixo overhead</li>
+                    <li><strong>MySQL 8+</strong> — Persistência de dados relacional</li>
+                    <li><strong>TypeScript</strong> — Segurança com tipagem estática</li>
+                </ul>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-xl font-semibold text-gray-900 font-heading mb-3">Métricas do Curso</h2>
+                <p class="text-gray-700"><strong>12 Módulos</strong> &middot; <strong>24h Duração</strong> &middot; <strong>100% Prática</strong></p>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-xl font-semibold text-gray-900 font-heading mb-3">O que você vai aprender</h2>
+                <ul class="list-disc ml-6 text-gray-700 space-y-1">
+                    <li>Setup completo com TypeScript</li>
+                    <li>Rotas e handlers assíncronos</li>
+                    <li>Integração com MySQL</li>
+                    <li>Autenticação JWT</li>
+                    <li>Validação de schemas</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold text-gray-900 font-heading mb-3">Requisitos</h2>
+                <ul class="list-disc ml-6 text-gray-700 space-y-1">
+                    <li>Node 18+</li>
+                    <li>npm/yarn</li>
+                    <li>MySQL 8+</li>
+                </ul>
+            </section>
+        </article>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="../asserts/js/menu.js"></script>
 </body>
-
 </html>

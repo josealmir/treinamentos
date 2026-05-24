@@ -1,84 +1,74 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Mobile menu toggle (existing)
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const iconOpen = document.getElementById('icon-open');
-    const iconClose = document.getElementById('icon-close');
+document.addEventListener('DOMContentLoaded', function () {
+  const toggleBtn = document.querySelector('[data-mobile-toggle]')
+  const mobileMenu = document.getElementById('mobile-menu')
 
-    if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', function(e) {
-            e.stopPropagation();
-            mobileMenu.classList.toggle('hidden');
-            iconOpen.classList.toggle('hidden');
-            iconClose.classList.toggle('hidden');
-        });
+  function closeMobile() {
+    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+      mobileMenu.classList.add('hidden')
     }
+  }
 
-    // Mobile dropdowns (existing)
-    const dropdownButtons = document.querySelectorAll('[data-dropdown]');
-    dropdownButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.stopPropagation();
-            const dropdownContent = this.nextElementSibling;
-            if (!dropdownContent) return;
-            dropdownContent.classList.toggle('hidden');
-            const svg = this.querySelector('svg');
-            if (svg) svg.classList.toggle('rotate-180');
-        });
-    });
+  function closeAllDropdowns() {
+    document.querySelectorAll('.dropdown-menu').forEach((el) => {
+      el.classList.add('hidden')
+    })
+    document.querySelectorAll('[data-dropdown] svg').forEach((svg) => {
+      svg.classList.remove('rotate-180')
+    })
+    document.querySelectorAll('.desktop-dropdown-menu').forEach((el) => {
+      el.classList.add('opacity-0', 'invisible')
+    })
+    document.querySelectorAll('[data-dropdown-desktop] svg').forEach((svg) => {
+      svg.classList.remove('rotate-180')
+    })
+  }
 
-    // Desktop dropdowns: show on hover (CSS) and also support click to toggle
-    const desktopButtons = document.querySelectorAll('[data-dropdown-desktop]');
-    function closeAllDesktopMenus() {
-        document.querySelectorAll('.desktop-dropdown-menu').forEach(menu => {
-            menu.classList.add('opacity-0','invisible');
-            menu.classList.remove('opacity-100','visible','block');
-        });
-        desktopButtons.forEach(b => b.setAttribute('aria-expanded','false'));
+  if (toggleBtn && mobileMenu) {
+    toggleBtn.addEventListener('click', function (e) {
+      e.stopPropagation()
+      mobileMenu.classList.toggle('hidden')
+    })
+  }
+
+  document.querySelectorAll('[data-dropdown]').forEach((btn) => {
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation()
+      const content = this.nextElementSibling
+      if (!content) return
+      content.classList.toggle('hidden')
+      const svg = this.querySelector('svg')
+      if (svg) svg.classList.toggle('rotate-180')
+    })
+  })
+
+  document.querySelectorAll('[data-dropdown-desktop]').forEach((btn) => {
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation()
+      const isOpen = this.getAttribute('aria-expanded') === 'true'
+      closeAllDropdowns()
+      if (!isOpen) {
+        this.setAttribute('aria-expanded', 'true')
+        const content = this.nextElementSibling
+        if (content) {
+          content.classList.remove('opacity-0', 'invisible')
+        }
+        const svg = this.querySelector('svg')
+        if (svg) svg.classList.add('rotate-180')
+      }
+    })
+  })
+
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('[data-dropdown-desktop]') && !e.target.closest('.desktop-dropdown-menu')) {
+      closeAllDropdowns()
     }
+    closeMobile()
+  })
 
-    desktopButtons.forEach(btn => {
-        const menu = btn.nextElementSibling;
-        if (!menu) return;
-
-        // click toggles menu (useful for touch/keyboard)
-        btn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            const isOpen = menu.classList.contains('opacity-100') || menu.classList.contains('visible');
-            closeAllDesktopMenus();
-            if (!isOpen) {
-                menu.classList.remove('opacity-0','invisible');
-                menu.classList.add('opacity-100','visible','block');
-                btn.setAttribute('aria-expanded','true');
-            } else {
-                btn.setAttribute('aria-expanded','false');
-            }
-        });
-
-        // keep menu open while hovering parent (no JS needed; CSS group-hover not used here)
-        // but close when pointer leaves menu area
-        menu.addEventListener('mouseleave', function() {
-            menu.classList.add('opacity-0','invisible');
-            menu.classList.remove('opacity-100','visible','block');
-            btn.setAttribute('aria-expanded','false');
-        });
-    });
-
-    // close menus on outside click or Escape
-    document.addEventListener('click', function() {
-        // close mobile and desktop menus
-        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-            mobileMenu.classList.add('hidden');
-            iconOpen.classList.remove('hidden');
-            iconClose.classList.add('hidden');
-        }
-        closeAllDesktopMenus();
-    });
-
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeAllDesktopMenus();
-            if (mobileMenu) mobileMenu.classList.add('hidden');
-        }
-    });
-});
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      closeMobile()
+      closeAllDropdowns()
+    }
+  })
+})

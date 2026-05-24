@@ -1,177 +1,127 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
-
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Gerenciamento de Dependências: npm e package.json</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;family=Open+Sans:wght@400;600&amp;display=swap"
-        rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-    <link href="../asserts/site.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Dependências: npm e package.json | Treinamentos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../asserts/tailwind.config.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
+    <link href="../asserts/base.css" rel="stylesheet">
 </head>
-
-<body>
-    <!-- Menu -->
-    <nav
-        class="relative bg-gray-800/50 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10">
-        <div class="mx-auto max-w-8xl px-2 sm:px-6 lg:px-8 bg-gray-800">
-            <div class="relative flex h-16 items-center justify-between">
-                <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                    <!-- Mobile menu button-->
-                    <button type="button" command="--toggle" commandfor="mobile-menu"
-                        class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500">
-                        <span class="absolute -inset-0.5"></span>
-                        <span class="sr-only">Open main menu</span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
-                            aria-hidden="true" class="size-6 in-aria-expanded:hidden">
-                            <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
-                            aria-hidden="true" class="size-6 not-in-aria-expanded:hidden">
-                            <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </button>
+<body class="bg-gray-50 text-gray-900 antialiased">
+    <nav class="bg-gray-800 shadow-lg sticky top-0 z-50">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <a href="../index.html" class="flex items-center gap-2 shrink-0">
+                    <span class="text-white font-semibold text-lg font-heading">JavaScript</span>
+                </a>
+                <div class="hidden md:flex items-center gap-1">
+                    <a href="index.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Index</a>
+                    <a href="calender.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Agenda</a>
+                    <a href="javascript.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">JavaScript</a>
+                    <a href="variable.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Variáveis</a>
+                    <a href="types.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Tipos</a>
+                    <a href="function.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Funções</a>
+                    <a href="struct.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Est. de Controle</a>
+                    <a href="array.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Arrays</a>
+                    <a href="object.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Objetos</a>
+                    <a href="array-object.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Arrays & Objetos</a>
+                    <a href="api.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">API's</a>
+                    <a href="tryerror.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Try Catch</a>
+                    <a href="dependenci.html" class="rounded-md bg-primary-50 px-2 py-1.5 text-xs font-medium text-primary-700 whitespace-nowrap">Dependencias</a>
+                    <a href="conclusion.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Conclusão</a>
                 </div>
-                <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                    <div class="hidden sm:ml-12 sm:block">
-                        <div class="flex space-x-4">
-                            <a href="index.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Index</a>
-                            <a href="calender.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Agenda</a>
-                            <a href="javascript.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">JavaScript</a>
-                            <a href="variable.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Variáveis</a>
-                            <a href="types.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Tipos</a>
-                            <a href="function.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Funções</a>
-                            <a href="struct.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Est.
-                                de Controle</a>
-                            <a href="array.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Arrays</a>
-                            <a href="object.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Objetos</a>
-                            <a href="array-object.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Arrays
-                                & Objetos</a>
-                            <a href="api.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">API's</a>
-                            <a href="tryerror.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Try
-                                Catch</a>
-                            <a href="dependenci.html"
-                                class="rounded-md bg-yellow-50 px-3 py-2 text-sm font-medium text-gray-800">Dependencias</a>
-                            <a href="conclusion.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conclusão</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                    <button type="button"
-                        class="relative rounded-full p-1 text-gray-400 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500">
-                        <span class="absolute -inset-1.5"></span>
-                        <span class="sr-only">View notifications</span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
-                            aria-hidden="true" class="size-6">
-                            <path
-                                d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </button>
-                </div>
+                <button type="button" data-mobile-toggle class="md:hidden p-2 text-gray-400 hover:text-white focus:outline-none" aria-controls="mobile-menu">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-700">
+            <div class="space-y-1 px-4 py-3">
+                <a href="index.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Index</a>
+                <a href="calender.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Agenda</a>
+                <a href="javascript.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">JavaScript</a>
+                <a href="variable.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Variáveis</a>
+                <a href="types.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Tipos</a>
+                <a href="function.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Funções</a>
+                <a href="struct.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Est. de Controle</a>
+                <a href="array.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Arrays</a>
+                <a href="object.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Objetos</a>
+                <a href="array-object.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Arrays & Objetos</a>
+                <a href="api.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">API's</a>
+                <a href="tryerror.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Try Catch</a>
+                <a href="dependenci.html" class="block rounded-md bg-primary-50 px-2 py-1.5 text-xs font-medium text-primary-700">Dependencias</a>
+                <a href="conclusion.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conclusão</a>
             </div>
         </div>
     </nav>
-    <!--End Menu -->
 
-    <div class="h-screen flex items-center justify-center bg-gray-100">
-        <div class="slide-container flex flex-col">
-            <div class="accent-bar"></div>
-            <div class="accent-square"></div>
-            <div class="accent-circle"></div>
-            <div class="px-16 py-10 flex-grow">
-                <h1 class="title text-4xl font-bold mb-6">Gerenciamento de Dependências: npm e package.json</h1>
-                <div class="grid grid-cols-2 gap-8">
-                    <div class="pr-4">
-                        <p class="text-lg mb-4">O <span class="font-semibold">npm (Node Package Manager)</span> é o
-                            gerenciador de pacotes padrão para o Node.js, permitindo o compartilhamento e reutilização
-                            de
-                            código JavaScript.</p>
-                        <div class="mt-6 space-y-4">
-                            <div class="feature-item pl-4 py-2">
-                                <h3 class="text-xl font-semibold text-gray-800">O arquivo package.json</h3>
-                                <ul class="list-disc ml-6 mt-2 text-gray-700">
-                                    <li>Manifesto do projeto e suas dependências</li>
-                                    <li>Metadados: nome, versão, descrição</li>
-                                    <li>Lista de dependências e suas versões</li>
-                                    <li>Scripts de automação de tarefas</li>
-                                </ul>
-                            </div>
-                            <div class="feature-item pl-4 py-2">
-                                <h3 class="text-xl font-semibold text-gray-800">Comandos npm essenciais</h3>
-                                <ul class="list-disc ml-6 mt-2 text-gray-700">
-                                    <li><code class="bg-gray-100 px-1">npm init</code>: Cria um novo package.json</li>
-                                    <li><code class="bg-gray-100 px-1">npm install [pacote]</code>: Instala dependências
-                                    </li>
-                                    <li><code class="bg-gray-100 px-1">npm install --save-dev [pacote]</code>: Instala
-                                        devDependencies</li>
-                                    <li><code class="bg-gray-100 px-1">npm run [script]</code>: Executa scripts
-                                        definidos
-                                    </li>
-                                </ul>
-                            </div>
+    <main class="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
+        <article class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 sm:p-10">
+            <header class="mb-8">
+                <span class="inline-flex items-center gap-1text-sm font-medium text-primary-600 bg-primary-50 px-3 py-1 rounded-full">
+                    <i class="fas fa-book-open"></i> JavaScript
+                </span>
+                <h1 class="mt-3 text-3xl font-bold text-gray-900 font-heading">Gerenciamento de Dependências: npm e package.json</h1>
+            </header>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">O <strong>npm (Node Package Manager)</strong> é o gerenciador de pacotes padrão para o Node.js, permitindo o compartilhamento e reutilização de código JavaScript.</p>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-primary-500">
+                            <h2 class="text-xl font-semibold text-gray-800 mb-2">O arquivo package.json</h2>
+                            <ul class="list-disc ml-6 text-gray-700 space-y-1">
+                                <li>Manifesto do projeto e suas dependências</li>
+                                <li>Metadados: nome, versão, descrição</li>
+                                <li>Lista de dependências e suas versões</li>
+                                <li>Scripts de automação de tarefas</li>
+                            </ul>
                         </div>
-                    </div>
-                    <div>
-                        <div class="mb-3">
-                            <h3 class="text-xl font-semibold text-gray-800">Exemplo de package.json:</h3>
-                        </div>
-                        <div class="code-block p-4 rounded">
-                            <pre class="text-base leading-relaxed">{
-  <span class="code-string">"name"</span>: <span class="code-string">"meu-projeto-javascript"</span>,
-  <span class="code-string">"version"</span>: <span class="code-string">"1.0.0"</span>,
-  <span class="code-string">"description"</span>: <span class="code-string">"Aplicação web com JavaScript"</span>,
-  <span class="code-string">"main"</span>: <span class="code-string">"index.js"</span>,
-  <span class="code-string">"scripts"</span>: {
-    <span class="code-string">"start"</span>: <span class="code-string">"node index.js"</span>,
-    <span class="code-string">"dev"</span>: <span class="code-string">"nodemon index.js"</span>,
-    <span class="code-string">"test"</span>: <span class="code-string">"jest"</span>
-  },
-  <span class="code-string">"dependencies"</span>: {
-    <span class="code-string">"express"</span>: <span class="code-string">"^4.18.2"</span>,
-    <span class="code-string">"axios"</span>: <span class="code-string">"^1.3.0"</span>
-  },
-  <span class="code-string">"devDependencies"</span>: {
-    <span class="code-string">"nodemon"</span>: <span class="code-string">"^2.0.22"</span>,
-    <span class="code-string">"jest"</span>: <span class="code-string">"^29.5.0"</span>
-  }
-}</pre>
-                        </div>
-                        <div class="mt-4 bg-blue-50 p-3 rounded border-l-4 border-blue-500">
-                            <p class="text-sm text-gray-700"><i class="fas fa-info-circle text-blue-600 mr-2"></i>
-                                <strong>Versionamento:</strong> O caractere <code class="bg-gray-100 px-1">^</code>
-                                significa que o npm pode instalar versões mais recentes compatíveis (ex: ^4.18.2 permite
-                                qualquer versão 4.x.x maior que 4.18.2).
-                            </p>
+                        <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-primary-500">
+                            <h2 class="text-xl font-semibold text-gray-800 mb-2">Comandos npm essenciais</h2>
+                            <ul class="list-disc ml-6 text-gray-700 space-y-1">
+                                <li><code class="bg-gray-200 px-1 rounded">npm init</code>: Cria um novo package.json</li>
+                                <li><code class="bg-gray-200 px-1 rounded">npm install [pacote]</code>: Instala dependências</li>
+                                <li><code class="bg-gray-200 px-1 rounded">npm install --save-dev [pacote]</code>: Instala devDependencies</li>
+                                <li><code class="bg-gray-200 px-1 rounded">npm run [script]</code>: Executa scripts definidos</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Exemplo de package.json:</h2>
+                    <pre><code class="language-json">{
+  "name": "meu-projeto-javascript",
+  "version": "1.0.0",
+  "description": "Aplicação web com JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "axios": "^1.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22",
+    "jest": "^29.5.0"
+  }
+}</code></pre>
+                    <div class="mt-4 p-4 bg-blue-50 rounded-xl border-l-4 border-blue-400">
+                        <p class="text-sm text-blue-700"><i class="fas fa-info-circle text-blue-600 mr-2"></i> <strong>Versionamento:</strong> O caractere <code class="bg-gray-200 px-1 rounded">^</code> significa que o npm pode instalar versões mais recentes compatíveis (ex: ^4.18.2 permite qualquer versão 4.x.x maior que 4.18.2).</p>
+                    </div>
+                </div>
             </div>
-            <div class="mt-auto px-6 py-3 text-gray-500 text-sm flex justify-between">
-                <div>Curso de JavaScript</div>
-                <div>fundamentos.javascript.edu.br</div>
-            </div>
-        </div>
-    </div>
-</body>
+        </article>
+    </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="../asserts/js/menu.js"></script>
+</body>
 </html>

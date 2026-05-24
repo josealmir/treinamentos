@@ -1,180 +1,163 @@
 <!DOCTYPE html>
-<html lang="pt_BR">
-
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cursos</title>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Consumo de APIs - Fetch API</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;family=Open+Sans:wght@400;600&amp;display=swap"
-        rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-    <script src="../asserts/js/menu.js"></script>
+    <title>Treinamentos</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./asserts/tailwind.config.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="./asserts/base.css" rel="stylesheet">
 </head>
-
-<body>
-    <div class="flex flex-col md:flex-row flex-wrap justify-center py-10 gap-8">
-        <!-- Git -->
-        <div class="w-full sm:w-80 md:w-90 p-2 flex-shrink-0">
-            <div class="max-w-sm rounded overflow-hidden shadow-lg">
-                <img class="w-full" src="./asserts/img/git.svg" alt="Git">
-                <div class="px-6 py-4">
-                    <div class="font-bold text-xl mb-2">Git</div>
-                    <p class="text-gray-700 text-base">
-                        Nesse contéudo você irá aprender os fundamentos do sistema de controle de versão Git, desde
-                        os comandos básicos, criação de repositórios, branches, merge, clonagem e muito mais.
-                    </p>
-                </div>
-                <div class="px-6 pt-4 pb-2">
-                    <a href="https://git-scm.com/doc" target="_blank">
-                        <span
-                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#Documentação</span>
-                    </a>
-                    <a href="https://www.youtube.com/watch?v=2c7yWlpWDJM&list=PLcoYAcR89n-qbO7YAVj5S0alABLis_QVU"
-                        target="_blank">
-                        <span
-                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                            #Playlist</span>
-                    </a>
-                    <a href="./git/index.html">
-                        <span
-                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#Aulas</span>
-                    </a>
-                </div>
+<body class="bg-gray-50 text-gray-900 antialiased">
+    <div class="min-h-screen flex flex-col">
+        <header class="bg-gradient-to-br from-primary-700 to-primary-900 text-white">
+            <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-4xl font-bold sm:text-5xl font-heading">
+                    <i class="fas fa-graduation-cap mr-3 text-primary-200"></i>
+                    Treinamentos
+                </h1>
+                <p class="mt-4 text-lg text-primary-100 max-w-2xl mx-auto">
+                    Material de estudo organizado por módulos — Git, JavaScript, React, Node.js e MySQL.
+                    Navegue pelos cards abaixo e escolha seu próximo aprendizado.
+                </p>
             </div>
-        </div>
-        <!--End Git -->
+        </header>
 
-        <!-- javascript -->
-        <div class="w-full sm:w-80 md:w-90 p-2 flex-shrink-0">
-            <div class="max-w-sm rounded overflow-hidden shadow-lg">
-                <img class="w-full" src="./asserts/img/javascript.svg" alt="JavaScript">
-                <div class="px-6 py-4">
-                    <div class="font-bold text-xl mb-2">JavaScript</div>
-                    <p class="text-gray-700 text-base">
-                        Nesse contéudo você irá aprender os fundamentos da linguagem JavaScript, desde os tipos de
-                        variáveis, estruturas de controle, funções, arrays e objetos, funções avançadas, manipulação de
-                        api's.
-                    </p>
-                </div>
-                <div class="px-6 pt-4 pb-2">
-                    <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript" target="_blank">
-                        <span
-                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#Documentação</span>
-                    </a>
-                    <a href="https://www.youtube.com/watch?v=vEwPnjqWQ-g&list=PL2Fdisxwzt_d590u3uad46W-kHA0PTjjw"
-                        target="_blank">
-                        <span
-                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#Playlist</span>
-                    </a>
-                    <a href="js/index.html" target="_blank">
-                        <span
-                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#Aulas</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <!--End javascript -->
+        <main class="flex-1 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
+                <!-- Git -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow flex flex-col">
+                    <div class="p-6 flex flex-col items-center text-center flex-1">
+                        <div class="w-20 h-20 mb-4 flex items-center justify-center">
+                            <img src="./asserts/img/git.svg" alt="Git" class="w-full h-full">
+                        </div>
+                        <h2 class="text-xl font-bold text-gray-900 font-heading">Git</h2>
+                        <p class="mt-2 text-sm text-gray-600 leading-relaxed">
+                            Fundamentos do sistema de controle de versão Git: comandos básicos, criação de repositórios, branches, merge, clonagem e muito mais.
+                        </p>
+                        <div class="mt-auto pt-4 flex flex-wrap justify-center gap-2">
+                            <a href="https://git-scm.com/doc" target="_blank" class="inline-flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 hover:bg-gray-200 transition-colors">
+                                <i class="fas fa-book"></i> Documentação
+                            </a>
+                            <a href="https://www.youtube.com/watch?v=2c7yWlpWDJM&list=PLcoYAcR89n-qbO7YAVj5S0alABLis_QVU" target="_blank" class="inline-flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 hover:bg-gray-200 transition-colors">
+                                <i class="fas fa-play"></i> Playlist
+                            </a>
+                            <a href="./git/index.html" class="inline-flex items-center gap-1 rounded-full bg-primary-50 text-primary-700 px-3 py-1 text-xs font-semibold hover:bg-primary-100 transition-colors">
+                                <i class="fas fa-arrow-right"></i> Aulas
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-        <!-- React -->
-        <div class="w-full sm:w-80 md:w-90 p-2 flex-shrink-0">
-            <div class="max-w-sm rounded overflow-hidden shadow-lg">
-                <img class="w-full" src="./asserts/img/react.svg" alt="React Js">
-                <div class="px-6 py-4">
-                    <div class="font-bold text-xl mb-2">React JS</div>
-                    <p class="text-gray-700 text-base">
-                        Nesse contéudo você irá aprender os fundamentos do React JS, desde a instalação, configuração,
-                        do ambiente de desenvolvimento, context api, rotas, componentes, formularios, rotas,
-                        hooks e etc.
-                    </p>
+                <!-- JavaScript -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow flex flex-col">
+                    <div class="p-6 flex flex-col items-center text-center flex-1">
+                        <div class="w-20 h-20 mb-4 flex items-center justify-center">
+                            <img src="./asserts/img/javascript.svg" alt="JavaScript" class="w-full h-full">
+                        </div>
+                        <h2 class="text-xl font-bold text-gray-900 font-heading">JavaScript</h2>
+                        <p class="mt-2 text-sm text-gray-600 leading-relaxed">
+                            Fundamentos da linguagem JavaScript: tipos de variáveis, estruturas de controle, funções, arrays, objetos, manipulação de APIs e muito mais.
+                        </p>
+                        <div class="mt-auto pt-4 flex flex-wrap justify-center gap-2">
+                            <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript" target="_blank" class="inline-flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 hover:bg-gray-200 transition-colors">
+                                <i class="fas fa-book"></i> Documentação
+                            </a>
+                            <a href="https://www.youtube.com/watch?v=vEwPnjqWQ-g&list=PL2Fdisxwzt_d590u3uad46W-kHA0PTjjw" target="_blank" class="inline-flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 hover:bg-gray-200 transition-colors">
+                                <i class="fas fa-play"></i> Playlist
+                            </a>
+                            <a href="js/index.html" class="inline-flex items-center gap-1 rounded-full bg-primary-50 text-primary-700 px-3 py-1 text-xs font-semibold hover:bg-primary-100 transition-colors">
+                                <i class="fas fa-arrow-right"></i> Aulas
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="px-6 pt-4 pb-2">
-                    <a href="https://react.dev/learn" target="_blank">
-                        <span
-                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#Documentação</span>
-                    </a>
-                    <a href="https://www.youtube.com/watch?v=j942wKiXFu8&list=PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d"
-                        target="_blank">
-                        <span
-                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                            #Playlist</span>
-                    </a>
-                    <a href="react/index.html" target="_blank">
-                        <span
-                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#Aulas</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <!--End React -->
-        <!-- Node -->
-        <div class="w-full sm:w-80 md:w-90 p-2 flex-shrink-0">
-            <div class="max-w-sm rounded overflow-hidden shadow-lg">
-                <img class="w-full" src="./asserts/img/nodejs.svg" alt="Node Js">
-                <div class="px-6 py-4">
-                    <div class="font-bold text-xl mb-2">Node JS</div>
-                    <p class="text-gray-700 text-base">
-                        Nesse contéudo você irá aprender os fundamentos do Node JS, desde a instalação, configuração,
-                        criação de servidores, manipulação de arquivos, módulos, pacotes e muito mais.
-                    </p>
-                </div>
-                <div class="px-6 pt-4 pb-2">
-                    <a href="https://nodejs.org/docs/latest/api/" target="_blank">
-                        <span
-                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#Documentação</span>
-                    </a>
-                    <a href="https://www.youtube.com/watch?v=LLqq6FemMNQ&list=PLJ_KhUnlXUPtbtLwaxxUxHqvcNQndmI4B"
-                        target="_blank">
-                        <span
-                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                            #Playlist</span>
-                    </a>
-                    <a href="node/index.html" target="_blank">
-                        <span
-                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#Aulas</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <!--End Node -->
 
-        <!-- MySQL -->
-        <div class="w-full sm:w-80 md:w-90 p-2 flex-shrink-0">
-            <div class="max-w-sm rounded overflow-hidden shadow-lg">
-                <img class="w-full" src="./asserts/img/mysql.svg" alt="MySQL">
-                <div class="px-6 py-4">
-                    <div class="font-bold text-xl mb-2">MySQL</div>
-                    <p class="text-gray-700 text-base">
-                        Nesse contéudo você irá aprender os fundamentos do SLQ, desde a instalação, configuração,
-                        de banco de dados até manipulação de tabelas, consultas e premissões de acesso.
-                    </p>
+                <!-- React -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow flex flex-col">
+                    <div class="p-6 flex flex-col items-center text-center flex-1">
+                        <div class="w-20 h-20 mb-4 flex items-center justify-center">
+                            <img src="./asserts/img/react.svg" alt="React JS" class="w-full h-full">
+                        </div>
+                        <h2 class="text-xl font-bold text-gray-900 font-heading">React JS</h2>
+                        <p class="mt-2 text-sm text-gray-600 leading-relaxed">
+                            Fundamentos do React JS: instalação, componentes, props, state, hooks, Context API, formulários, rotas e muito mais.
+                        </p>
+                        <div class="mt-auto pt-4 flex flex-wrap justify-center gap-2">
+                            <a href="https://react.dev/learn" target="_blank" class="inline-flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 hover:bg-gray-200 transition-colors">
+                                <i class="fas fa-book"></i> Documentação
+                            </a>
+                            <a href="https://www.youtube.com/watch?v=j942wKiXFu8&list=PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d" target="_blank" class="inline-flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 hover:bg-gray-200 transition-colors">
+                                <i class="fas fa-play"></i> Playlist
+                            </a>
+                            <a href="react/index.html" class="inline-flex items-center gap-1 rounded-full bg-primary-50 text-primary-700 px-3 py-1 text-xs font-semibold hover:bg-primary-100 transition-colors">
+                                <i class="fas fa-arrow-right"></i> Aulas
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="px-6 pt-4 pb-2">
-                    <a href="https://dev.mysql.com/doc/" target="_blank">
-                        <span
-                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#Documentação</span>
-                    </a>
-                    <a href="https://www.youtube.com/watch?v=-9S9KzBPTSM&list=PLbIBj8vQhvm2WT-pjGS5x7zUzmh4VgvRk"
-                        target="_blank">
-                        <span
-                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                            #Playlist</span>
-                    </a>
-                    <a href="mysql/index.html" target="_blank">
-                        <span
-                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#Aulas</span>
-                    </a>
+
+                <!-- Node -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow flex flex-col">
+                    <div class="p-6 flex flex-col items-center text-center flex-1">
+                        <div class="w-20 h-20 mb-4 flex items-center justify-center">
+                            <img src="./asserts/img/nodejs.svg" alt="Node JS" class="w-full h-full">
+                        </div>
+                        <h2 class="text-xl font-bold text-gray-900 font-heading">Node JS</h2>
+                        <p class="mt-2 text-sm text-gray-600 leading-relaxed">
+                            Fundamentos do Node JS: instalação, configuração, servidores, manipulação de arquivos, módulos, pacotes e muito mais.
+                        </p>
+                        <div class="mt-auto pt-4 flex flex-wrap justify-center gap-2">
+                            <a href="https://nodejs.org/docs/latest/api/" target="_blank" class="inline-flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 hover:bg-gray-200 transition-colors">
+                                <i class="fas fa-book"></i> Documentação
+                            </a>
+                            <a href="https://www.youtube.com/watch?v=LLqq6FemMNQ&list=PLJ_KhUnlXUPtbtLwaxxUxHqvcNQndmI4B" target="_blank" class="inline-flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 hover:bg-gray-200 transition-colors">
+                                <i class="fas fa-play"></i> Playlist
+                            </a>
+                            <a href="node/index.html" class="inline-flex items-center gap-1 rounded-full bg-primary-50 text-primary-700 px-3 py-1 text-xs font-semibold hover:bg-primary-100 transition-colors">
+                                <i class="fas fa-arrow-right"></i> Aulas
+                            </a>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- MySQL -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow flex flex-col">
+                    <div class="p-6 flex flex-col items-center text-center flex-1">
+                        <div class="w-20 h-20 mb-4 flex items-center justify-center">
+                            <img src="./asserts/img/mysql.svg" alt="MySQL" class="w-full h-full">
+                        </div>
+                        <h2 class="text-xl font-bold text-gray-900 font-heading">MySQL</h2>
+                        <p class="mt-2 text-sm text-gray-600 leading-relaxed">
+                            Fundamentos do SQL: instalação, manipulação de tabelas, consultas, permissões de acesso e muito mais.
+                        </p>
+                        <div class="mt-auto pt-4 flex flex-wrap justify-center gap-2">
+                            <a href="https://dev.mysql.com/doc/" target="_blank" class="inline-flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 hover:bg-gray-200 transition-colors">
+                                <i class="fas fa-book"></i> Documentação
+                            </a>
+                            <a href="https://www.youtube.com/watch?v=-9S9KzBPTSM&list=PLbIBj8vQhvm2WT-pjGS5x7zUzmh4VgvRk" target="_blank" class="inline-flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 hover:bg-gray-200 transition-colors">
+                                <i class="fas fa-play"></i> Playlist
+                            </a>
+                            <a href="mysql/index.html" class="inline-flex items-center gap-1 rounded-full bg-primary-50 text-primary-700 px-3 py-1 text-xs font-semibold hover:bg-primary-100 transition-colors">
+                                <i class="fas fa-arrow-right"></i> Aulas
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-        </div>
-        <!--End MySQL -->
+        </main>
+
+        <footer class="bg-white border-t border-gray-200 py-6">
+            <div class="mx-auto max-w-7xl px-4 text-center text-sm text-gray-500">
+                <p>Material de estudo &mdash; 5 módulos &middot; 78 aulas</p>
+            </div>
+        </footer>
     </div>
 </body>
-
 </html>

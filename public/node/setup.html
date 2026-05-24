@@ -1,247 +1,134 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
-
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Setup do Projeto com TypeScript</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup do Projeto com TypeScript | Treinamentos</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap"
-        rel="stylesheet" />
-    <link href="../asserts/node.css" rel="stylesheet" />
+    <script src="../asserts/tailwind.config.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
+    <link href="../asserts/base.css" rel="stylesheet">
 </head>
-
-<body>
-    <!-- Menu -->
-    <nav class="relative bg-gray-800/50 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10" style="z-index: 100;">
-        <div class="mx-auto max-w-8xl px-2 sm:px-6 lg:px-8 bg-gray-800">
-            <div class="relative flex h-16 items-center justify-between">
-                <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-center">
-                    <div class="hidden sm:block overflow-x-auto w-full">
-                        <div class="flex space-x-4 justify-center">
-                            <a href="index.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Index</a>
-                            <a href="conceito.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conceitos</a>
-                            <a href="setup.html" class="rounded-md bg-indigo-50 px-3 py-2 text-sm font-medium text-gray-800">Setup</a>
-                            <a href="integracao_mysql.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">MySQL</a>
-                            <a href="schema.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Schemas</a>
-                            <a href="authenticacao.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Autenticação</a>
-                            <a href="plugis.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Plugins</a>
-                            <a href="hooks.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Hooks</a>
-                            <a href="erros.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Erros</a>
-                            <a href="boas_pratiacs.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Boas Práticas</a>
-                            <a href="conclusao.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conclusão</a>
-                        </div>
-                    </div>
+<body class="bg-gray-50 text-gray-900 antialiased">
+    <nav class="bg-gray-800 shadow-lg sticky top-0 z-50">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <a href="../index.html" class="flex items-center gap-2 shrink-0">
+                    <span class="text-white font-semibold text-lg font-heading">Node.js</span>
+                </a>
+                <div class="hidden md:flex items-center gap-1">
+                    <a href="index.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Index</a>
+                    <a href="conceito.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Conceitos</a>
+                    <a href="setup.html" class="rounded-md bg-primary-50 px-2 py-1.5 text-xs font-medium text-primary-700 whitespace-nowrap">Setup</a>
+                    <a href="integracao_mysql.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">MySQL</a>
+                    <a href="schema.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Schemas</a>
+                    <a href="authenticacao.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Autenticação</a>
+                    <a href="plugis.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Plugins</a>
+                    <a href="hooks.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Hooks</a>
+                    <a href="erros.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Erros</a>
+                    <a href="boas_pratiacs.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Boas Práticas</a>
+                    <a href="conclusao.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Conclusão</a>
                 </div>
+                <button type="button" data-mobile-toggle class="md:hidden p-2 text-gray-400 hover:text-white focus:outline-none" aria-controls="mobile-menu">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-700">
+            <div class="space-y-1 px-4 py-3">
+                <a href="index.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Index</a>
+                <a href="conceito.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conceitos</a>
+                <a href="setup.html" class="block rounded-md bg-primary-50 px-2 py-1.5 text-xs font-medium text-primary-700">Setup</a>
+                <a href="integracao_mysql.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">MySQL</a>
+                <a href="schema.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Schemas</a>
+                <a href="authenticacao.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Autenticação</a>
+                <a href="plugis.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Plugins</a>
+                <a href="hooks.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Hooks</a>
+                <a href="erros.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Erros</a>
+                <a href="boas_pratiacas.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Boas Práticas</a>
+                <a href="conclusao.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conclusão</a>
             </div>
         </div>
     </nav>
-    <!--End Menu -->
 
-    <div class="slide-container">
-        <!-- Main Data Object Container - Fixed height to avoid overflow issue -->
-        <div data-object="true" data-object-type="textbox"
-            style="position: absolute; top: 0; left: 0; width: 1280px; height: 720px;">
-            <!-- Background Radial Glow -->
-            <div
-                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%); border-radius: 50%; z-index: 0;">
-            </div>
-            <!-- Header Section -->
-            <div
-                style="position: absolute; top: 30px; left: 64px; right: 64px; display: flex; justify-content: space-between; align-items: center; z-index: 10;">
-                <div style="display: flex; align-items: center; gap: 20px;">
-                    <div
-                        style="width: 56px; height: 56px; background: linear-gradient(135deg, #3b82f6, #8b5cf6); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <div>
-                        <h1
-                            style="margin: 0; font-size: 32px; font-weight: 800; color: white; line-height: 1.1; letter-spacing: -0.02em;">
-                            Setup do Projeto</h1>
-                        <p style="margin: 4px 0 0 0; font-size: 15px; color: #94a3b8; font-weight: 500;">Configuração
-                            inicial com TypeScript e Fastify</p>
-                    </div>
+    <main class="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
+        <article class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 sm:p-10">
+            <header class="mb-8">
+                <span class="inline-flex items-center gap-1 text-sm font-medium text-primary-600 bg-primary-50 px-3 py-1 rounded-full">
+                    <i class="fas fa-book-open"></i> Node.js
+                </span>
+                <h1 class="mt-3 text-3xl font-bold text-gray-900 font-heading">Setup do Projeto</h1>
+                <p class="mt-2 text-lg text-gray-600">Configuração inicial com TypeScript e Fastify</p>
+            </header>
+
+            <section class="mb-8">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="flex items-center justify-center w-7 h-7 rounded-full bg-blue-100 text-blue-600 text-sm font-bold">1</span>
+                    <h2 class="text-xl font-semibold text-gray-900 font-heading">Inicialização do Projeto</h2>
                 </div>
-                <div style="display: flex; gap: 12px;">
-                    <div class="tech-badge">TypeScript</div>
-                    <div class="tech-badge">Fastify</div>
+                <div class="bg-gray-900 rounded-lg overflow-hidden mb-3">
+                    <pre class="p-4 overflow-x-auto"><code class="language-bash"># Criar diretório do projeto
+mkdir fastify-api
+cd fastify-api
+
+# Inicializar projeto
+npm init -y</code></pre>
                 </div>
-            </div>
-            <!-- Content Layout -->
-            <div
-                style="position: absolute; top: 110px; left: 64px; right: 64px; display: flex; gap: 24px; z-index: 10;">
-                <!-- Left Column -->
-                <div style="flex: 1; display: flex; flex-direction: column; gap: 16px;">
-                    <!-- Step 1: Inicialização -->
-                    <div class="feature-card">
-                        <div
-                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                            <h3
-                                style="margin: 0; font-size: 17px; font-weight: 700; color: white; display: flex; align-items: center; gap: 8px;">
-                                <span style="color: #3b82f6;">1️⃣</span> Inicialização do Projeto
-                            </h3>
-                            <div style="display: flex; align-items: center; gap: 6px;">
-                                <div style="width: 8px; height: 8px; background: #10b981; border-radius: 50%;"></div>
-                                <span style="font-size: 12px; color: #10b981; font-weight: 600;">Essencial</span>
-                            </div>
-                        </div>
-                        <div
-                            style="background: #1e293b; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 10px; margin-bottom: 8px;">
-                            <div
-                                style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #e2e8f0; line-height: 1.4;">
-                                <div class="code-line"><span class="line-number">1</span><span class="code-comment">#
-                                        Criar diretório do projeto</span></div>
-                                <div class="code-line"><span class="line-number">2</span><span
-                                        class="code-keyword">mkdir</span> <span class="code-string">fastify-api</span>
-                                </div>
-                                <div class="code-line"><span class="line-number">3</span><span
-                                        class="code-keyword">cd</span> <span class="code-string">fastify-api</span>
-                                </div>
-                                <div class="code-line"><span class="line-number">4</span></div>
-                                <div class="code-line"><span class="line-number">5</span><span class="code-comment">#
-                                        Inicializar projeto</span></div>
-                                <div class="code-line"><span class="line-number">6</span><span class="code-keyword">npm
-                                        init</span> -y</div>
-                            </div>
-                        </div>
-                        <div style="font-size: 12px; color: #94a3b8;">
-                            <i class="fas fa-info-circle" style="color: #3b82f6; margin-right: 6px;"></i>
-                            Use <code
-                                style="background: rgba(59, 130, 246, 0.2); padding: 1px 4px; border-radius: 4px;">npm init -y</code>
-                            para aceitar defaults
-                        </div>
-                    </div>
-                    <!-- Step 2: Instalação de Dependências -->
-                    <div class="feature-card">
-                        <div
-                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                            <h3
-                                style="margin: 0; font-size: 17px; font-weight: 700; color: white; display: flex; align-items: center; gap: 8px;">
-                                <span style="color: #f59e0b;">2️⃣</span> Instalação de Pacotes
-                            </h3>
-                            <div style="display: flex; align-items: center; gap: 6px;">
-                                <div style="width: 8px; height: 8px; background: #f59e0b; border-radius: 50%;"></div>
-                                <span style="font-size: 12px; color: #f59e0b; font-weight: 600;">Dependências</span>
-                            </div>
-                        </div>
-                        <div
-                            style="background: #1e293b; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 10px;">
-                            <div
-                                style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #e2e8f0; line-height: 1.4;">
-                                <div class="code-line"><span class="line-number">1</span><span class="code-comment">#
-                                        Dependências de produção</span></div>
-                                <div class="code-line"><span class="line-number">2</span><span class="code-keyword">npm
-                                        i</span> fastify @fastify/jwt @fastify/cors @fastify/sensible mysql2</div>
-                                <div class="code-line"><span class="line-number">3</span></div>
-                                <div class="code-line"><span class="line-number">4</span><span class="code-comment">#
-                                        Dependências de desenvolvimento</span></div>
-                                <div class="code-line"><span class="line-number">5</span><span class="code-keyword">npm
-                                        i -D</span> typescript ts-node-dev @types/node</div>
-                            </div>
-                        </div>
-                    </div>
+                <p class="text-sm text-gray-500"><i class="fas fa-info-circle text-blue-500 mr-1"></i>Use <code class="bg-gray-100 px-1 rounded text-sm">npm init -y</code> para aceitar defaults</p>
+            </section>
+
+            <section class="mb-8">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="flex items-center justify-center w-7 h-7 rounded-full bg-yellow-100 text-yellow-600 text-sm font-bold">2</span>
+                    <h2 class="text-xl font-semibold text-gray-900 font-heading">Instalação de Pacotes</h2>
                 </div>
-                <!-- Right Column -->
-                <div style="flex: 1; display: flex; flex-direction: column; gap: 16px;">
-                    <!-- Step 3: Configuração TypeScript -->
-                    <div class="feature-card">
-                        <div
-                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                            <h3
-                                style="margin: 0; font-size: 17px; font-weight: 700; color: white; display: flex; align-items: center; gap: 8px;">
-                                <span style="color: #10b981;">3️⃣</span> Configuração TypeScript
-                            </h3>
-                            <div style="display: flex; align-items: center; gap: 6px;">
-                                <div style="width: 8px; height: 8px; background: #10b981; border-radius: 50%;"></div>
-                                <span style="font-size: 12px; color: #10b981; font-weight: 600;">tsconfig.json</span>
-                            </div>
-                        </div>
-                        <div
-                            style="background: #1e293b; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 10px;">
-                            <div
-                                style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #e2e8f0; line-height: 1.4;">
-                                <div class="code-line"><span class="line-number">1</span><span
-                                        class="code-keyword">{</span></div>
-                                <div class="code-line"><span class="line-number">2</span> <span
-                                        class="code-string">"compilerOptions"</span>: <span
-                                        class="code-keyword">{</span></div>
-                                <div class="code-line"><span class="line-number">3</span> <span
-                                        class="code-string">"target"</span>: <span class="code-string">"ES2020"</span>,
-                                </div>
-                                <div class="code-line"><span class="line-number">4</span> <span
-                                        class="code-string">"module"</span>: <span
-                                        class="code-string">"CommonJS"</span>,</div>
-                                <div class="code-line"><span class="line-number">5</span> <span
-                                        class="code-string">"outDir"</span>: <span class="code-string">"dist"</span>,
-                                </div>
-                                <div class="code-line"><span class="line-number">6</span> <span
-                                        class="code-string">"rootDir"</span>: <span class="code-string">"src"</span>,
-                                </div>
-                                <div class="code-line"><span class="line-number">7</span> <span
-                                        class="code-string">"strict"</span>: <span class="code-keyword">true</span>,
-                                </div>
-                                <div class="code-line"><span class="line-number">8</span> <span
-                                        class="code-string">"esModuleInterop"</span>: <span
-                                        class="code-keyword">true</span></div>
-                                <div class="code-line"><span class="line-number">9</span> <span
-                                        class="code-keyword">}</span></div>
-                                <div class="code-line"><span class="line-number">10</span><span
-                                        class="code-keyword">}</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Step 4: Scripts do Package.json -->
-                    <div class="feature-card">
-                        <div
-                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                            <h3
-                                style="margin: 0; font-size: 17px; font-weight: 700; color: white; display: flex; align-items: center; gap: 8px;">
-                                <span style="color: #ef4444;">4️⃣</span> Scripts do Package.json
-                            </h3>
-                            <div style="display: flex; align-items: center; gap: 6px;">
-                                <div style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%;"></div>
-                                <span style="font-size: 12px; color: #ef4444; font-weight: 600;">Scripts</span>
-                            </div>
-                        </div>
-                        <div
-                            style="background: #1e293b; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 10px;">
-                            <div
-                                style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #e2e8f0; line-height: 1.4;">
-                                <div class="code-line"><span class="line-number">1</span><span
-                                        class="code-string">"scripts"</span>: <span class="code-keyword">{</span></div>
-                                <div class="code-line"><span class="line-number">2</span> <span
-                                        class="code-string">"dev"</span>: <span class="code-string">"ts-node-dev
-                                        --respawn --transpile-only src/server.ts"</span>,</div>
-                                <div class="code-line"><span class="line-number">3</span> <span
-                                        class="code-string">"build"</span>: <span class="code-string">"tsc"</span>,
-                                </div>
-                                <div class="code-line"><span class="line-number">4</span> <span
-                                        class="code-string">"start"</span>: <span class="code-string">"node
-                                        dist/server.js"</span></div>
-                                <div class="code-line"><span class="line-number">5</span><span
-                                        class="code-keyword">}</span></div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="bg-gray-900 rounded-lg overflow-hidden">
+                    <pre class="p-4 overflow-x-auto"><code class="language-bash"># Dependências de produção
+npm i fastify @fastify/jwt @fastify/cors @fastify/sensible mysql2
+
+# Dependências de desenvolvimento
+npm i -D typescript ts-node-dev @types/node</code></pre>
                 </div>
-            </div>
-            <!-- Footer -->
-            <div
-                style="position: absolute; bottom: 32px; left: 64px; right: 64px; display: flex; justify-content: space-between; align-items: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05);">
-                <div style="display: flex; gap: 16px; align-items: center;">
-                    <span style="font-size: 13px; color: #64748b; font-weight: 500;">Node.js com Fastify</span>
-                    <span style="width: 1px; height: 12px; background: #334155;"></span>
-                    <span style="font-size: 13px; color: #64748b; font-weight: 500;">Setup do Projeto</span>
+            </section>
+
+            <section class="mb-8">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="flex items-center justify-center w-7 h-7 rounded-full bg-green-100 text-green-600 text-sm font-bold">3</span>
+                    <h2 class="text-xl font-semibold text-gray-900 font-heading">Configuração TypeScript</h2>
                 </div>
-                <div style="display: flex; gap: 8px; align-items: center;">
-                    <span style="font-size: 13px; color: #64748b; font-weight: 600;">Slide 3 de 12</span>
+                <div class="bg-gray-900 rounded-lg overflow-hidden">
+                    <pre class="p-4 overflow-x-auto"><code class="language-json">{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "CommonJS",
+    "outDir": "dist",
+    "rootDir": "src",
+    "strict": true,
+    "esModuleInterop": true
+  }
+}</code></pre>
                 </div>
-            </div>
-        </div>
-    </div>
+            </section>
+
+            <section>
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="flex items-center justify-center w-7 h-7 rounded-full bg-red-100 text-red-600 text-sm font-bold">4</span>
+                    <h2 class="text-xl font-semibold text-gray-900 font-heading">Scripts do Package.json</h2>
+                </div>
+                <div class="bg-gray-900 rounded-lg overflow-hidden">
+                    <pre class="p-4 overflow-x-auto"><code class="language-json">"scripts": {
+  "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+  "build": "tsc",
+  "start": "node dist/server.js"
+}</code></pre>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="../asserts/js/menu.js"></script>
 </body>
-
 </html>
