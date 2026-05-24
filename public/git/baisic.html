@@ -1,259 +1,147 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
-
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Conceitos Básicos: Repositório, Commit, Branch</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap"
-        rel="stylesheet" />
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f7f7f7;
-            color: #333;
-        }
-
-        .slide-container {
-            width: 1280px;
-            min-height: 720px;
-            overflow: hidden;
-            position: relative;
-            background-color: #f7f7f7;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .title {
-            color: #f14e32;
-            font-weight: 700;
-        }
-
-        .subtitle {
-            color: #413932;
-        }
-
-        .concept-item {
-            transition: transform 0.2s;
-            border-left: 4px solid #f14e32;
-        }
-
-        .concept-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .icon-container {
-            background-color: #f5f5f5;
-            border-radius: 50%;
-            width: 80px;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .slide-footer {
-            position: absolute;
-            bottom: 20px;
-            left: 0;
-            width: 100%;
-            text-align: center;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conceitos Básicos: Repositório, Commit, Branch | Treinamentos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../asserts/tailwind.config.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="../asserts/base.css" rel="stylesheet">
 </head>
-
-<body>
-
-    <!-- Menu -->
-    <nav
-        class="relative bg-gray-800/50 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10">
-        <div class="mx-auto max-w-8xl px-2 sm:px-6 lg:px-8 bg-gray-800">
-            <div class="relative flex h-16 items-center justify-between">
-                <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                    <!-- Mobile menu button-->
-                    <button type="button" command="--toggle" commandfor="mobile-menu"
-                        class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500">
-                        <span class="absolute -inset-0.5"></span>
-                        <span class="sr-only">Open main menu</span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
-                            aria-hidden="true" class="size-6 in-aria-expanded:hidden">
-                            <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
-                            aria-hidden="true" class="size-6 not-in-aria-expanded:hidden">
-                            <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </button>
+<body class="bg-gray-50 text-gray-900 antialiased">
+    <nav class="bg-gray-800 shadow-lg sticky top-0 z-50">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <a href="../index.html" class="flex items-center gap-2 shrink-0">
+                    <span class="text-white font-semibold text-lg font-heading">Git</span>
+                </a>
+                <div class="hidden md:flex items-center gap-1">
+                    <a href="index.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Index</a>
+                    <a href="introduction.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Introdução</a>
+                    <a href="git.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Git</a>
+                    <a href="diffe.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">GitHub / GitLab</a>
+                    <a href="installer.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Instalação</a>
+                    <a href="baisic.html" class="rounded-md bg-primary-50 px-2 py-1.5 text-xs font-medium text-primary-700 whitespace-nowrap">Conceitos</a>
+                    <a href="commands.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Básico</a>
+                    <a href="workflow.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Workflow</a>
+                    <a href="branch.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Branches</a>
+                    <a href="colaboration.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Colaboração</a>
+                    <a href="conflito.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Conflitos</a>
+                    <a href="command-avancado.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Avançados</a>
+                    <a href="best-pratics.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Boas Práticas</a>
+                    <a href="resource.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Links Úteis</a>
+                    <a href="conclusion.html" class="rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white whitespace-nowrap">Conclusão</a>
                 </div>
-                <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                    <div class="hidden sm:ml-12 sm:block">
-                        <div class="flex space-x-4">
-                            <a href="index.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Index</a>
-                            <a href="introduction.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Introdução</a>
-                            <a href="git.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Git</a>
-                            <a href="diffe.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">
-                                GitHub / GitLab</a>
-                            <a href="installer.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Instalação</a>
-                            <a href="baisic.html"
-                                class="rounded-md bg-yellow-50 px-3 py-2 text-sm font-medium text-gray-800">Conceitos</a>
-                            <a href="commands.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Básico</a>
-                            <a href="workflow.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Workflow</a>
-                            <a href="branch.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Branches</a>
-                            <a href="colaboration.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Colaboração</a>
-                            <a href="conflito.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conflitos</a>
-                            <a href="command-avancado.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Avançados</a>
-                            <a href="best-pratics.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Boas
-                                Práticas</a>
-                            <a href="resource.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Linkes
-                                Úteis</a>
-                            <a href="conclusion.html"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conclusão</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                    <button type="button"
-                        class="relative rounded-full p-1 text-gray-400 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500">
-                        <span class="absolute -inset-1.5"></span>
-                        <span class="sr-only">View notifications</span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
-                            aria-hidden="true" class="size-6">
-                            <path
-                                d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </button>
-                </div>
+                <button type="button" data-mobile-toggle class="md:hidden p-2 text-gray-400 hover:text-white focus:outline-none" aria-controls="mobile-menu">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-700">
+            <div class="space-y-1 px-4 py-3">
+                <a href="index.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Index</a>
+                <a href="introduction.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Introdução</a>
+                <a href="git.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Git</a>
+                <a href="diffe.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">GitHub / GitLab</a>
+                <a href="installer.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Instalação</a>
+                <a href="baisic.html" class="block rounded-md bg-primary-50 px-2 py-1.5 text-xs font-medium text-primary-700">Conceitos</a>
+                <a href="commands.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Básico</a>
+                <a href="workflow.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Workflow</a>
+                <a href="branch.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Branches</a>
+                <a href="colaboration.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Colaboração</a>
+                <a href="conflito.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conflitos</a>
+                <a href="command-avancado.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Avançados</a>
+                <a href="best-pratics.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Boas Práticas</a>
+                <a href="resource.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Links Úteis</a>
+                <a href="conclusion.html" class="block rounded-md px-2 py-1.5 text-xs font-medium text-gray-300 hover:bg-white/5 hover:text-white">Conclusão</a>
             </div>
         </div>
     </nav>
-    <!--End Menu -->
 
-    <div class="h-screen flex items-center justify-center bg-gray-100">
-        <div class="slide-container p-12">
-            <!-- Cabeçalho com título -->
-            <header class="mb-10">
-                <h1 class="title text-4xl mb-4">Conceitos Básicos: Repositório, Commit, Branch</h1>
-                <div class="w-20 h-1 bg-gray-300"></div>
+    <main class="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
+        <article class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 sm:p-10">
+            <header class="mb-8">
+                <span class="inline-flex items-center gap-1 text-sm font-medium text-primary-600 bg-primary-50 px-3 py-1 rounded-full">
+                    <i class="fas fa-book-open"></i> Git
+                </span>
+                <h1 class="mt-3 text-3xl font-bold text-gray-900 font-heading">Conceitos Básicos: Repositório, Commit, Branch</h1>
+                <div class="mt-2 w-20 h-1 bg-gray-300"></div>
             </header>
-            <!-- Conteúdo principal -->
-            <div class="flex flex-col">
-                <!-- Introdução -->
-                <div class="mb-8">
-                    <p class="text-lg">
-                        O Git se baseia em três conceitos fundamentais que você precisa entender para utilizá-lo
-                        efetivamente:
-                    </p>
-                </div>
-                <!-- Três conceitos principais em grid -->
-                <div class="grid grid-cols-3 gap-8">
-                    <!-- Repositório -->
-                    <div class="concept-item p-6 bg-white rounded-lg shadow-sm">
-                        <div class="icon-container mb-4">
-                            <i class="fas fa-database text-4xl text-gray-700"></i>
-                        </div>
-                        <h2 class="subtitle text-2xl mb-3 text-center">Repositório</h2>
-                        <p class="text-gray-700 mb-4">
-                            Local onde o Git armazena todos os arquivos e histórico do seu projeto.
-                        </p>
-                        <ul class="list-disc pl-6 space-y-2 text-gray-600">
-                            <li>Pode ser local (na sua máquina) ou remoto (GitHub, GitLab)</li>
-                            <li>Contém todo o histórico de alterações</li>
-                            <li>Criado com o comando <code class="bg-gray-100 px-2 py-1 rounded">git init</code></li>
-                        </ul>
-                        <div class="mt-4 p-3 bg-gray-100 rounded text-sm">
-                            <div class="flex items-center">
-                                <i class="fas fa-code text-gray-500 mr-2"></i>
-                                <code>$ git init meu-projeto</code>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Commit -->
-                    <div class="concept-item p-6 bg-white rounded-lg shadow-sm">
-                        <div class="icon-container mb-4">
-                            <i class="fas fa-save text-4xl text-gray-700"></i>
-                        </div>
-                        <h2 class="subtitle text-2xl mb-3 text-center">Commit</h2>
-                        <p class="text-gray-700 mb-4">
-                            Captura instantânea do estado atual dos arquivos monitorados.
-                        </p>
-                        <ul class="list-disc pl-6 space-y-2 text-gray-600">
-                            <li>Registra o que foi alterado e por quem</li>
-                            <li>Inclui uma mensagem descritiva</li>
-                            <li>Cada commit tem um identificador único (hash)</li>
-                        </ul>
-                        <div class="mt-4 p-3 bg-gray-100 rounded text-sm">
-                            <div class="flex items-center">
-                                <i class="fas fa-code text-gray-500 mr-2"></i>
-                                <code>$ git commit -m "Adiciona recurso X"</code>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Branch -->
-                    <div class="concept-item p-6 bg-white rounded-lg shadow-sm">
-                        <div class="icon-container mb-4">
-                            <i class="fas fa-code-branch text-4xl text-gray-700"></i>
-                        </div>
-                        <h2 class="subtitle text-2xl mb-3 text-center">Branch</h2>
-                        <p class="text-gray-700 mb-4">
-                            Linha de desenvolvimento independente do código principal.
-                        </p>
-                        <ul class="list-disc pl-6 space-y-2 text-gray-600">
-                            <li>Permite desenvolver recursos sem afetar o código principal</li>
-                            <li>Facilita o trabalho em equipe (cada dev em sua branch)</li>
-                            <li>O branch principal é chamado <code class="bg-gray-100 px-2 py-1 rounded">master</code>
-                                ou
-                                <code class="bg-gray-100 px-2 py-1 rounded">main</code>
-                            </li>
-                        </ul>
-                        <div class="mt-4 p-3 bg-gray-100 rounded text-sm">
-                            <div class="flex items-center">
-                                <i class="fas fa-code text-gray-500 mr-2"></i>
-                                <code>$ git branch nova-feature</code>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Observação importante -->
-                <div class="mt-8 p-4 bg-gray-100 rounded-lg border-l-4 border-yellow-500">
-                    <div class="flex">
-                        <i class="fas fa-lightbulb text-yellow-500 mr-3 text-xl"></i>
-                        <div>
-                            <p class="font-medium mb-1">Dica importante:</p>
-                            <p class="text-gray-600">
-                                Esses três conceitos trabalham juntos: você cria commits em um branch específico, dentro
-                                de
-                                um repositório.
-                                Entender como eles se relacionam é essencial para dominar o Git!
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Rodapé do slide -->
-            <div class="slide-footer">
-                <p class="text-gray-500 text-sm">Fundamentos de Git e Seus Comandos</p>
-            </div>
-        </div>
-    </div>
-</body>
 
+            <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+                O Git se baseia em três conceitos fundamentais que você precisa entender para utilizá-lo efetivamente:
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="rounded-xl border-l-4 border-primary-500 bg-gray-50 p-6 hover:shadow-sm transition-shadow">
+                    <div class="w-16 h-16 rounded-full bg-white shadow-md flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-database text-3xl text-gray-600"></i>
+                    </div>
+                    <h2 class="text-xl font-bold text-gray-800 font-heading text-center mb-3">Repositório</h2>
+                    <p class="text-gray-600 text-sm mb-4 text-center">Local onde o Git armazena todos os arquivos e histórico do seu projeto.</p>
+                    <ul class="list-disc pl-5 space-y-1 text-gray-600 text-sm">
+                        <li>Pode ser local (na sua máquina) ou remoto (GitHub, GitLab)</li>
+                        <li>Contém todo o histórico de alterações</li>
+                        <li>Criado com o comando <code class="bg-gray-100 px-1 text-primary-700">git init</code></li>
+                    </ul>
+                    <div class="mt-4 bg-gray-800 rounded-lg p-3 font-mono text-xs text-gray-200 flex items-center gap-2">
+                        <i class="fas fa-code text-gray-400"></i>
+                        <span>$ git init meu-projeto</span>
+                    </div>
+                </div>
+
+                <div class="rounded-xl border-l-4 border-primary-500 bg-gray-50 p-6 hover:shadow-sm transition-shadow">
+                    <div class="w-16 h-16 rounded-full bg-white shadow-md flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-save text-3xl text-gray-600"></i>
+                    </div>
+                    <h2 class="text-xl font-bold text-gray-800 font-heading text-center mb-3">Commit</h2>
+                    <p class="text-gray-600 text-sm mb-4 text-center">Captura instantânea do estado atual dos arquivos monitorados.</p>
+                    <ul class="list-disc pl-5 space-y-1 text-gray-600 text-sm">
+                        <li>Registra o que foi alterado e por quem</li>
+                        <li>Inclui uma mensagem descritiva</li>
+                        <li>Cada commit tem um identificador único (hash)</li>
+                    </ul>
+                    <div class="mt-4 bg-gray-800 rounded-lg p-3 font-mono text-xs text-gray-200 flex items-center gap-2">
+                        <i class="fas fa-code text-gray-400"></i>
+                        <span>$ git commit -m "Adiciona recurso X"</span>
+                    </div>
+                </div>
+
+                <div class="rounded-xl border-l-4 border-primary-500 bg-gray-50 p-6 hover:shadow-sm transition-shadow">
+                    <div class="w-16 h-16 rounded-full bg-white shadow-md flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-code-branch text-3xl text-gray-600"></i>
+                    </div>
+                    <h2 class="text-xl font-bold text-gray-800 font-heading text-center mb-3">Branch</h2>
+                    <p class="text-gray-600 text-sm mb-4 text-center">Linha de desenvolvimento independente do código principal.</p>
+                    <ul class="list-disc pl-5 space-y-1 text-gray-600 text-sm">
+                        <li>Permite desenvolver recursos sem afetar o código principal</li>
+                        <li>Facilita o trabalho em equipe (cada dev em sua branch)</li>
+                        <li>O branch principal é chamado <code class="bg-gray-100 px-1 text-primary-700">master</code> ou <code class="bg-gray-100 px-1 text-primary-700">main</code></li>
+                    </ul>
+                    <div class="mt-4 bg-gray-800 rounded-lg p-3 font-mono text-xs text-gray-200 flex items-center gap-2">
+                        <i class="fas fa-code text-gray-400"></i>
+                        <span>$ git branch nova-feature</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 p-4 bg-amber-50 rounded-xl border-l-4 border-amber-400">
+                <div class="flex gap-3">
+                    <i class="fas fa-lightbulb text-amber-500 text-xl shrink-0 mt-1"></i>
+                    <div>
+                        <p class="font-semibold text-amber-800 mb-1">Dica importante:</p>
+                        <p class="text-amber-700 text-sm">
+                            Esses três conceitos trabalham juntos: você cria commits em um branch específico, dentro de um repositório.
+                            Entender como eles se relacionam é essencial para dominar o Git!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <script src="../asserts/js/menu.js"></script>
+</body>
 </html>
